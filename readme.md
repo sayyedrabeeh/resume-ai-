@@ -17,3 +17,18 @@ This is a full-stack web application built using Django (backend), React (fronte
 - Frontend: React.js (Vite or CRA)
 - AI/ML: spaCy + Sentence Transformers + Scikit-learn (or GPT4All / Ollama LLMs - Free & Local)
 - DB: PostgreSQL
+
+
+### working of app
+
+
+User signs up / logs in
+User uploads a resume (PDF/Docx)
+The app extracts info from the resume using AI (skills, experience, education, etc.)
+The app builds a structured profile in the backend
+User uploads or pastes a Job Description (JD) link or text
+The app compares the resume profile and JD
+It calculates match percentage + suggestions
+Another tab fetches real job listings from LinkedIn / Naukri etc. based on resume data
+Shows only jobs with match % > 75%
+
