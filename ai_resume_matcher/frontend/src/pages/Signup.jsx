@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 function Signup() {
     const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
     const handleSignup = async (e) => {
@@ -16,44 +16,53 @@ function Signup() {
                 email,
                 password
             });
-            alert('Signup successful');
+            alert('Signup successful! Please log in.');
             navigate('/login');
         } catch (error) {
-            if (error.response) {
-                console.log('Error response:', error.response.data);
-                alert('Signup failed: ' + (error.response.data.message || error.response.data.error));
-            } else if (error.request) {
-                console.log('No response received:', error.request);
-                alert('Signup failed: No response from server.');
-            } else {
-                console.log('Error message:', error.message);
-                alert('Signup failed: ' + error.message);
-            }
+            console.log('Error response:', error.response?.data);
+            alert('Signup failed: ' + (error.response?.data?.message || error.response?.data?.error || 'Unknown error'));
         }
     };
 
     return (
-        <form onSubmit={handleSignup}>
-            <input
-                type='text'
-                placeholder='Enter your username'
-                onChange={(e) => setUsername(e.target.value)}
-                required
-            />
-            <input
-                type='email'
-                placeholder='Enter your email'
-                onChange={(e) => setEmail(e.target.value)}
-                required
-            />
-            <input
-                type='password'
-                placeholder='Enter your password'
-                onChange={(e) => setPassword(e.target.value)}
-                required
-            />
-            <button type='submit'>Signup</button>
-        </form>
+        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+            <form onSubmit={handleSignup} className="bg-white p-8 rounded shadow-md w-96">
+                <h2 className="text-2xl font-bold mb-6 text-center">Signup</h2>
+                <input
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                    className="w-full p-2 mb-4 border rounded focus:outline-none focus:ring-2 focus:ring-green-400"
+                />
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="w-full p-2 mb-4 border rounded focus:outline-none focus:ring-2 focus:ring-green-400"
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className="w-full p-2 mb-6 border rounded focus:outline-none focus:ring-2 focus:ring-green-400"
+                />
+                <button
+                    type="submit"
+                    className="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600 transition"
+                >
+                    Signup
+                </button>
+                <p className="text-sm text-center mt-4">
+                    Already have an account? <a href="/login" className="text-green-500 hover:underline">Login</a>
+                </p>
+            </form>
+        </div>
     );
 }
 
