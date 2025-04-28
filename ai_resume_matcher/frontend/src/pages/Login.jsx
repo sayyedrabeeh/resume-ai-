@@ -15,6 +15,9 @@ function Login() {
                 password
             });
             alert('Login successful');
+            localStorage.setItem('accesToken',response.data.access)
+            localStorage.setItem('refreshToken',response.data.refresh)
+            navigate('/home')
           
         } catch (error) {
             console.log('Error response:', error.response?.data);
