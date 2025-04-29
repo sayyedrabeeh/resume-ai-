@@ -7,6 +7,8 @@ function ResumeUpload() {
     const [loading, setLoading] = useState(false);
     const [fileName, setFileName] = useState("");
     const [error, setError] = useState("");
+
+     
     
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
@@ -22,7 +24,7 @@ function ResumeUpload() {
             }
         }
     };
-    
+    const token = '008c1dcf0b92d6df75c7814c17e80421b22b3d70 ';
     const handleUpload = async (e) => {
         if (!file) {
             setError("Please upload your resume file");
@@ -38,8 +40,11 @@ function ResumeUpload() {
         try {
             const response = await axios.post('http://localhost:8000/upload-resume/', formData, {
                 headers: {
+                    
+                    Authorization: `Token ${token}`,
                     'Content-Type': 'multipart/form-data',
-                }
+                }, 
+                withCredentials: true,
             });
             setProfile(response.data);
             setLoading(false);

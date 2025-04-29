@@ -9,6 +9,16 @@ import fitz
 from .models import Profile
 from .serializers import Profileserilizer
 import re
+from rest_framework.permissions import IsAuthenticated
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+import hashlib
+
+def get_file_hash(file):
+    hasher = hashlib.md5()
+    for chunk in file.chunks():
+        hasher.update(chunk)
+    return hasher.hexdigest()
 
 
 class SignupView(APIView):
@@ -46,16 +56,21 @@ class LoginView(APIView):
         else:
             return Response({'error': 'invalid Credentials'}, status=status.HTTP_400_BAD_REQUEST)
 
-
+@method_decorator(csrf_exempt, name='dispatch')
 class ResumeUploadView(APIView):
-    
+    permission_classes = [IsAuthenticated] 
+     
     def post(self, request):
         resume_file = request.FILES.get('resume')
+        print("resume_file :",resume_file)
 
         if not resume_file:
            return Response({'error': 'resume not uploaded'}, status=status.HTTP_400_BAD_REQUEST)
-        
-        profile = Profile(resume=resume_file)
+        file_hash = get_file_hash(resume_file)
+        if Profile.objects.filter(user=request.user, resume_hash=file_hash).exists():
+               return Response({'error': 'You have already uploaded this resume. Please check you profile page .'}, status=status.HTTP_400_BAD_REQUEST)
+
+        profile = Profile(user=request.user,resume=resume_file, resume_hash=file_hash)
         profile.save()
         
         doc = fitz.open(profile.resume.path)
