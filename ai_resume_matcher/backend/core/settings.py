@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apps.jobs',
     'apps.match',
     'corsheaders',
+    'rest_framework_simplejwt',
     'rest_framework.authtoken',
 ]
 
@@ -99,6 +100,19 @@ DATABASES = {
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+SIMPLE_JWT = {
+    'AUTH_COOKIE': 'access',  # Cookie name
+    'AUTH_COOKIE_SECURE': False,  # Should be True in production with HTTPS
+    'AUTH_COOKIE_HTTP_ONLY': True,
+    'AUTH_COOKIE_PATH': '/',
+    'AUTH_COOKIE_SAMESITE': 'Lax',  # Or 'None' if you're cross-origin
+}
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -113,7 +127,7 @@ CSRF_COOKIE_SECURE = False
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',

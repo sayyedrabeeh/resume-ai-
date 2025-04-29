@@ -1,5 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import api from "../api/axiosConfig";
 
 function ResumeUpload() {
     const [file, setFile] = useState(null);
@@ -7,9 +8,8 @@ function ResumeUpload() {
     const [loading, setLoading] = useState(false);
     const [fileName, setFileName] = useState("");
     const [error, setError] = useState("");
+    const navigate = useNavigate();
 
-     
-    
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
         if (selectedFile) {
@@ -24,40 +24,49 @@ function ResumeUpload() {
             }
         }
     };
-    const token = '008c1dcf0b92d6df75c7814c17e80421b22b3d70 ';
-    const handleUpload = async (e) => {
+
+    const handleUpload = async () => {
         if (!file) {
             setError("Please upload your resume file");
             return;
         }
-        
+
         setLoading(true);
         setError("");
-        
+
         const formData = new FormData();
         formData.append('resume', file);
 
         try {
-            const response = await axios.post('http://localhost:8000/upload-resume/', formData, {
+             
+            const token = localStorage.getItem('access_token');
+            
+            if (!token) {
+                throw new Error('You are not logged in. Please log in to upload a resume.');
+            }
+
+            const response = await api.post('/upload-resume/', formData, {
                 headers: {
-                    
-                    Authorization: `Token ${token}`,
                     'Content-Type': 'multipart/form-data',
-                }, 
-                withCredentials: true,
+                    'Authorization': `Bearer ${token}`   
+                }
             });
             setProfile(response.data);
-            setLoading(false);
         } catch (error) {
             console.error("Error uploading resume:", error);
-            setError(error.response?.data?.error || "Failed to upload resume. Please try again.");
+            if (error.response?.status === 401) {
+                setError("Authentication failed. Please log in again.");
+                
+            } else {
+                setError(error.response?.data?.error || error.message || "Failed to upload resume. Please try again.");
+            }
+        } finally {
             setLoading(false);
         }
     };
-    
+
     const ProfileSection = ({ title, content }) => {
         if (!content || content.includes("not found")) return null;
-        
         return (
             <div className="mb-6">
                 <h3 className="text-xl font-semibold text-gray-800 mb-2">{title}</h3>
@@ -67,10 +76,9 @@ function ResumeUpload() {
             </div>
         );
     };
-    
+
     const ProfileLink = ({ title, link, icon }) => {
         if (!link) return null;
-        
         return (
             <a 
                 href={link} 
@@ -83,18 +91,16 @@ function ResumeUpload() {
             </a>
         );
     };
-    
+
     return (
         <div className="min-h-screen bg-gradient-to-b from-blue-50 to-gray-100">
             <div className="container mx-auto px-4 py-12">
                 <div className="max-w-3xl mx-auto">
-                    
                     <div className="text-center mb-10">
                         <h1 className="text-4xl font-bold text-gray-800 mb-2">Resume Parser</h1>
                         <p className="text-gray-600">Upload your resume and let us extract the information for you</p>
                     </div>
-                    
-                   
+
                     <div className="bg-white rounded-xl shadow-lg p-8 mb-10">
                         <div className="mb-6">
                             <label className="block text-gray-700 text-sm font-semibold mb-2">
@@ -126,7 +132,7 @@ function ResumeUpload() {
                                 <p className="mt-2 text-sm text-red-600">{error}</p>
                             )}
                         </div>
-                        
+
                         <button
                             onClick={handleUpload}
                             disabled={loading || !file}
@@ -145,13 +151,10 @@ function ResumeUpload() {
                             ) : "Extract Resume Information"}
                         </button>
                     </div>
-                    
-                    
+
                     {profile && (
                         <div className="bg-white rounded-xl shadow-lg p-8 mb-10">
                             <h2 className="text-2xl font-bold text-gray-800 mb-6 pb-2 border-b">Extracted Profile Information</h2>
-                            
-                            
                             <div className="mb-8">
                                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                                     <div>
@@ -167,23 +170,10 @@ function ResumeUpload() {
                                             )}
                                         </div>
                                     </div>
-                                    
                                     <div className="mt-4 md:mt-0 flex flex-wrap gap-3">
-                                        <ProfileLink 
-                                            title="LinkedIn" 
-                                            link={profile.linkedin}
-                                            icon="🔗" 
-                                        />
-                                        <ProfileLink 
-                                            title="GitHub" 
-                                            link={profile.github}
-                                            icon="💻" 
-                                        />
-                                        <ProfileLink 
-                                            title="Website" 
-                                            link={profile.website}
-                                            icon="🌐" 
-                                        />
+                                        <ProfileLink title="LinkedIn" link={profile.linkedin} icon="🔗" />
+                                        <ProfileLink title="GitHub" link={profile.github} icon="💻" />
+                                        <ProfileLink title="Website" link={profile.website} icon="🌐" />
                                     </div>
                                 </div>
                             </div>
@@ -196,6 +186,15 @@ function ResumeUpload() {
                             <ProfileSection title="Achievements" content={profile.achievements} />
                         </div>
                     )}
+
+                    <div className="text-center mt-6">
+                        <Link 
+                            to="/profiles"
+                            className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-200"
+                        >
+                            View Uploaded Profiles
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

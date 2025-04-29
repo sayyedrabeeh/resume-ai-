@@ -13,6 +13,9 @@ from rest_framework.permissions import IsAuthenticated
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 import hashlib
+from rest_framework import generics
+from rest_framework.permissions import AllowAny
+
 
 def get_file_hash(file):
     hasher = hashlib.md5()
@@ -22,6 +25,8 @@ def get_file_hash(file):
 
 
 class SignupView(APIView):
+    permission_classes = [AllowAny]
+
     def post(self, request):
         username = request.data.get('username')
         email = request.data.get('email')
@@ -40,7 +45,10 @@ class SignupView(APIView):
         return Response({'message': 'account created successfully'}, status=status.HTTP_201_CREATED)
 
 
+ 
 class LoginView(APIView):
+    permission_classes = [AllowAny]   
+    
     def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')
@@ -55,8 +63,7 @@ class LoginView(APIView):
             })
         else:
             return Response({'error': 'invalid Credentials'}, status=status.HTTP_400_BAD_REQUEST)
-
-@method_decorator(csrf_exempt, name='dispatch')
+        
 class ResumeUploadView(APIView):
     permission_classes = [IsAuthenticated] 
      
@@ -267,3 +274,20 @@ class ResumeUploadView(APIView):
                 return match.group(0).strip()
         
         return "Achievements not found"
+    
+class UserProfilesView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = Profileserilizer
+
+    def get_queryset(self):
+        return Profile.objects.filter(user=self.request.user)
+    
+class CurrentUserProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self,request):
+        try:
+            profile = Profile.objects.get(user=request.user,s_current=True)
+            serializer = Profileserilizer(profile)
+            return Response(serializer.data)
+        except Profile.DoesNotExist:
+            return Response({"detail": "Profile not found."}, status=404)

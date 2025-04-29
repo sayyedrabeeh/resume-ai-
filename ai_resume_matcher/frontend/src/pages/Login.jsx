@@ -10,21 +10,21 @@ function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8000/login/', {
-                username,
-                password
-            });
+            const response = await axios.post(
+                'http://localhost:8000/login/',
+                { username, password },
+                { headers: { 'Content-Type': 'application/json' } }
+            );
             alert('Login successful');
-            localStorage.setItem('accesToken',response.data.access)
-            localStorage.setItem('refreshToken',response.data.refresh)
-            navigate('/home')
-          
+            localStorage.setItem('access_token', response.data.access);
+            localStorage.setItem('refreshToken', response.data.refresh);
+            navigate('/home');
         } catch (error) {
             console.log('Error response:', error.response?.data);
             alert('Login failed: ' + (error.response?.data?.message || error.response?.data?.error || 'Unknown error'));
         }
     };
-
+    
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
             <form onSubmit={handleLogin} className="bg-white p-8 rounded shadow-md w-96">

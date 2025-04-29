@@ -11,18 +11,25 @@ function Signup() {
     const handleSignup = async (e) => {
         e.preventDefault();
         try {
+            const csrfToken = document.cookie.split(';').find(c => c.trim().startsWith('csrftoken=')).split('=')[1];
             const response = await axios.post('http://localhost:8000/signup/', {
                 username,
                 email,
                 password
+            }, {
+                headers: {
+                    'X-CSRFToken': csrfToken
+                }
             });
             alert('Signup successful! Please log in.');
             navigate('/login');
         } catch (error) {
             console.log('Error response:', error.response?.data);
-            alert('Signup failed: ' + (error.response?.data?.message || error.response?.data?.error || 'Unknown error'));
+            alert('Signup failed: ' + (error.response?.data?.error || 'Unknown error'));
         }
     };
+    
+    
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">

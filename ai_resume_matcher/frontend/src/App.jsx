@@ -4,6 +4,8 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Home from './pages/home';
 import ResumeUpload from './pages/upload';
+import Profile from './pages/profile';
+
 function App() {
  
   return (
@@ -14,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/upload" element={<ResumeUpload />} />
+        <Route path="/profiles" element={<Profile />} />
         </Routes>
         </BrowserRouter>
     </>
