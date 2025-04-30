@@ -304,6 +304,7 @@ class SetCurrentProfileView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
+        print('hii')
         profile_id = request.data.get('profile_id')
         if not profile_id:
             return Response({'detail': 'Profile ID is required.'}, status=400)
