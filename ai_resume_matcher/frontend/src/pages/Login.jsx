@@ -17,7 +17,7 @@ function Login() {
             );
             alert('Login successful');
             localStorage.setItem('access_token', response.data.access);
-            localStorage.setItem('refreshToken', response.data.refresh);
+            localStorage.setItem('refresh_token', response.data.refresh);
             navigate('/home');
         } catch (error) {
             console.log('Error response:', error.response?.data);

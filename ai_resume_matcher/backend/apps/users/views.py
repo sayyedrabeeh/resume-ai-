@@ -280,14 +280,38 @@ class UserProfilesView(generics.ListAPIView):
     serializer_class = Profileserilizer
 
     def get_queryset(self):
-        return Profile.objects.filter(user=self.request.user)
+        profile=Profile.objects.filter(user=self.request.user)
+        print('profile :',profile)
+        return profile
     
 class CurrentUserProfileView(APIView):
     permission_classes = [IsAuthenticated]
     def get(self,request):
         try:
-            profile = Profile.objects.get(user=request.user,s_current=True)
+            profile = Profile.objects.get(user=request.user,is_current=True)
             serializer = Profileserilizer(profile)
             return Response(serializer.data)
         except Profile.DoesNotExist:
             return Response({"detail": "Profile not found."}, status=404)
+        
+
+class SetCurrentProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        profile_id = request.data.get('profile_id')
+        if not profile_id:
+            return Response({'detail': 'Profile ID is required.'}, status=400)
+
+        try:
+            # Unset previous current profile
+            Profile.objects.filter(user=request.user, is_current=True).update(is_current=False)
+
+            # Set selected profile as current
+            profile = Profile.objects.get(id=profile_id, user=request.user)
+            profile.is_current = True
+            profile.save()
+
+            return Response({'detail': 'Current profile set successfully.'})
+        except Profile.DoesNotExist:
+            return Response({'detail': 'Profile not found or does not belong to user.'}, status=404)
