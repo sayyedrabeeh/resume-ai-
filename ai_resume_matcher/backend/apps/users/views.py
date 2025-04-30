@@ -310,10 +310,10 @@ class SetCurrentProfileView(APIView):
             return Response({'detail': 'Profile ID is required.'}, status=400)
 
         try:
-            # Unset previous current profile
+            
             Profile.objects.filter(user=request.user, is_current=True).update(is_current=False)
 
-            # Set selected profile as current
+             
             profile = Profile.objects.get(id=profile_id, user=request.user)
             profile.is_current = True
             profile.save()

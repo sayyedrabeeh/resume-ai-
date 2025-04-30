@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axiosInstance from "../api/axiosInstance";
 
-const jobMatch = () =>{
+const JobMatcher = () =>{
     const [jobDsc ,setJobDsc] = useState('')
     const [matchResult,setMatchResult] = useState('')
     const [error,setError] = useState('')
@@ -73,4 +73,4 @@ const jobMatch = () =>{
     
 }
 
-export default jobMatch
+export default JobMatcher
