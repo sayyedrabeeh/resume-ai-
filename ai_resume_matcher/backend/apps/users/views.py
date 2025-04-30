@@ -74,9 +74,14 @@ class ResumeUploadView(APIView):
         if not resume_file:
            return Response({'error': 'resume not uploaded'}, status=status.HTTP_400_BAD_REQUEST)
         file_hash = get_file_hash(resume_file)
-        if Profile.objects.filter(user=request.user, resume_hash=file_hash).exists():
-               return Response({'error': 'You have already uploaded this resume. Please check you profile page .'}, status=status.HTTP_400_BAD_REQUEST)
-
+        existing_profile = Profile.objects.filter(user=request.user, resume_hash=file_hash).first()
+        if existing_profile:
+            serializer = Profileserilizer(existing_profile)
+            return Response({
+                'message': 'You have already uploaded this resume. Showing existing profile.',
+                'profile': serializer.data
+            }, status=status.HTTP_200_OK)
+        
         profile = Profile(user=request.user,resume=resume_file, resume_hash=file_hash)
         profile.save()
         

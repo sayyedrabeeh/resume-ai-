@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axiosInstance from "../api/axiosInstance";
 import { jwtDecode } from "jwt-decode";
+import { Link } from "react-router-dom";  
 
 const Profile = () => {
   const [profiles, setProfile] = useState([]);
@@ -72,14 +73,19 @@ const Profile = () => {
           <h3 className="text-xl font-semibold mb-2">{currentProfile.name}</h3>
           <p><strong>Email:</strong> {currentProfile.email}</p>
           <p><strong>Phone:</strong> {currentProfile.phone}</p>
-          <p><strong>Summary:</strong> {currentProfile.summary}</p>
+          <p><strong>Summary:</strong> {currentProfile.summery}</p>
           <p><strong>Skills:</strong> {currentProfile.skills}</p>
           <p><strong>Education:</strong> {currentProfile.education}</p>
-          <p><strong>Experience:</strong> {currentProfile.experience}</p>
+          <p><strong>Experience:</strong> {currentProfile.expirence}</p>
         </div>
       ) : (
         <p className="text-gray-500">No profile selected.</p>
       )}
+       <Link to="/job-matcher">
+      <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+        Go to Job Matcher
+      </button>
+    </Link>
     </div>
   );
 };

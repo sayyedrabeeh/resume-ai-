@@ -51,7 +51,7 @@ function ResumeUpload() {
                     'Authorization': `Bearer ${token}`   
                 }
             });
-            setProfile(response.data);
+            setProfile(response.data.profile);
         } catch (error) {
             console.error("Error uploading resume:", error);
             if (error.response?.status === 401) {
