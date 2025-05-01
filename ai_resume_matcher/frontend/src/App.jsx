@@ -7,6 +7,7 @@ import ResumeUpload from './pages/upload';
 import Profile from './pages/profile';
 import JobMatcher from './pages/jobmatch';  
 import JobMatche from './pages/jobs';
+import PublicRoute from './components/PublicRoute';
 
 function App() {
  
@@ -14,8 +15,8 @@ function App() {
     <>
         <BrowserRouter>
         <Routes>
-        <Route path="/" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+        <Route path="/" element={<PublicRoute><Signup /></PublicRoute>} />
         <Route path="/home" element={<Home />} />
         <Route path="/upload" element={<ResumeUpload />} />
         <Route path="/profiles" element={<Profile />} />

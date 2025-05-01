@@ -46,22 +46,25 @@ const JobMatcher = () => {
           placeholder="Paste job description here..."
         />
         
-        <button
-          onClick={handleSubmit}
-          disabled={isLoading}
-          className={`w-full md:w-auto px-6 py-3 rounded-md text-white font-medium ${
-            isLoading ? "bg-blue-400" : "bg-blue-600 hover:bg-blue-700"
-          } transition-colors duration-200 flex items-center justify-center`}
-        >
-          {isLoading ? (
-            <>
-              <span className="mr-2">Processing</span>
-              <span className="animate-pulse">...</span>
-            </>
-          ) : (
-            "Match Job Description"
-          )}
-        </button>
+        {jobDsc.trim() && (
+              <button
+                onClick={handleSubmit}
+                disabled={isLoading}
+                className={`w-full md:w-auto px-6 py-3 rounded-md text-white font-medium ${
+                  isLoading ? "bg-blue-400" : "bg-blue-600 hover:bg-blue-700"
+                } transition-colors duration-200 flex items-center justify-center`}
+              >
+                {isLoading ? (
+                  <>
+                    <span className="mr-2">Processing</span>
+                    <span className="animate-pulse">...</span>
+                  </>
+                ) : (
+                  "Match Job Description"
+                )}
+              </button>
+            )}
+            
       </div>
 
       {error && (
