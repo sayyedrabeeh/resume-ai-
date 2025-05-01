@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import api from '../api/axiosConfig';
+import axiosInstance from "../api/axiosInstance";
 
 const JobMatche = () => {
     const [jobs, setJobs] = useState([]);
@@ -8,7 +9,7 @@ const JobMatche = () => {
     useEffect(() => {
         const fetchJobs = async () => {
             try {
-                const res = await api.get('jobs/matching-jobs/');
+                const res = await axiosInstance.get('jobs/matching-jobs/');
                 console.log('res', res);
                 setJobs(res.data.matches);  
             } catch (err) {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../api/axiosConfig";
+import axiosInstance from "../api/axiosInstance";
 
 function ResumeUpload() {
     const [file, setFile] = useState(null);
@@ -45,7 +46,7 @@ function ResumeUpload() {
                 throw new Error('You are not logged in. Please log in to upload a resume.');
             }
 
-            const response = await api.post('/upload-resume/', formData, {
+            const response = await axiosInstance.post('/upload-resume/', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${token}`   

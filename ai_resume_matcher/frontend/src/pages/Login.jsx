@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from "../api/axiosInstance";
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -11,7 +12,7 @@ function Login() {
         e.preventDefault();
         try {
             const response = await axios.post(
-                'http://localhost:8000/login/',
+                'http://localhost:8000/api/token/',
                 { username, password },
                 { headers: { 'Content-Type': 'application/json' } }
             );

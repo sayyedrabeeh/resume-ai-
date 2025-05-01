@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from "../api/axiosInstance";
 
 function Signup() {
     const [username, setUsername] = useState('');
@@ -12,7 +13,7 @@ function Signup() {
         e.preventDefault();
         try {
             const csrfToken = document.cookie.split(';').find(c => c.trim().startsWith('csrftoken=')).split('=')[1];
-            const response = await axios.post('http://localhost:8000/signup/', {
+            const response = await axiosInstance.post('http://localhost:8000/signup/', {
                 username,
                 email,
                 password
