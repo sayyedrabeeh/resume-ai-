@@ -1,56 +1,126 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-function Home(){
-    const navigate = useNavigate()
+function Home() {
+  const navigate = useNavigate();
 
-    useEffect(() =>{
-        const token = localStorage.getItem('accesToken')
-        if(!token){
-            navigate('/login')
-        }
-    },[navigate]
-)
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
 
-
-    return(
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md w-96 text-center">
-        <h1 className="text-3xl font-bold mb-4">Welcome Home!</h1>
-        <p className="text-gray-600 mb-6">You are authenticated.</p>
-
-        <div className="space-y-4">
-          <Link
-            to="/upload"
-            className="block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300"
-          >
-            Upload Your Resume
-          </Link>
-
-          <Link
-            to="/job-matches"
-            className="block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300"
-          >
-            Matching Jobs
-          </Link>
-
-          <button
-            className="block w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300"
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-gray-100 py-16">
+      <div className="container mx-auto px-4">
+        <div className="max-w-3xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div className="bg-blue-600 p-8 text-center">
+              <h1 className="text-3xl font-bold text-white mb-2">Welcome to ResumeMatch</h1>
+              <p className="text-blue-100">Your professional career companion</p>
+            </div>
             
-            
-            onClick={() => {
-                localStorage.removeItem('accessToken');
-                localStorage.removeItem('refreshToken');
-                navigate('/login');
-            }}
-        >
-            Logout
-        </button>
+            <div className="p-8">
+              <div className="text-center mb-10">
+                <div className="inline-block p-4 rounded-full bg-blue-100 mb-4">
+                  <svg className="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                  </svg>
+                </div>
+                <h2 className="text-2xl font-bold text-gray-800 mb-2">You are now authenticated</h2>
+                <p className="text-gray-600">What would you like to do today?</p>
+              </div>
+              
+              <div className="space-y-4">
+                <Link
+                  to="/upload"
+                  className="block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg shadow transition duration-300 flex items-center"
+                >
+                  <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0l-4 4m4-4v12"></path>
+                  </svg>
+                  <div>
+                    <span className="block">Upload Your Resume</span>
+                    <span className="block text-sm text-blue-200">Parse and extract your skills and experience</span>
+                  </div>
+                </Link>
+
+                <Link
+                  to="/job-matches"
+                  className="block bg-green-600 hover:bg-green-700 text-white font-semibold py-4 px-6 rounded-lg shadow transition duration-300 flex items-center"
+                >
+                  <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  </svg>
+                  <div>
+                    <span className="block">View Matching Jobs</span>
+                    <span className="block text-sm text-green-200">Find positions that match your profile</span>
+                  </div>
+                </Link>
+                
+                <Link
+                  to="/profiles"
+                  className="block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-4 px-6 rounded-lg shadow transition duration-300 flex items-center"
+                >
+                  <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"></path>
+                  </svg>
+                  <div>
+                    <span className="block">Manage Profiles</span>
+                    <span className="block text-sm text-indigo-200">Select and update your profile</span>
+                  </div>
+                </Link>
+
+                <Link
+                  to="/job-matcher"
+                  className="block bg-purple-600 hover:bg-purple-700 text-white font-semibold py-4 px-6 rounded-lg shadow transition duration-300 flex items-center"
+                >
+                  <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h2"></path>
+                  </svg>
+                  <div>
+                    <span className="block">Job Matcher</span>
+                    <span className="block text-sm text-purple-200">Compare your resume with job descriptions</span>
+                  </div>
+                </Link>
+
+                <Link
+                  to="/settings"
+                  className="block bg-gray-600 hover:bg-gray-700 text-white font-semibold py-4 px-6 rounded-lg shadow transition duration-300 flex items-center"
+                >
+                  <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  <div>
+                    <span className="block">Account Settings</span>
+                    <span className="block text-sm text-gray-300">Manage your preferences</span>
+                  </div>
+                </Link>
+              </div>
+              
+              <div className="mt-12 pt-8 border-t border-gray-200 text-center">
+                <button
+                  onClick={() => {
+                    localStorage.removeItem("access_token");
+                    navigate("/login");
+                  }}
+                  className="text-red-600 hover:text-red-800 font-medium transition duration-300"
+                >
+                  Sign Out
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div className="mt-8 text-center text-gray-500 text-sm">
+            <p>&copy; {new Date().getFullYear()} ResumeMatch. All rights reserved.</p>
+          </div>
         </div>
       </div>
     </div>
-    )
-
+  );
 }
-export default Home
+
+export default Home;
