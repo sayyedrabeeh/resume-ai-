@@ -1,34 +1,40 @@
-# AI Resume Matcher & Job Finder 🔍💼
+# 🧠 ResuMatch - Smart Resume & Job Matcher
 
-This is a full-stack web application built using Django (backend), React (frontend), and PostgreSQL (database). It enables users to:
+ResuMatch is a fullstack web application that intelligently compares a user's resume with job descriptions to provide a personalized **match score**, **missing skills**, and **improvement suggestions** — helping users boost their job readiness and land their dream role.
+ 
 
-- Upload their resumes (PDF/DOCX)
-- Extract and analyze key resume data to build a detailed profile
-- Upload job descriptions to compare with their resume and get:
-  - Relevance score (%)
-  - Selection chance prediction
-- View job recommendations from sites like LinkedIn or Naukri based on profile (80%+ match)
+---
 
+## 🚀 Features
 
+- 📄 **Resume Upload**: Extracts and stores user profile data from uploaded resumes.
+- 💼 **Job Description Matcher**: Paste a job description and instantly see:
+  - ✅ Match percentage
+  - 🔍 Matching reasons
+  - ⚠️ Missing skills
+  - 💡 Suggestions to improve fit
+- 🔐 **JWT Authentication**: Secure login and protected API access.
+- ⚙️ **Automatic Token Refreshing**: Seamless login experience with token refresh.
+- 🌍 **Job Fetching**: Fetches relevant job listings based on the user's profile.
+- 🎨 **Modern UI**: Clean and responsive React interface styled with Tailwind CSS.
 
-## 💻 Tech Stack
+---
 
-- Backend: Django, Django REST Framework
-- Frontend: React.js (Vite or CRA)
-- AI/ML: spaCy + Sentence Transformers + Scikit-learn (or GPT4All / Ollama LLMs - Free & Local)
-- DB: PostgreSQL
+## 🛠️ Tech Stack
 
+| Frontend           | Backend               | Other                    |
+|--------------------|------------------------|---------------------------|
+| React + Tailwind   | Django + Django REST   | JSearch API (Job listings)|
+| Axios              | SimpleJWT (Auth)       | PostgreSQL or SQLite     |
 
-### working of app
+---
 
+## 📸 Demo
 
-User signs up / logs in
-User uploads a resume (PDF/Docx)
-The app extracts info from the resume using AI (skills, experience, education, etc.)
-The app builds a structured profile in the backend
-User uploads or pastes a Job Description (JD) link or text
-The app compares the resume profile and JD
-It calculates match percentage + suggestions
-Another tab fetches real job listings from LinkedIn / Naukri etc. based on resume data
-Shows only jobs with match % > 75%
+> 🚧 Add a link to your deployed site or demo video here  
+ 
+
+---
+
+## 📂 Project Structure
 
