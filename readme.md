@@ -117,7 +117,7 @@ ResuMatch follows a typical client-server architecture:
 - `POST /api/password-reset/`: Request password reset
 
 ### Resume Management APIs
-- `POST /api/resume/upload/`: Upload and parse a new resume
+- `POST /api/resumeupload/`: Upload and parse a new resume
 - `GET /api/profiles/`: List all user profiles
 - `GET /api/current-profile/`: Get current active profile
 - `POST /api/set-current-profile/`: Set a profile as current
@@ -131,10 +131,7 @@ ResuMatch follows a typical client-server architecture:
 ```
 src/
 ├── components/         # Reusable UI components
-│   ├── Header.jsx      # Navigation header
-│   ├── Footer.jsx      # Page footer
-│   ├── JobCard.jsx     # Job display component
-│   └── ...
+│  
 ├── pages/              # Page components
 │   ├── Login.jsx       # User login
 │   ├── Signup.jsx      # New user registration
@@ -146,12 +143,8 @@ src/
 │   └── ...
 ├── api/                # API communication
 │   ├── axiosInstance.js # Configured Axios client
-│   └── axiosConfig.js  # Axios configuration
-├── context/            # React context providers
-│   ├── AuthContext.jsx # Authentication state
-│   └── ...
-├── hooks/              # Custom React hooks
-├── utils/              # Helper functions
+│   └── axiosConfig.js  # Axios configuration  
+│   └── ...              
 └── App.jsx             # Main application component
 ```
 
@@ -164,7 +157,7 @@ src/
 5. **Token Management**: Automatic handling of JWT authentication
 
 <div align="center">
-  <img src="/api/placeholder/800/450" alt="Mobile Responsive Design" />
+  <img src="/screenshot/mobile.png" alt="Mobile Responsive Design" />
   <p><em>Mobile-responsive interface for on-the-go job matching</em></p>
 </div>
 
