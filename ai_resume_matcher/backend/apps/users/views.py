@@ -324,7 +324,7 @@ class SetCurrentProfileView(APIView):
         
 class CurrentUserView(APIView):
     permission_classes = [IsAuthenticated]
-    def get(request):
+    def get(self,request):
         user = request.user
         return Response({
             "username": user.username,
