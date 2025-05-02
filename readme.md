@@ -74,7 +74,7 @@ ResuMatch is a comprehensive full-stack application that bridges the gap between
 - **Real-time Job Search**: Connect with job search APIs to find relevant positions
 - **Match-Based Sorting**: Jobs are displayed with personalized match scores
 - **Direct Application Links**: Apply to matched jobs with one click
-- **Company Information**: View employer logos and details
+ 
 
 ## 🛠️ Tech Stack
 
@@ -94,17 +94,11 @@ ResuMatch is a comprehensive full-stack application that bridges the gap between
 - **Regular Expressions**: Pattern-based text analysis
 - **Redis**: Caching for performance optimization
 
-### DevOps & Deployment
-- **Docker**: Containerization
-- **Nginx**: Web server and reverse proxy
-- **Gunicorn**: WSGI HTTP Server
-- **GitHub Actions**: CI/CD pipeline
-- **AWS/Digital Ocean**: Cloud hosting
-
-## 🏗️ System Architecture
+ 
+ 
 
 <div align="center">
-  <img src="/api/placeholder/800/500" alt="System Architecture Diagram" />
+  <img src="/screenshot/matching.png" alt="System Architecture Diagram" />
 </div>
 
 ResuMatch follows a typical client-server architecture:
