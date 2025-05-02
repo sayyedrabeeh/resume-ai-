@@ -321,3 +321,13 @@ class SetCurrentProfileView(APIView):
             return Response({'detail': 'Current profile set successfully.'})
         except Profile.DoesNotExist:
             return Response({'detail': 'Profile not found or does not belong to user.'}, status=404)
+        
+class CurrentUserView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(request):
+        user = request.user
+        return Response({
+            "username": user.username,
+            "email": user.email,
+            "date_joined": user.date_joined
+        })
