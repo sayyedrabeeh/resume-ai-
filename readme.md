@@ -1,7 +1,7 @@
 # 🚀 ResuMatch - AI-Powered Resume & Job Matching Platform
 
 <div align="center">
-  <img src="/api/placeholder/1200/300" alt="ResuMatch Banner" />
+  <img src="/screenshot/extracting.png" alt="ResuMatch Banner" />
   <p><strong>Smart Resume Analysis & Precision Job Matching</strong></p>
 </div>
  
@@ -317,7 +317,7 @@ We welcome contributions to ResuMatch! Here's how you can help:
 - [React](https://reactjs.org/) for frontend development
 
 ---
-###                   HAPYY CODING ✨ 
+###                  ✨  HAPYY CODING ✨ 
 <p align="center">
   <strong>ResuMatch</strong>   resume analysis and job matching
 </p>
