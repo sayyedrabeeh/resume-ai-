@@ -171,10 +171,9 @@ resume_matcher/
 │   ├── views.py          # Resume upload & processing
 ├── match/
 │   ├── matching.py       # Skill extraction & match scoring
-│   ├── views.py          # Match processing & job fetching
-├── api/                  # API configuration
+│   ├── views.py          # Match processing & job fetching                  
 ├── jobs/                 # External job integration
-└── settings/             # Project settings
+ 
 ```
 
 ### Match Scoring Algorithm
@@ -182,13 +181,13 @@ resume_matcher/
 ResuMatch uses a sophisticated algorithm to calculate match scores:
 
 1. **Skill Extraction**: Identifies both single-word skills (e.g., "Python", "React") and multi-word skills (e.g., "machine learning", "project management")
-2. **Proficiency Analysis**: Detects skill levels (beginner, intermediate, advanced)
-3. **Summary Relevance**: Analyzes resume summary for keyword matches
-4. **Experience Evaluation**: Considers years of experience and leadership roles
-5. **Actionable Feedback**: Generates specific suggestions based on missing skills
+
+2. **Summary Relevance**: Analyzes resume summary for keyword matches
+3. **Experience Evaluation**: Considers years of experience and leadership roles
+3. **Actionable Feedback**: Generates specific suggestions based on missing skills
 
 <div align="center">
-  <img src="/api/placeholder/800/300" alt="Match Algorithm Visualization" />
+  <img src="/screenshot/matchin1.png" alt="Match Algorithm Visualization" />
   <p><em>Visual representation of the match scoring algorithm</em></p>
 </div>
 
@@ -214,12 +213,12 @@ ResuMatch uses a sophisticated algorithm to calculate match scores:
 - Node.js 16+
 - Python 3.8+
 - PostgreSQL 12+
-- Redis (optional, for caching)
+
 
 ### Frontend Setup
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/resumatch.git
+git clone https://github.com/sayyedrabeeh/resume-ai-.git
 cd resumatch/frontend
 
 # Install dependencies
@@ -252,30 +251,26 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-### Docker Setup
-```bash
-# Build and run with Docker Compose
-docker-compose up --build
-```
+ 
 
 ## 🚀 Usage Examples
 
 ### User Registration Process
 
 <div align="center">
-  <img src="/api/placeholder/800/400" alt="Signup Process" />
+  <img src="/screenshot/signup1.png" alt="Signup Process" />
   <p><em>Simple 3-step signup process for new users</em></p>
 </div>
 
 1. **Visit the signup page** and provide your email and password
 2. **Verify your email address** through the confirmation link
-3. **Complete your profile** by uploading your resume
+3. **Complete your profile** by adding profile 
 4. **Start matching** with potential job opportunities
 
 ### Resume Upload & Analysis
 
 <div align="center">
-  <img src="/api/placeholder/800/400" alt="Resume Analysis" />
+  <img src="/screenshot/upload.png" alt="Resume Analysis" />
   <p><em>AI-powered resume analysis and information extraction</em></p>
 </div>
 
@@ -287,7 +282,7 @@ docker-compose up --build
 ### Job Description Matching
 
 <div align="center">
-  <img src="/api/placeholder/800/400" alt="Job Matching" />
+  <img src="/screenshot/jd matcher.png" alt="Job Matching" />
   <p><em>Real-time job description analysis and matching</em></p>
 </div>
 
@@ -296,23 +291,9 @@ docker-compose up --build
 3. **Review match reasons** highlighting your strengths
 4. **See improvement suggestions** to increase your chances
 
-## 📈 Future Roadmap
-
-### Phase 1: Core Enhancement (Q3 2025)
-- **Resume Builder Tool**: Create optimized resumes based on target job descriptions
-- **Interview Preparation**: Generate potential interview questions based on job-resume gaps
-- **Enhanced Analytics Dashboard**: Track application success and improvement metrics
-
-### Phase 2: Intelligence Upgrade (Q4 2025)
-- **Machine Learning Integration**: ML-based skill extraction and recommendation system
-- **Sentiment Analysis**: Detect positive/negative language in job descriptions
-- **Salary Estimation**: Predict salary ranges based on job requirements
-
-### Phase 3: Ecosystem Expansion (Q1 2026)
-- **Mobile App**: Native mobile applications for iOS and Android
-- **Browser Extension**: Analyze job listings while browsing job sites
-- **Employer Portal**: Allow companies to post jobs and review matching candidates
-
+ 
+ 
+ 
 ## 👨‍💻 Contributing
 
 We welcome contributions to ResuMatch! Here's how you can help:
@@ -323,11 +304,9 @@ We welcome contributions to ResuMatch! Here's how you can help:
 4. **Push to the branch** (`git push origin feature/amazing-feature`)
 5. **Open a Pull Request**
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for detailed contribution guidelines.
+ 
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+ 
 
 ## 🙏 Acknowledgements
 
@@ -338,9 +317,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [React](https://reactjs.org/) for frontend development
 
 ---
-
+###                   HAPYY CODING ✨ 
 <p align="center">
-  <strong>ResuMatch</strong> - AI-powered resume analysis and job matching
+  <strong>ResuMatch</strong>   resume analysis and job matching
 </p>
 <p align="center">
   Made with ❤️ for job seekers everywhere
