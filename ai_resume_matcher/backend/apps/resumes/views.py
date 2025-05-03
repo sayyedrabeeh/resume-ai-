@@ -148,7 +148,49 @@ class GenerateResumeView(APIView):
             y= new_y-10
             return y 
         
+        def draw_expirence():
+            nonlocal y 
+            if not data.get('summery'):
+                return True
+            y = draw_section_header(' EXPERIENCE')
+            for exp in data.get('experience',[]):
+                if not check_page_space(50):
+                    return False
+                c.setFont(bold_font,11)
+                c.setFillColor(text_color)
+
+                title = exp.get('title','')
+                company = exp.get('company','')
+                position_text = f"{title} - {company}"
+
+                c.drawString(left_margin, y, position_text)
+
+                if exp.get('duration'):
+                    c.setFont(base_font,10)
+                    duration = exp.get('duration','')
+                    duration_width = c.stringWidth(duration,base_font,10)
+                    c.drawString(right_margin-duration_width,y,duration)
+
+                y-=5
+                if exp.get('location'):
+                    c.setFont(base_font,10)
+                    c.setFillColor(text_color)
+                    c.drawString(left_margin,y,exp.get('location',''))
+                    y-=5
+                for point in exp.get('points',[]):
+                    if not check_page_space(15):
+                        return False
+                    c.setFont(base_font,10)
+                    c.setFillColor(text_color)
+                    c.drawString(left_margin,y,"•")
+                    new_y = draw_paragraph(point, left_margin + 15, y, content_width - 15, base_font, 10)
+                    if new_y == -1:
+                        return False
+                    y = new_y
+                y-=10
+            return True
         
+
 
         def draw_bullet_points(points):
             nonlocal y
