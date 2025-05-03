@@ -190,6 +190,115 @@ class GenerateResumeView(APIView):
                 y-=10
             return True
         
+        def draw_project():
+            nonlocal y
+            if not data.get('project'):
+                return True
+            y= draw_section_header('PROJECTS')
+            for project in data.get('projects',[]):
+                project_start_y = y
+                if not check_page_space(50):
+                    return False
+                c.setFont(bold_font,11)
+                c.setFillColor(section_color)
+                name = data.get('name','')
+                name_width = c.stringWidth(name, bold_font, 11)
+                c.drawString(left_margin,y,name)
+                if project.get("description"):
+                    c.setFont(base_font,10)
+                    c.setFillColor(text_color)
+                    description = project.get('description')
+                    description_width = c.stringWidth(description, base_font, 10)
+                    available_width = right_margin - left_margin - name_width - 20 
+                    if description_width > available_width:
+                        c.drawString(right_margin - description_width, y, description)
+                    else:
+                        y -= 15
+                        desc_lines = wrap_text(description, content_width, base_font, 10)
+                        for line in desc_lines:
+                            c.drawString(left_margin, y, line)
+                            y -= 15
+                        y+=15
+                y -= 15
+                technologies = project.get("technologies", '')
+                if  technologies:
+                    c.setFont(base_font,10)
+                    c.setFillColor(main_color)
+                    tech_prefix = "Technologies: "
+                    prefix_width = c.stringWidth(tech_prefix, base_font, 10)
+                    c.drawString(left_margin, y, tech_prefix)
+                    remaining_width = content_width - prefix_width
+                    tech_text = technologies
+                    tech_lines = wrap_text(tech_text,remaining_width,base_font,10)
+                    if tech_lines:
+                        c.drawString(left_margin + prefix_width, y, tech_lines[0])
+                        y-=15
+                        for line in tech_lines[1:]:
+                            c.drawString(left_margin + prefix_width, y, line)
+                            y-=15
+                    else:
+                        y-=15
+                links = []
+                if project.get("githubLink"): 
+                    links.append(f"GitHub: {project.get('githubLink')}")
+                if project.get("liveLink"):
+                    links.append(f"Demo: {project.get('liveLink')}")
+                if links:
+                    c.setFont(base_font,10)
+                    c.setFillColor(text_color)
+                    if len(links) == 2 :
+                        github_link = links[0]
+                        demo_link = links[1]
+                        github_width = c.stringWidth(github_link, base_font, 10)
+                        demo_width = c.stringWidth(demo_link, base_font, 10)
+                        if github_width +demo_width+20 <= content_width:
+                            c.drawString(left_margin,y,github_link)
+
+                            demo_x = left_margin + github_width + 20
+                            c.drawString(demo_x,y,demo_link)
+                            y-=15
+                        else:
+                            c.drawString(left_margin, y, github_link)
+                            y-=15
+                            c.drawString(left_margin, y, demo_link)
+                            y -= 15
+                else:
+                    c.drawString(left_margin, y, links[0])
+                    y -= 15
+                    
+                c.setStrokeColor(main_color)
+                c.setLineWidth(0.5)
+                c.line(left_margin,y,right_margin,y)
+                y-=12
+
+                points = project.get("points", [])
+                if len(points) > 3:
+                    points = points[:3] 
+                bullet_indent = 15
+                for point in points:
+                    if not point or point.strip() == "":
+                        continue
+                    if not check_page_space(15):
+                        return False
+                    c.setFont(base_font, 10)
+                    c.setFillColor(text_color)
+                    c.drawString(left_margin, y, "•")   
+                    new_y = draw_paragraph(point, left_margin + bullet_indent, y, content_width - bullet_indent, base_font, 10)
+                    if new_y == -1:   
+                        return False  
+                    y=new_y
+                y -= 15
+                c.setStrokeColor(colors.lightgrey)
+                c.setLineWidth(0.5)
+                c.line(left_margin + 40, y, right_margin - 40, y)
+                y -= 10
+            return True             
+
+
+
+
+
+
 
 
         def draw_bullet_points(points):
