@@ -104,17 +104,26 @@ class GenerateResumeView(APIView):
             return lines
 
 
-        def draw_paragraph(text):
-            nonlocal y
-            c.setFont("Helvetica", 10)
-            lines = text.splitlines()
+        def draw_paragraph(text,x,y,width,font_name=base_font,font_size=10):
+            nonlocal current_page
+            c.setFont(font_name, font_size)
+            c.setFillColor(text_color)
+
+            lines = wrap_text(text,width,font_name,font_size)
+            orginal_y = y
             for line in lines:
+                c.drawString(x, y, line)
+                y -= font_size + 2
                 if y < 50:
-                    c.showPage()
-                    y = height - 50
-                c.drawString(margin_x, y, line)
-                y -= 12
-            y -= 5
+                    if current_page > max_page:
+                      c.showPage()
+                      current_page+=1
+                      y = height - 50
+                    else:
+                        return -1
+            return y
+                 
+             
 
         def draw_bullet_points(points):
             nonlocal y
