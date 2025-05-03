@@ -463,61 +463,27 @@ class GenerateResumeView(APIView):
                 y -= 20
             y-=5
             return True
+        
+        def draw_language():
+            nonlocal y 
+            if not data.get('language'):
+                return True
+            y= draw_section_header('LANGUAGES')
+            languages = data.get("languages", {})
+            lang_parts = []
+            for language, proficiency in languages.items():
+                lang_parts.append(f"{language} ({proficiency})")
+            
+            lang_text = ", ".join(lang_parts)
+            c.setFont(base_font, 10)
+            c.setFillColor(text_color)
 
-        def draw_bullet_points(points):
-            nonlocal y
-            c.setFont("Helvetica", 10)
-            for point in points:
-                if y < 50:
-                    c.showPage()
-                    y = height - 50
-                c.setFillColor(text_color)
-                c.drawString(margin_x, y, f"- {point}")
-                y -= 12
-            y -= 5
+            lines = wrap_text(lang_text, content_width, base_font, 10)
+            if not check_page_space(15 * len(lines)):
+                return False
+            for line in lines:
+                c.drawString(left_margin, y, line)
+                y -= 15
+            return True
 
-        def draw_labeled_line(label, value):
-            nonlocal y
-            c.setFont("Helvetica-Bold", 10)
-            c.setFillColor(heading_color)
-            c.drawString(margin_x, y, f"{label}: {value}")
-            y -= 12
-
-        draw_header()
-
-        if data.get("summary"):
-            draw_section_title("Professional Summary")
-            draw_paragraph(data["summary"])
-
-        if data.get("skills"):
-            draw_section_title("Skills")
-            for key, val in data["skills"].items():
-                draw_labeled_line(key.replace("_", " ").title(), val)
-
-        if data.get("experience"):
-            draw_section_title("Work Experience")
-            for exp in data["experience"]:
-                role = f"{exp.get('title', '')} at {exp.get('company', '')}"
-                draw_labeled_line("Role", role)
-                draw_labeled_line("Duration", exp.get("duration", ""))
-                draw_labeled_line("Location", exp.get("location", ""))
-                draw_bullet_points(exp.get("points", []))
-
-        if data.get("education"):
-            draw_section_title("Education")
-            for edu in data["education"]:
-                degree = f"{edu.get('degree', '')} | {edu.get('institution', '')}"
-                draw_labeled_line("Degree", degree)
-                draw_labeled_line("Duration", edu.get("duration", ""))
-                draw_labeled_line("Location", edu.get("location", ""))
-
-        if data.get("projects"):
-            draw_section_title("Projects")
-            for proj in data["projects"]:
-                draw_labeled_line("Project", proj.get("name", ""))
-                draw_labeled_line("Technologies", proj.get("technologies", ""))
-                draw_bullet_points(proj.get("points", []))
-
-        c.showPage()
-        c.save()
-        return response
+         
