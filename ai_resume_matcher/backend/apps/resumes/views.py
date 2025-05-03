@@ -23,7 +23,7 @@ class GenerateResumeView(APIView):
         width, height = A4
         main_color = colors.HexColor("#2E75B5")
         text_color = colors.black
-        section_color = colors.HexColor('"#333333"')
+        section_color = colors.HexColor("#333333")
         
         left_margin =60
         right_margin = width - 60
