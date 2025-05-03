@@ -393,6 +393,38 @@ class GenerateResumeView(APIView):
             return original_y - y
         
 
+        def draw_education():
+            nonlocal y
+            if not data.get("education"):
+                return True
+            y= draw_section_header("EDUCATION")
+            for edu in data.get('education',[]):
+                if not check_page_space(45):
+                    return False
+                c.setFont(bold_font,11)
+                c.setFillColor(text_color)
+                degree =edu.get('degree','')
+                c.drawString(left_margin,y,degree)
+                if edu.get('duration',''):
+                    c.setFont(base_font,10)
+                    duration = edu.get('duration','')
+                    duration_width = c.stringWidth(duration,base_font,10)
+                    c.drawString(left_margin-duration_width,y,duration)
+                y-=15
+                institution = edu.get('institution','')
+                c.setFont(base_font,10)
+                c.drawString(left_margin,y,institution)
+                y-=15
+
+                if edu.get('location',''):
+                    c.setFont(base_font,10)
+                    c.drawString(left_margin,y,edu.get('location',''))
+                    y-=15
+                y-=5
+            return True
+
+
+
 
 
         def draw_bullet_points(points):
