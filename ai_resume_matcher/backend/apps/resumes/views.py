@@ -486,4 +486,35 @@ class GenerateResumeView(APIView):
                 y -= 15
             return True
 
-         
+        draw_header()
+        if not draw_summery():
+            c.showPage()
+            c.save()
+            return response
+        if not draw_skill():
+            c.showPage()
+            c.save()
+            return response
+        if not draw_expirence():
+            c.showPage()
+            c.save()
+            return response
+        if not draw_project():
+            c.showPage()
+            c.save()
+            return response
+        if not draw_mini_projects():
+            c.showPage()
+            c.save()
+            return response
+        if not draw_education():
+            c.showPage()
+            c.save()
+            return response
+        if not draw_language():
+            c.showPage()
+            c.save()
+            return response
+        c.showPage()
+        c.save()
+        return response
