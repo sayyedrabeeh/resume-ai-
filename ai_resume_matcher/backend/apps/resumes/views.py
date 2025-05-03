@@ -135,7 +135,20 @@ class GenerateResumeView(APIView):
                     return False
             else:
                 return False
-            
+        
+        def draw_summery():
+            nonlocal y 
+            if not data.get('summery'):
+                return True
+            y = draw_section_header('PROFILE SUMMARY')
+            summery_text = data.get('summery','')
+            new_y = draw_paragraph(summery_text, left_margin, y, content_width)
+            if new_y == -1 :
+                return False
+            y= new_y-10
+            return y 
+        
+        
 
         def draw_bullet_points(points):
             nonlocal y
