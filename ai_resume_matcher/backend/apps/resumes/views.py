@@ -68,14 +68,41 @@ class GenerateResumeView(APIView):
             c.setLineWidth(1)
             c.line(left_margin,y,right_margin,y)
             y-=20
-            
 
-        def draw_section_title(title):
+
+        def draw_section_header(title):
             nonlocal y
-            c.setFont("Helvetica-Bold", 12)
-            c.setFillColor(heading_color)
-            c.drawString(margin_x, y, title.upper())
-            y -= 15
+            c.setFont(bold_font, 12)
+            c.setFillColor(section_color)
+            c.drawString(left_margin, y, title.upper())
+            y -= 5
+
+            c.setStrokeColor(main_color)
+            c.setLineWidth(1)
+            c.line(left_margin,y,right_margin,y)
+            y-=15
+            return y 
+        
+        def wrap_text(text,max_width,font_name,font_size):
+            lines = []
+            for paragraph in text.split('\n'):
+                if not paragraph:
+                    lines.append('')
+                    continue
+                words = paragraph.split()
+                if not lines.append(''):
+                    continue
+                current_line = words[0]
+                for word in words[1:]:
+                    test_line = current_line + " " + word
+                    if c.stringWidth(test_line, font_name, font_size) < max_width:
+                        current_line=test_line
+                    else:
+                        lines.append(current_line)
+                        current_line=word
+                lines.append(current_line)
+            return lines
+
 
         def draw_paragraph(text):
             nonlocal y
