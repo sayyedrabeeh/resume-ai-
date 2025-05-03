@@ -123,7 +123,19 @@ class GenerateResumeView(APIView):
                         return -1
             return y
                  
-             
+        def check_page_space(needed_height):
+            nonlocal y,current_page
+            if y - needed_height < 50:
+                if current_page < max_page:
+                    c.showPage()
+                    current_page +=1
+                    y = height - 50
+                    return True
+                else:
+                    return False
+            else:
+                return False
+            
 
         def draw_bullet_points(points):
             nonlocal y
