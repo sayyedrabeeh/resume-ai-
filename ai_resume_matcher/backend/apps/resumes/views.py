@@ -292,12 +292,106 @@ class GenerateResumeView(APIView):
                 c.setLineWidth(0.5)
                 c.line(left_margin + 40, y, right_margin - 40, y)
                 y -= 10
-            return True             
+            return True
 
+        def draw_mini_projects():
+            if not data.get("miniProjects"):
+                return True 
+            y = draw_section_header("MINI PROJECTS")
+            mini_projects = data.get("miniProjects", [])
+            project_heights = []
+            for project in mini_projects:
+                height = calculate_mini_project_height(project, content_width / 2 - 10)  
+                project_heights.append(height)        
+                
+            if len(mini_projects) >= 2:
+                col_width = (content_width - 20) / 2    
 
+                i = 0
+                while i < len(mini_projects):
+                     
+                    height1 = project_heights[i] if i < len(project_heights) else 0
+                    height2 = project_heights[i+1] if i+1 < len(project_heights) else 0
+                    row_height = max(height1, height2)
+                    if not check_page_space(row_height):
+                        return False
+                    row_start_y = y
+                    if i < len(mini_projects):
+                        draw_mini_project(mini_projects[i], left_margin, row_start_y, col_width)
+                    if i+1 < len(mini_projects):
+                        draw_mini_project(mini_projects[i+1], left_margin + col_width + 20, row_start_y, col_width)
+                    y = row_start_y - row_height - 15
+                    i += 2
 
+            else:
+                for i, project in enumerate(mini_projects):
+                    if not check_page_space(project_heights[i]):
+                        return False
+                    draw_mini_project(project, left_margin, y, content_width)
+                    y -= project_heights[i] + 15
+            return True
+        
 
+        def calculate_mini_project_height(project, width):
+            height = 0
+            height += 15
+            if project.get("technologies"):
+                tech_lines = wrap_text(f"Tech: {project.get('technologies')}", width, base_font, 9)
+                height += len(tech_lines) * 12
+            if project.get("description"):
+                desc_lines = wrap_text(project.get("description"), width, base_font, 9)
+                height += len(desc_lines) * 12
+            links = []
+            if project.get("githubLink"):
+                links.append(f"GitHub: {project.get('githubLink')}")
+            if project.get("liveLink"):
+                links.append(f"Demo: {project.get('liveLink')}")
+            
+            if links:
+                links_text = " | ".join(links)
+                links_lines = wrap_text(links_text, width, base_font, 8)
+                height += len(links_lines) * 10
+            
+            return height
 
+        def draw_mini_project(project, x, y, width):
+            original_y = y
+            c.setFont(bold_font, 10)
+            c.setFillColor(section_color)
+            name = project.get("name", "")
+            c.drawString(x, y, name)
+            y -= 15
+            technologies = project.get("technologies", "")
+            if technologies:
+                c.setFont(base_font, 9)
+                c.setFillColor(main_color)
+                tech_lines = wrap_text(f"Tech: {technologies}", width, base_font, 9)
+                for line in tech_lines:
+                    c.drawString(x, y, line)
+                    y -= 12
+            description = project.get("description", "")
+            if description:
+                c.setFont(base_font, 9)
+                c.setFillColor(text_color)
+                desc_lines = wrap_text(description, width, base_font, 9)
+                for line in desc_lines:
+                    c.drawString(x, y, line)
+                    y -= 12
+            links = []
+            if project.get("githubLink"):
+                links.append(f"GitHub: {project.get('githubLink')}")
+            if project.get("liveLink"):
+                links.append(f"Demo: {project.get('liveLink')}")
+            
+            if links:
+                c.setFont(base_font, 8)
+                links_text = " | ".join(links)
+                links_lines = wrap_text(links_text, width, base_font, 8)
+                for line in links_lines:
+                    c.drawString(x, y, line)
+                    y -= 10
+            return original_y - y
+        
 
 
 
