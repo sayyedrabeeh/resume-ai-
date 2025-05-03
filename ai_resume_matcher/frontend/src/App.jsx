@@ -8,6 +8,7 @@ import Profile from './pages/profile';
 import JobMatcher from './pages/jobmatch';  
 import JobMatche from './pages/jobs';
 import Me from './pages/me';
+import ResumeBuilder from './pages/resumebuilder';
 import PublicRoute from './components/PublicRoute';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/job-matcher" element={<JobMatcher />} />
         <Route path="/job-matches" element={<JobMatche />} />
         <Route path="/me" element={<Me />} />
+        <Route path="/ResumeBuilder" element={<ResumeBuilder />} />
 
         </Routes>
         </BrowserRouter>
