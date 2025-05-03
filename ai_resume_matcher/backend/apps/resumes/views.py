@@ -36,26 +36,39 @@ class GenerateResumeView(APIView):
         max_page =2
 
 
-         
 
-       
 
         def draw_header():
             nonlocal y
-            c.setFont("Helvetica-Bold", 16)
-            c.setFillColor(heading_color)
-            c.drawCentredString(width / 2, y, data.get("name", "Your Name"))
-            y -= 18
-            c.setFont("Helvetica", 10)
-            contact = " | ".join(filter(None, [
-                data.get("email"),
-                data.get("phone"),
-                data.get("location"),
-                data.get("linkedin"),
-                data.get("github"),
-            ]))
-            c.drawCentredString(width / 2, y, contact)
+            c.setFont(bold_font, 18)
+            c.setFillColor(main_color)
+            c.drawCentredString(width / 2, y, data.get("name", "Your Name").upper())
             y -= 20
+            c.setFont(base_font, 12)
+            c.setFillColor(text_color)
+            c.drawCentredString(width / 2, y, data.get("title", "Your Position"))
+            y -= 20
+
+            contact_parts =[]
+            if data.get('email'):
+                contact_parts.append(data.get('email'))
+            if data.get('phone'):
+                contact_parts.append(data.get('phone'))
+            if data.get('location'):
+                contact_parts.append(data.get('location'))
+            if data.get('linkdin'):
+                contact_parts.append(data.get('linkdin'))
+
+            contact_info = ' | '.join(contact_parts)
+            c.setFont(base_font,10)
+            c.drawCentredString(width/2,y,contact_info)
+            y-=25
+
+            c.setStrokeColor(main_color)
+            c.setLineWidth(1)
+            c.line(left_margin,y,right_margin,y)
+            y-=20
+            
 
         def draw_section_title(title):
             nonlocal y
