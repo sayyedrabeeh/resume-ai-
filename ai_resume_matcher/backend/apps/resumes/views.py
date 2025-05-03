@@ -422,10 +422,47 @@ class GenerateResumeView(APIView):
                     y-=15
                 y-=5
             return True
+        
 
+        def draw_skill():
+            nonlocal y
+            if not data.get('skills'):
+                return True
+            y = draw_section_header('SKILLS')
+            skills =data.get('skills',{})
+            skill_categories = {
+                "Languages": skills.get("languages", ""),
+                "Libraries & Frameworks": skills.get("librariesFrameworks", ""),
+                "Microservices": skills.get("microservices", ""),
+                "Tools & Platforms": skills.get("toolsPlatforms", ""),
+                "Design & Prototyping": skills.get("designPrototyping", ""),
+                "Concepts": skills.get("concepts", "")
+            }
+            c.setFont(base_font, 10)
+            c.setFillColor(text_color)
 
+            for category, skills_text in skill_categories.items():
+                if not skills_text:
+                    continue
+                if not check_page_space(25):
+                    return False
+                c.setFont(bold_font, 10)
+                c.drawString(left_margin, y, f"{category}: ")
 
+                category_width = c.stringWidth(f"{category}: ", bold_font, 10)
+                skill_start_x = left_margin + category_width
+                remaining_width = content_width - category_width
 
+                c.setFont(base_font, 10)
+                skills_lines = wrap_text(skills_text, remaining_width, base_font, 10)
+                if skills_lines:
+                    c.drawString(skill_start_x, y, skills_lines[0])
+                    for line in skills_lines[1:]:
+                        y -= 15
+                        c.drawString(skill_start_x, y, line)
+                y -= 20
+            y-=5
+            return True
 
         def draw_bullet_points(points):
             nonlocal y
