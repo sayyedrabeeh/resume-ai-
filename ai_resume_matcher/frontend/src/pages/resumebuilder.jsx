@@ -169,7 +169,7 @@ const ResumeBuilder = () => {
       const response = await axiosInstance.post("/resumes/generate-resume/", formData, {
         responseType: 'blob',
       });
-       
+      console.log(response.data)
        
       const url = window.URL.createObjectURL(new Blob([response.data]));
       setPreviewUrl(url);
