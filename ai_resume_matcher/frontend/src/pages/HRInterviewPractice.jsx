@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import HRChatBot from '../components/HRChatBot';
 import HRQuestionsPage from '../components/HRQuestionsPage';
+import api from '../api/axiosConfig'
 
 export default function HRInterviewPractice() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -15,10 +16,11 @@ export default function HRInterviewPractice() {
      
     useEffect(() => {
       setIsLoading(true);
-      axios.get("/api/chatbot/hr-questions/")
+      api.get("/chatbot/hr-questions/")
         .then(response => {
          
           const questionsData = response.data;
+          console.log('questionsData',questionsData)
           setQuestions(questionsData);
           setFilteredQuestions(questionsData);
           

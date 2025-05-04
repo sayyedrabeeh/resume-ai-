@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import api from '../api/axiosConfig'
  
 function HRChatBot({ isOpen, onClose }) {
   const [question, setQuestion] = useState(null);
@@ -14,7 +14,7 @@ function HRChatBot({ isOpen, onClose }) {
 
    
   const handleStartChat = () => {
-    axios.get("/api/chatbot/hr-questions/start-chat/")
+    api.get("/chatbot/hr-questions/start-chat/")
       .then(response => {
         setCurrentId(response.data.id);
         setChatHistory([
@@ -44,7 +44,7 @@ function HRChatBot({ isOpen, onClose }) {
       { role: "user", message: userAnswer }
     ]);
  
-    axios.post("/api/chatbot/hr-questions/next-question/", {
+    api.post("/chatbot/hr-questions/next-question/", {
       current_id: currentId,
       user_answer: userAnswer
     })

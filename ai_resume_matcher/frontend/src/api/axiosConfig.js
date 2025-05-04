@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const api = axios.create({
   baseURL: 'http://localhost:8000',
-  // withCredentials: true,
+  withCredentials: true,
 });
 
 api.interceptors.request.use(
@@ -26,17 +26,16 @@ api.interceptors.response.use(
       originalRequest._retry = true;
 
       const refresh = localStorage.getItem('refresh_token');
-      if (!refresh) {
-        return Promise.reject(error);
-      }
+      if (!refresh) return Promise.reject(error);
 
       try {
-        const response = await axios.post('http://localhost:8000/token/refresh/', {
+        const response = await axios.post('http://localhost:8000/api/token/refresh/', {
           refresh: refresh
         });
 
-        localStorage.setItem('access', response.data.access);
+        localStorage.setItem('access_token', response.data.access);
         originalRequest.headers.Authorization = `Bearer ${response.data.access}`;
+
         return api(originalRequest);
       } catch (refreshError) {
         console.error("Token refresh failed:", refreshError);
