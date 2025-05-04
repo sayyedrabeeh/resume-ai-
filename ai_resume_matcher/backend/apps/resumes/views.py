@@ -6,9 +6,7 @@ from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from .models import HRInterviewQuestion
-from .serializers import HRInterviewQuestionSerializer
-import random
+ 
 
 class GenerateResumeView(APIView):
     permission_classes = [IsAuthenticated]
@@ -462,14 +460,3 @@ class GenerateResumeView(APIView):
         c.save()
         return response
     
-class HRQuestionListView(APIView):
-    def get(self, request):
-        questions = HRInterviewQuestion.objects.all()
-        serializer = HRInterviewQuestionSerializer(questions, many=True)
-        return Response(serializer.data)
-
-class RandomHRQuestionView(APIView):
-    def get(self, request):
-        question = random.choice(HRInterviewQuestion.objects.all())
-        serializer = HRInterviewQuestionSerializer(question)
-        return Response(serializer.data)
