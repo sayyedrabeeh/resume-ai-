@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import api from '../api/axiosConfig'
- 
+
 function HRChatBot({ isOpen, onClose }) {
   const [question, setQuestion] = useState(null);
   const [userAnswer, setUserAnswer] = useState("");
   const [feedback, setFeedback] = useState("");
   const [currentId, setCurrentId] = useState(null);
+  const [askedIds, setAskedIds] = useState([]);
   const [chatHistory, setChatHistory] = useState([
     { role: "bot", message: "Hi! I can help you practice answering interview questions. Ready to start?" }
   ]);
@@ -17,6 +18,7 @@ function HRChatBot({ isOpen, onClose }) {
     api.get("/chatbot/hr-questions/start-chat/")
       .then(response => {
         setCurrentId(response.data.id);
+        setAskedIds([response.data.id]);
         setChatHistory([
           ...chatHistory,
           { role: "bot", message: "Great! Here's your first question:" },
@@ -46,7 +48,8 @@ function HRChatBot({ isOpen, onClose }) {
  
     api.post("/chatbot/hr-questions/next-question/", {
       current_id: currentId,
-      user_answer: userAnswer
+      user_answer: userAnswer,
+      asked_ids: askedIds
     })
       .then(response => {
          
@@ -64,6 +67,7 @@ function HRChatBot({ isOpen, onClose }) {
               { role: "bot", message: response.data.next_question }
             ]);
             setCurrentId(response.data.id);
+            setAskedIds(response.data.asked_ids);
           }, 1000);
         } 
         
@@ -96,82 +100,87 @@ function HRChatBot({ isOpen, onClose }) {
     setIsCompleted(false);
     setUserAnswer("");
     setCurrentId(null);
+    setAskedIds([]); 
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white w-full max-w-md rounded-lg shadow-xl overflow-hidden">
+    <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 transition-all duration-300">
+      <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl border border-blue-200 overflow-hidden">
         
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-4 flex justify-between items-center">
-          <h3 className="text-white font-bold text-lg">HR Interview Practice Bot</h3>
+       
+        <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-4 flex justify-between items-center">
+          <h3 className="text-white font-extrabold text-xl tracking-wide">🚀 HR Interview Practice Bot</h3>
           <button 
             onClick={onClose}
-            className="text-white hover:text-gray-200"
+            className="text-white hover:text-gray-200 transition-transform transform hover:scale-110"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
-      
-        <div className="h-96 overflow-y-auto p-4 bg-gray-50">
+  
+        {/* Chat Area */}
+        <div className="h-96 overflow-y-auto p-4 bg-gradient-to-br from-gray-50 to-gray-100 space-y-2">
           {chatHistory.map((chat, index) => (
             <div 
               key={index} 
-              className={`mb-3 ${chat.role === "user" ? "text-right" : ""}`}
+              className={`flex ${chat.role === "user" ? "justify-end" : "justify-start"}`}
             >
               <div 
-                className={`inline-block px-4 py-2 rounded-lg ${
-                  chat.role === "user" 
-                    ? "bg-blue-500 text-white" 
-                    : "bg-gray-200 text-gray-800"
+                className={`px-4 py-2 rounded-xl max-w-xs break-words shadow-sm ${
+                  chat.role === "user"
+                    ? "bg-blue-500 text-white rounded-br-none"
+                    : "bg-gray-200 text-gray-800 rounded-bl-none"
                 }`}
               >
                 {chat.message}
               </div>
             </div>
           ))}
+  
           {chatHistory.length === 1 && (
-            <div className="text-center my-8">
+            <div className="text-center mt-10">
               <button 
                 onClick={handleStartChat}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-purple-600 hover:to-pink-500 text-white px-6 py-2 rounded-full font-medium shadow-md transition-all duration-300"
               >
-                Start Interview Practice
+                🚀 Start Interview Practice
               </button>
             </div>
           )}
+  
           {isCompleted && (
-            <div className="text-center my-8">
+            <div className="text-center mt-10">
               <button 
                 onClick={resetChat}
-                className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+                className="bg-gradient-to-r from-green-500 to-lime-500 hover:from-lime-500 hover:to-green-600 text-white px-6 py-2 rounded-full font-medium shadow-md transition-all duration-300"
               >
-                Practice Again
+                🔄 Practice Again
               </button>
             </div>
           )}
         </div>
-        
-      
+  
+        {/* Answer Input */}
         {chatHistory.length > 1 && !isCompleted && (
-          <div className="p-4 border-t">
+          <div className="p-4 border-t bg-white">
             <div className="flex">
               <input
                 type="text"
                 value={userAnswer}
                 onChange={(e) => setUserAnswer(e.target.value)}
                 placeholder="Type your answer..."
-                className="flex-grow p-2 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="flex-grow p-2 border border-gray-300 rounded-l-full focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-300"
                 onKeyPress={(e) => e.key === 'Enter' && handleSubmitAnswer()}
               />
               <button
                 onClick={handleSubmitAnswer}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-r-lg transition-colors"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-r-full transition-colors duration-300"
               >
-                Send
+                ➤
               </button>
             </div>
           </div>
@@ -179,5 +188,6 @@ function HRChatBot({ isOpen, onClose }) {
       </div>
     </div>
   );
+  
 }
 export default HRChatBot

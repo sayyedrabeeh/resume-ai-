@@ -419,37 +419,49 @@ class StartChatView(APIView):
             "id": HR_QUESTIONS[0]["id"]
         })
 
+import random
+
 class NextQuestionView(APIView):
-    
     def post(self, request):
         current_id = request.data.get("current_id")
-        user_answer = request.data.get("user_answer")
+        user_answer = request.data.get("user_answer", "")
+        asked_ids = request.data.get("asked_ids", [])
 
-    
         current_question = next((q for q in HR_QUESTIONS if q["id"] == current_id), None)
-        
         if not current_question:
             return Response({"error": "Question not found"}, status=404)
-            
-        correct_answer = current_question["answer"]
- 
-        feedback = "Good answer!" if any(keyword.lower() in user_answer.lower() 
-                                         for keyword in correct_answer.lower().split() 
-                                         if len(keyword) > 4) else f"Suggested: {correct_answer}"
+
+        correct_answer = current_question["answer"].lower()
+        user_words = user_answer.lower().split()
 
         
-        next_index = next((i for i, q in enumerate(HR_QUESTIONS) if q["id"] == current_id), -1)
+        keywords = [word for word in correct_answer.split() if len(word) > 4]
+        matches = sum(1 for word in keywords if word in user_words)
+        score = matches / len(keywords) if keywords else 0
+
+        if score == 0:
+            feedback = "That wasn't quite right. ❌"
+        elif score < 0.5:
+            feedback = "Half right, you're on the way! ⚠️"
+        else:
+            feedback = "Good answer! ✅"
+
+        full_feedback = f"{feedback}\n\nSuggested: {current_question['answer']}"
+
         
-        if next_index != -1 and next_index < len(HR_QUESTIONS) - 1:
-            next_question = HR_QUESTIONS[next_index + 1]
+        remaining = [q for q in HR_QUESTIONS if q["id"] not in asked_ids]
+        if remaining:
+            next_question = random.choice(remaining)
+            asked_ids.append(next_question["id"])
             return Response({
-                "feedback": feedback,
+                "feedback": full_feedback,
                 "next_question": next_question["question"],
-                "id": next_question["id"]
+                "id": next_question["id"],
+                "asked_ids": asked_ids
             })
         else:
             return Response({
-                "feedback": feedback, 
+                "feedback": full_feedback,
                 "message": "Interview completed! Well done on completing the practice session."
             })
 
