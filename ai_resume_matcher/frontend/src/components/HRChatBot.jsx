@@ -180,3 +180,4 @@ function HRChatBot({ isOpen, onClose }) {
     </div>
   );
 }
+export default HRChatBot

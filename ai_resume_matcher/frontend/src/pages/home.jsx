@@ -86,17 +86,29 @@ function Home() {
                 </Link>
 
                 <Link
-                  to="/HR"
-                  className="block bg-purple-600 hover:bg-purple-700 text-white font-semibold py-4 px-6 rounded-lg shadow transition duration-300 flex items-center"
-                >
-                  <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h2"></path>
-                  </svg>
-                  <div>
-                    <span className="block">HR Interview Pratice </span>
-                    <span className="block text-sm text-purple-200"> Pratice With 100+ HR Questions </span>
-                  </div>
-                </Link>
+                      to="/HR"
+                      className="block bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-4 px-6 rounded-2xl shadow-lg transition duration-300 flex items-center"
+                    >
+                      <svg
+                        className="w-6 h-6 mr-3 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5.121 17.804A5.002 5.002 0 0110 15h4a5.002 5.002 0 014.879 2.804M15 11a3 3 0 10-6 0 3 3 0 006 0z"
+                        />
+                      </svg>
+                      <div>
+                        <span className="block text-base">HR Interview Practice</span>
+                        <span className="block text-sm text-blue-100">Practice with 100+ HR Questions</span>
+                      </div>
+                    </Link>
+                    
 
                 <Link
                   to="/me"

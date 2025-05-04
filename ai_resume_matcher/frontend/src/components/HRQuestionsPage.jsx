@@ -23,3 +23,4 @@ function HRQuestionsPage({ questions }) {
     </div>
   );
 }
+export default HRQuestionsPage

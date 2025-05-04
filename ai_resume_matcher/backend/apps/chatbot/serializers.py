@@ -1,6 +1,6 @@
  
 from rest_framework import serializers
-from ..resumes.models import HRInterviewQuestion
+from  .models import HRInterviewQuestion
 
 class HRInterviewQuestionSerializer(serializers.ModelSerializer):
     class Meta:

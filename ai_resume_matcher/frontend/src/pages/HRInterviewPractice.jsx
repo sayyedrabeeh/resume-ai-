@@ -1,3 +1,8 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
+import HRChatBot from '../components/HRChatBot';
+import HRQuestionsPage from '../components/HRQuestionsPage';
+
 export default function HRInterviewPractice() {
     const [searchQuery, setSearchQuery] = useState("");
     const [questions, setQuestions] = useState([]);
