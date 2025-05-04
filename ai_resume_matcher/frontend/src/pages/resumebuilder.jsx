@@ -899,7 +899,7 @@ const ResumeBuilder = () => {
       
      
       <div className="max-w-4xl mx-auto text-center mt-8 text-gray-500 text-sm">
-        &copy; {new Date().getFullYear()} Resume Builder. All rights reserved.
+        &copy; {new Date().getFullYear()} ResuMatch. All rights reserved.
       </div>
     </div>
   );

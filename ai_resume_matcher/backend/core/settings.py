@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apps.resumes',
     'apps.jobs',
     'apps.match',
+    'apps.chatbot',
     'corsheaders',
     'rest_framework_simplejwt',
     'rest_framework.authtoken',
