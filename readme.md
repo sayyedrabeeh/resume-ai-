@@ -72,10 +72,9 @@ ResuMatch is a comprehensive full-stack application that bridges the gap between
 
 <div align="center">
   <img src="/screenshot/interviw.jpg" alt="HR Interview Practice" />
+  <p><strong>100+ interview Questions  and  chatbot for pratice </strong></p>
 </div>
-<div align="center">
-  <img src="/screenshot/chatbot.jpg" alt="HR Interview Practice Chatbot" />
-</div>
+ >
 
 ### 📄 Resume Builder
 
@@ -88,9 +87,14 @@ ResuMatch is a comprehensive full-stack application that bridges the gap between
 
 <div align="center">
   <img src="/screenshot/resumebuilder.jpg" alt="Resume Builder" />
+  <p><strong>Resume builder  with  essential details </strong></p>
 </div>
+
+### OUTPUT from builder 
+
 <div align="center">
   <img src="/screenshot/pdf.jpg" alt="Resume  Pdf" />
+  <p><strong>Pdf file (Output from resume builder)</strong></p>
 </div>
 
 
@@ -376,7 +380,7 @@ python manage.py runserver
 ### HR Interview Practice
 
 <div align="center">
-  <img src="/screenshot/interview-practice.png" alt="Interview Practice" />
+  <img src="/screenshot/chatbot.jpg" alt="Interview Practice" />
   <p><em>Comprehensive interview preparation with smart feedback</em></p>
 </div>
 
@@ -389,7 +393,7 @@ python manage.py runserver
 ### Resume Builder
 
 <div align="center">
-  <img src="/screenshot/resume-generation.png" alt="Resume Generation" />
+  <img src="/screenshot/resumebuilder1.jpg" alt="Resume Generation" />
   <p><em>Professional resume generation with customization options</em></p>
 </div>
 
