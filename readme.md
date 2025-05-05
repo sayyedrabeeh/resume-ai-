@@ -257,7 +257,7 @@ The HR interview practice system features:
 4. **Learning Path**: Tracks asked questions to ensure comprehensive coverage
 
 <div align="center">
-  <img src="/screenshot/chatbot.png" alt="HR Chatbot Interface" />
+  <img src="/screenshot/chatbot.jpg" alt="HR Chatbot Interface" />
   <p><em>Interactive interview practice with real-time feedback</em></p>
 </div>
 
