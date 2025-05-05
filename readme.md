@@ -21,7 +21,7 @@ ResuMatch is a comprehensive full-stack application that bridges the gap between
 
  
 
-📹 [Watch Demo Video](https://youtube.com/example-video) comming soon 
+📹 [Watch Demo Video](https://youtube.com/example-video) coming soon 
 
  
 
@@ -51,6 +51,7 @@ ResuMatch is a comprehensive full-stack application that bridges the gap between
 </div>
 
 ### 🎯 Intelligent Job Matching
+
 - **Skill Gap Analysis**: Identifies missing skills required in job descriptions
 - **Match Scoring Algorithm**: Calculate a precise match percentage between resume and job descriptions
 - **Intelligent Feedback**: Get personalized suggestions to improve your profile for specific roles
@@ -60,11 +61,44 @@ ResuMatch is a comprehensive full-stack application that bridges the gap between
   <img src="/screenshot/jobmatching.png" alt="Job Matching Interface" />
 </div>
 
+### 🤖 HR Interview Preparation
+
+- **100+ HR Interview Questions**: Access a comprehensive library of common interview questions
+- **Category Filtering**: Filter questions by category to focus your preparation
+- **Search Functionality**: Quickly find specific questions or topics
+- **Interactive Chatbot**: Practice interview questions with an intelligent AI bot
+- **Feedback System**: Receive instant feedback on your practice answers
+- **Pagination Support**: Navigate easily through all questions
+
+<div align="center">
+  <img src="/screenshot/interviw.jpg" alt="HR Interview Practice" />
+</div>
+<div align="center">
+  <img src="/screenshot/chatbot.jpg" alt="HR Interview Practice Chatbot" />
+</div>
+
+### 📄 Resume Builder
+
+- **Professional Templates**: Generate polished, ATS-friendly resumes
+- **Custom PDF Generation**: Create downloadable PDF resumes
+- **Section Management**: Organize your experience, education, projects, and skills
+- **Mini-Projects Support**: Showcase smaller projects in an organized format
+- **Multiple Education & Experience Entries**: Comprehensive resume building capabilities
+
+
+<div align="center">
+  <img src="/screenshot/resumebuilder.jpg" alt="Resume Builder" />
+</div>
+<div align="center">
+  <img src="/screenshot/pdf.jpg" alt="Resume  Pdf" />
+</div>
+
+
 ### 👤 User Management & Authentication
 - **Secure JWT Authentication**: Token-based security for all user sessions
 - **Responsive Account Management**: Mobile-friendly user interface
 - **Profile Selection System**: Easily switch between different resume profiles
-- **Password Recovery**: Secure password reset functionality
+ 
 
 <div align="center">
   <img src="/screenshot/profile.png" alt="User Management" />
@@ -89,6 +123,7 @@ ResuMatch is a comprehensive full-stack application that bridges the gap between
 - **Django**: Python web framework
 - **Django REST Framework**: RESTful API development
 - **PyMuPDF (fitz)**: Advanced PDF text extraction
+- **ReportLab**: PDF generation for resume builder
 - **SimpleJWT**: JWT authentication implementation
 - **PostgreSQL**: Relational database management
 - **Regular Expressions**: Pattern-based text analysis
@@ -126,11 +161,22 @@ ResuMatch follows a typical client-server architecture:
 - `POST /api/match/match-job-description/`: Compare current profile with job description
 - `GET /api/jobs/matching-jobs/`: Fetch matching jobs from external APIs
 
+### HR Interview Practice APIs
+- `GET /chatbot/hr-questions/`: Get all HR interview questions
+- `GET /chatbot/start/`: Start a new interview practice session
+- `POST /chatbot/next-question/`: Get next question with feedback on previous answer
+- `GET /chatbot/random/`: Get a random HR interview question
+
+### Resume Builder APIs
+- `POST /api/resume/generate/`: Generate and download a PDF resume
+
 ## 🖥️ Frontend Structure
 
 ```
 src/
 ├── components/         # Reusable UI components
+│   ├── HRChatBot.jsx   # Interview practice chatbot
+│   ├── HRQuestionsPage.jsx # HR questions display component
 │  
 ├── pages/              # Page components
 │   ├── Login.jsx       # User login
@@ -140,6 +186,7 @@ src/
 │   ├── JobMatcher.jsx  # Job matching tool
 │   ├── JobMatches.jsx  # Matched jobs listing
 │   ├── Profile.jsx     # User profile management
+│   ├── HRInterviewPractice.jsx # Interview practice page
 │   └── ...
 ├── api/                # API communication
 │   ├── axiosInstance.js # Configured Axios client
@@ -155,6 +202,8 @@ src/
 3. **Real-time Form Validation**: Immediate feedback on user inputs
 4. **Loading States**: Visual feedback during API operations
 5. **Token Management**: Automatic handling of JWT authentication
+6. **Interview Chat Interface**: Interactive chatbot for interview practice
+7. **Paginated Content**: Easy navigation through large content sets
 
 <div align="center">
   <img src="/screenshot/mobile.png" alt="Mobile Responsive Design" />
@@ -173,7 +222,11 @@ resume_matcher/
 │   ├── matching.py       # Skill extraction & match scoring
 │   ├── views.py          # Match processing & job fetching                  
 ├── jobs/                 # External job integration
- 
+├── chatbot/
+│   ├── views.py          # HR interview questions and chatbot logic
+│   ├── questions.py      # HR interview questions database
+├── resume_builder/
+│   ├── views.py          # PDF resume generation using ReportLab
 ```
 
 ### Match Scoring Algorithm
@@ -181,15 +234,37 @@ resume_matcher/
 ResuMatch uses a sophisticated algorithm to calculate match scores:
 
 1. **Skill Extraction**: Identifies both single-word skills (e.g., "Python", "React") and multi-word skills (e.g., "machine learning", "project management")
-
 2. **Summary Relevance**: Analyzes resume summary for keyword matches
 3. **Experience Evaluation**: Considers years of experience and leadership roles
-3. **Actionable Feedback**: Generates specific suggestions based on missing skills
+4. **Actionable Feedback**: Generates specific suggestions based on missing skills
 
 <div align="center">
   <img src="/screenshot/matchin1.png" alt="Match Algorithm Visualization" />
   <p><em>Visual representation of the match scoring algorithm</em></p>
 </div>
+
+### Interview Chatbot Logic
+
+The HR interview practice system features:
+
+1. **Interactive Question Flow**: Dynamic question selection based on user progress
+2. **Smart Answer Analysis**: Evaluates user responses using keyword matching
+3. **Feedback Generation**: Provides constructive feedback with score-based ratings
+4. **Learning Path**: Tracks asked questions to ensure comprehensive coverage
+
+<div align="center">
+  <img src="/screenshot/chatbot.png" alt="HR Chatbot Interface" />
+  <p><em>Interactive interview practice with real-time feedback</em></p>
+</div>
+
+### Resume Builder Engine
+
+The PDF resume generator:
+
+1. **Dynamic Content Placement**: Automatically adjusts layout based on content volume
+2. **Multi-page Support**: Handles content overflow with professional formatting
+3. **Section Priority**: Intelligently organizes content for maximum impact
+4. **Visual Hierarchy**: Creates professional design with consistent styling
 
 ## 💾 Data Models
 
@@ -206,6 +281,13 @@ ResuMatch uses a sophisticated algorithm to calculate match scores:
 - Email verification status
 - Account creation date
 - Last login tracking
+
+### HR Questions Model
+- Question ID
+- Question text
+- Model answer
+- Category classification
+- Difficulty level
 
 ## 🔧 Installation & Setup
 
@@ -291,9 +373,31 @@ python manage.py runserver
 3. **Review match reasons** highlighting your strengths
 4. **See improvement suggestions** to increase your chances
 
- 
- 
- 
+### HR Interview Practice
+
+<div align="center">
+  <img src="/screenshot/interview-practice.png" alt="Interview Practice" />
+  <p><em>Comprehensive interview preparation with smart feedback</em></p>
+</div>
+
+1. **Browse interview questions** by category or search for specific topics
+2. **Start a practice session** with the interactive chatbot
+3. **Answer questions** and receive immediate feedback
+4. **Review suggested answers** to improve your responses
+5. **Track your progress** through the question library
+
+### Resume Builder
+
+<div align="center">
+  <img src="/screenshot/resume-generation.png" alt="Resume Generation" />
+  <p><em>Professional resume generation with customization options</em></p>
+</div>
+
+1. **Enter your professional details** including experience, education, and skills
+2. **Customize section content** with your accomplishments and projects
+3. **Generate a professional PDF** with proper formatting and layout
+4. **Download your resume** ready for job applications
+
 ## 👨‍💻 Contributing
 
 We welcome contributions to ResuMatch! Here's how you can help:
@@ -311,13 +415,14 @@ We welcome contributions to ResuMatch! Here's how you can help:
 ## 🙏 Acknowledgements
 
 - [PyMuPDF](https://github.com/pymupdf/PyMuPDF) for PDF parsing
+- [ReportLab](https://www.reportlab.com/) for PDF generation
 - [Django REST Framework](https://www.django-rest-framework.org/) for API development
 - [SimpleJWT](https://github.com/jazzband/djangorestframework-simplejwt) for authentication
 - [Tailwind CSS](https://tailwindcss.com/) for styling
 - [React](https://reactjs.org/) for frontend development
 
 ---
-###                  ✨  HAPYY CODING ✨ 
+###                  ✨  HAPPY CODING ✨ 
 <p align="center">
   <strong>ResuMatch</strong>   resume analysis and job matching
 </p>
