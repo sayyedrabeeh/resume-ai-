@@ -443,7 +443,8 @@ We welcome contributions to ResuMatch! Here's how you can help:
 - [React](https://reactjs.org/) for frontend development
 
 ---
-###                  ✨  HAPPY CODING ✨ 
+
+ <h3 align="center" > ✨  HAPPY CODING ✨  </h3>     
 <p align="center">
   <strong>ResuMatch</strong>   resume analysis and job matching
 </p>
