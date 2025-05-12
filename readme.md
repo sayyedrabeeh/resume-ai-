@@ -1,3 +1,20 @@
+ If you find this repository helpful or interesting, please consider giving it a star! ⭐ ,and Follow Me For Cool Projects Updates
+
+## Why Star This Repository?
+
+- It helps others discover the project.
+- It motivates the me to keep improving it.
+- It supports open-source development!
+
+## How to Contribute
+
+If you want to contribute, feel free to fork the repository and submit a pull request. Also, don’t forget to star the repo!
+
+Thanks for your support! ❤
+
+[Star the project](https://github.com/sayyedrabeeh/virtual-painter)
+
+
 # 🚀 ResuMatch - AI-Powered Resume & Job Matching Platform
 
 <div align="center">
