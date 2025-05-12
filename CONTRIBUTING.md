@@ -19,9 +19,11 @@ Click the **Fork** button in the top-right corner of the repository page to crea
 
 ### 2. Clone the Repository
 Clone your fork to your local machine:
+
     ```bash
     git clone https://github.com/sayyedrabeeh/resume-ai-
     cd ai_resume_matcher
+    
 ### 3.Create a Branch
     ```bash
       git checkout -b feature/your-feature-name
