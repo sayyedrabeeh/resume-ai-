@@ -13,24 +13,18 @@ function Signup() {
 
     const handleSignup = async (e) => {
         e.preventDefault();
-        
-        // Basic validation
         if (password !== confirmPassword) {
             setErrorMsg("Passwords don't match");
             return;
         }
-        
         setIsLoading(true);
         setErrorMsg('');
-        
         try {
             await axios.post('http://localhost:8000/signup/', {
                 username,
                 email,
                 password
             });
-            
-            // Show success message and redirect
             navigate('/login', { 
                 state: { message: 'Account created successfully! Please log in.' }
             });

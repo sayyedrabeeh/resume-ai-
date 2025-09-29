@@ -23,7 +23,7 @@ def get_file_hash(file):
         hasher.update(chunk)
     return hasher.hexdigest()
 
-
+@method_decorator(csrf_exempt, name='dispatch')
 class SignupView(APIView):
     permission_classes = [AllowAny]
 
