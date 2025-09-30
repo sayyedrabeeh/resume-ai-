@@ -169,9 +169,20 @@ function Home() {
           </div>
         </div>
 
+        
+        {/* right-side logo */}
 
+        <div className="flex-1 relative z-10 justify-center items-center flex">
+          <div className=" absolute w-72 h-72 md:w-96 md:h-96 rounded-full bg-[#FFD6FF]/30 blur-3xl animate-plus"></div>
+            <img src="logo.jpg" alt="logo" className="w-64 h-64 md:w-80 md:h-80 object-contain animate-float drop-shadow-2xl relative z-20 " />
+            <div className=" absolute top-10 left-20 w-24 h-24 rounded-full bg-[#FF77FF]/20 blur-2xl animate-spin"></div>
+            <div className="absolute bottom-20 right-10  w-32 h-32 rounded-full bg-[#FF3399]/20 blur-2xl animate-spin "></div>
+          </div>
+          <div className="absolute inset-0  bg-gradient-to-r from-transparent via-black/30 to-transparent z-0"></div>
+        
+        
+     
     </div>
-    
     </>
   );
 }
