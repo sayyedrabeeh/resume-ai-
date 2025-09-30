@@ -222,15 +222,23 @@ function Home() {
           </ul>
           
 
-          <button className=" bg-[#FFD6FF] text-black py-3 px-6 rounded-full shadow-lg hover:bg-[#FF77FF] transition mt-8">
-             <span className="font-semibold">Upload Your Resume</span>
-          </button>
-
+          <div className="flex justify-center mt-8">
+            <button className="bg-[#FFD6FF]/70 text-black py-3 px-6 rounded-full shadow-lg hover:bg-[#FF77FF] transition">
+              <span className="font-semibold">Upload Your Resume</span>
+            </button>
+          </div>
 
 
         </div>
-        
+          {/* image */}
 
+          <div className="flex-1 relative mt-16 md:mt-0  md:ml-16 z-10  flex justify-center">
+
+            <img src="/images/resume.jpg"
+                 alt="resume"
+                 className="w-96 h-auto md:w-[28rem] md:h-[28rem] rounded-xl shadow-2xl object-content animate-float"
+            />
+          </div>
       <div className="absolute inset-0 z-0"
        style={{
          backgroundImage: `
@@ -239,9 +247,6 @@ function Home() {
          `
        }}
       ></div>
-        
-        
-      
       </div>
 
     </>
