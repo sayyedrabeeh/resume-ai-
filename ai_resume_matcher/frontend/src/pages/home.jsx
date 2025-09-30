@@ -149,7 +149,7 @@ function Home() {
 
     <>
         <Navbar/>
-      <div className="min-h-screen relative overflow-hidden bg-gradient-to-l from-[#E83D95] to-black py-16 flex items-center px-6 md:px-20 border-b  ">
+      <div className="min-h-screen relative overflow-hidden bg-gradient-to-l from-[#E83D95] to-black py-16 flex items-center px-6 md:px-20   ">
         <div className=" flex-1  space-y-6 z-10">
           <div className="flex-1 z-20 space-y-6">
       <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight drop-shadow-2xl font-heading animate-fadeIn">
@@ -198,7 +198,16 @@ function Home() {
         
      
       </div>
-      <div className="w-full h-[1px] bg-gray-700"></div>
+ 
+            
+      {/* SECOND SECTION */}
+      
+      
+      <div className="min-h-screen relative overflow-hidden bg-black/90  py-16 flex items-center px-6 md:px-20 ">
+
+      
+      
+      </div>
 
     </>
   );
