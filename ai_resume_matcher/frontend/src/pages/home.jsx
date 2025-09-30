@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import Navbar from '../components/Navbar'
 
 function Home() {
   const navigate = useNavigate();
@@ -147,8 +148,8 @@ function Home() {
     // </div>
 
     <>
-      <div className="min-h-screen relative overflow-hidden bg-gradient-to-l from-[#E83D95] to-black py-16 flex items-center px-6 md:px-20">
-        
+        <Navbar/>
+      <div className="min-h-screen relative overflow-hidden bg-gradient-to-l from-[#E83D95] to-black py-16 flex items-center px-6 md:px-20 border-b  ">
         <div className=" flex-1  space-y-6 z-10">
           <div className="flex-1 z-20 space-y-6">
       <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight drop-shadow-2xl font-heading animate-fadeIn">
@@ -159,7 +160,7 @@ function Home() {
       </h1>
 
       <p className="text-white/95 md:text-xl max-w-xl leading-relaxed font-body font-medium animate-fadeIn delay-200">
-        ResuMatch is a <span className="font-semibold text-[#FFD6FF]">full-stack platform</span> that connects <span className="font-semibold text-[#FFD6FF]">job seekers</span> with their ideal positions.
+        ResuMatch is a <span className="font-semibold text-[#FFD6FF]"> platform</span> that connects <span className="font-semibold text-[#FFD6FF]">job seekers</span> with their ideal positions.
       </p>
       <p className="text-white/90 md:text-lg max-w-xl leading-relaxed font-body animate-fadeIn delay-400">
         Using <span className="font-semibold text-[#FF77FF]">advanced text analysis</span> and skill extraction algorithms, it evaluates resumes and compares them to job descriptions.
@@ -196,7 +197,9 @@ function Home() {
         
         
      
-    </div>
+      </div>
+      <div className="w-full h-[1px] bg-gray-700"></div>
+
     </>
   );
 }
