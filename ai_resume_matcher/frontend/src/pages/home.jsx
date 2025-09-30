@@ -147,38 +147,52 @@ function Home() {
     // </div>
 
     <>
-      <div className="min-h-screen relative overflow-hidden bg-gradient-to-l from-[#E83D95] to-black py-16 flex items-center">
+      <div className="min-h-screen relative overflow-hidden bg-gradient-to-l from-[#E83D95] to-black py-16 flex items-center px-6 md:px-20">
         
-        <div className=" flex-1 px-8 md:px-20 z-10">
-          <h1 className="text-5xl md:6xl font-extrabold text-white mb-6 leading-tight">
-            Resu<span className="text-[#FFD6FF]" >Match</span>
-          </h1>
-          <p className="text-lg md:text-xl text-white/80 mb-8 max-w-lg">
-            ResuMatch is a comprehensive full-stack application that bridges the gap between
-            job seekers and their ideal positions. Using advanced text analysis and skill extraction
-            algorithms, it analyzes resumes, compares them against job descriptions, and provides
-            actionable insights to improve your chances of landing interviews.
-          </p>
-          <div className="flex gap-4 flex-wrap">
-            <button className="bg-white text-[#E83D95] font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-white/70 transition duration-300 ">
-              Get Start
-            </button>
-            <button className=" border border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white/20 transition duration-300">
-              Learn More
-            </button>
-          </div>
+        <div className=" flex-1  space-y-6 z-10">
+          <div className="flex-1 z-20 space-y-6">
+      <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight drop-shadow-2xl font-heading animate-fadeIn">
+        Resu
+        <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#FFD6FF] to-[#FF77FF]">
+          Match
+        </span>
+      </h1>
+
+      <p className="text-white/95 md:text-xl max-w-xl leading-relaxed font-body font-medium animate-fadeIn delay-200">
+        ResuMatch is a <span className="font-semibold text-[#FFD6FF]">full-stack platform</span> that connects <span className="font-semibold text-[#FFD6FF]">job seekers</span> with their ideal positions.
+      </p>
+      <p className="text-white/90 md:text-lg max-w-xl leading-relaxed font-body animate-fadeIn delay-400">
+        Using <span className="font-semibold text-[#FF77FF]">advanced text analysis</span> and skill extraction algorithms, it evaluates resumes and compares them to job descriptions.
+      </p>
+      <p className="text-white/90 md:text-lg max-w-xl leading-relaxed font-body animate-fadeIn delay-600">
+        It then provides <span className="font-semibold text-[#FFD6FF]">actionable insights</span> to boost your chances of landing interviews.
+      </p>
+
+      {/* CTA Buttons */}
+      <div className="flex gap-4 flex-wrap mt-4 animate-fadeIn delay-800">
+        <button className="bg-[#FFD6FF] text-black font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-[#FF77FF] transition duration-300 font-body">
+          Get Started
+        </button>
+        <button className="border border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white/20 transition duration-300 font-body">
+          Learn More
+        </button>
+      </div>
+    </div>
+
+
+          
         </div>
 
         
         {/* right-side logo */}
 
         <div className="flex-1 relative z-10 justify-center items-center flex">
-          <div className=" absolute w-72 h-72 md:w-96 md:h-96 rounded-full bg-[#FFD6FF]/30 blur-3xl animate-plus"></div>
+          <div className=" absolute w-72 h-72 md:w-96 md:h-96 rounded-full bg-[#FFD6FF]/40 blur-3xl animate-plus"></div>
             <img src="logo.jpg" alt="logo" className="w-64 h-64 md:w-80 md:h-80 object-contain animate-float drop-shadow-2xl relative z-20 " />
-            <div className=" absolute top-10 left-20 w-24 h-24 rounded-full bg-[#FF77FF]/20 blur-2xl animate-spin"></div>
-            <div className="absolute bottom-20 right-10  w-32 h-32 rounded-full bg-[#FF3399]/20 blur-2xl animate-spin "></div>
+            <div className=" absolute top-10 left-20 w-24 h-24 rounded-full bg-[#FF77FF]/30 blur-2xl animate-spin-slow"></div>
+            <div className="absolute bottom-20 right-10  w-32 h-32 rounded-full bg-[#FF3399]/30 blur-2xl animate-spin-slow "></div>
           </div>
-          <div className="absolute inset-0  bg-gradient-to-r from-transparent via-black/30 to-transparent z-0"></div>
+          <div className="absolute inset-0  bg-gradient-to-r from-transparent via-black/50 to-transparent z-0"></div>
         
         
      
