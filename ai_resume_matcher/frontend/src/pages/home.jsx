@@ -1,9 +1,27 @@
-import { useEffect } from "react";
+import { useEffect,useRef,useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Navbar from '../components/Navbar'
+import { motion  } from "framer-motion";
+
+
+const steps = [
+  { id: 1, title: "Upload Resume", desc: " upload your existing Resume." },
+  { id: 2, title: "Choose Profile", desc: "Select one of profiles you want to match." },
+  { id: 3, title: "Paste Job Description", desc: "Provide the job description ." },
+  { id: 4, title: "Understand Suggestions", desc: "See instant insights & optimized keywords." },
+ ];
 
 function Home() {
   const navigate = useNavigate();
+  const containerRef = useRef(null)
+  const [positions, setPostions] = useState([])
+  
+  useEffect(() => {
+    setPostions(steps.map(() => ({
+        top: `${10 + Math.random() * 40}%`,
+        left: `${10 + Math.random() * 60}%`,
+    })))
+  },[])
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
@@ -11,6 +29,7 @@ function Home() {
       navigate("/login");
     }
   }, [navigate]);
+   
 
   return (
     // <div className="min-h-screen bg-gradient-to-b from-blue-50 to-gray-100 ">
@@ -223,9 +242,9 @@ function Home() {
           
 
           <div className="flex justify-center mt-8">
-            <button className="bg-[#FFD6FF]/70 text-black py-3 px-6 rounded-full shadow-lg hover:bg-[#FF77FF] transition">
+            <Link to={'/upload'} className="bg-[#FFD6FF]/70 text-black py-3 px-6 rounded-full shadow-lg hover:bg-[#FF77FF] transition">
               <span className="font-semibold">Upload Your Resume</span>
-            </button>
+            </Link>
           </div>
 
 
@@ -248,6 +267,52 @@ function Home() {
        }}
       ></div>
       </div>
+
+      {/* THIRD SECTION  */}
+ 
+      <div className="min-h-screen bg-black flex flex-col items-center py-16 px-6 md:px-20"ref={containerRef}>
+
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-white">
+          ResuMatch Steps 
+        </h2>
+
+        <p className="text-white/70 mb-12 text-center max-w-2xl ">
+            Drag each step anywhere within this section to explore your resume optimization journey.
+        </p>
+
+        <div className="relative w-full h-[60vh] border border-white/20  rounded-lg bg-black/80 flex items-center justify-center overflow-hidden ">
+          {steps.map((step, index) => (
+            <motion.div
+              key={step.id}
+              drag
+              dragConstraints={containerRef}
+              dragElastic={0.3}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{
+                delay: index * 0.2,
+                type: 'spring',
+                stiffness: 120,
+                damping: 15
+              }}
+              className="relative bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 rounded-lg p-6 w-56  shadow-lg cursor-grab text-white"
+              style={positions[index] || {}}>
+                <div className="w-10 h-10 rounded-full bg-black/50 flex items-center  justify-center font-bold text-lg mb-3">
+                  {step.id}
+                </div>
+              <h3 className="font-semibold text-lg mb-1">{step.title}</h3>
+              <p className=" text-white/80 text-sm ">{ step.desc}</p>
+
+              </motion.div>
+            
+          ) )}
+
+        </div>
+
+      </div>
+     
 
     </>
   );
