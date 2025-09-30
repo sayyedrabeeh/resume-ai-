@@ -25,10 +25,18 @@ function Navbar() {
     <nav className="fixed top-0 left-0 w-full bg-black/40 backdrop-blur-md z-50">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         
-        {/* Logo */}
+        
+        <div className="flex items-center gap-3">
+        <img 
+            src="/logo.jpg"   
+            alt="ResuMatch Logo" 
+            className="w-10 h-10 object-contain"
+        />
         <h1 className="text-2xl font-bold font-heading text-white">
-          Resu<span className="text-[#FFD6FF]">Match</span>
+            Resu<span className="text-[#FFD6FF]">Match</span>
         </h1>
+        </div>
+
 
         {/* Menu */}
         <div className="hidden md:flex gap-6 items-center">

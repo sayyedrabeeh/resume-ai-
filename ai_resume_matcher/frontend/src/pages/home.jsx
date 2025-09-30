@@ -195,7 +195,8 @@ function Home() {
           </div>
           <div className="absolute inset-0  bg-gradient-to-r from-transparent via-black/50 to-transparent z-0"></div>
         
-        
+          <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/100 z-10 pointer-events-none"></div>
+
      
       </div>
  
@@ -203,9 +204,43 @@ function Home() {
       {/* SECOND SECTION */}
       
       
-      <div className="min-h-screen relative overflow-hidden bg-black/90  py-16 flex items-center px-6 md:px-20 ">
+      <div className="min-h-screen relative overflow-hidden bg-black flex flex-col md:flex-row items-start   py-32  px-6 md:px-20 ">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-black/20 to-black z-10 pointer-events-none"></div>
 
-      
+        <div className="flex-1 space-y-8 z-10">
+
+          <h1 className="text-white text-4xl font-bold">
+            Resume Analysis and Management
+          </h1>
+
+          <ul className="text-white/90 list-disc pl-6 space-y-3 text-lg md:text-xl">
+              <li><span className="font-semibold text-[#E83D95]" >Smart PDF Parsing:</span> Extract structured data from PDF resumes</li>
+              <li><span className="font-semibold text-[#E83D95]" >Multiple Profile Support:</span> Manage different versions of your professional profile</li>
+              <li><span className="font-semibold text-[#E83D95]" >Social Profile Detection:</span> Automatically extracts LinkedIn, GitHub, and personal website URLs</li>
+              <li><span className="font-semibold text-[#E83D95]" >Visual Resume Dashboard:</span> View all your parsed resume data in a clean, organized interface</li>
+
+          </ul>
+          
+
+          <button className=" bg-[#FFD6FF] text-black py-3 px-6 rounded-full shadow-lg hover:bg-[#FF77FF] transition mt-8">
+             <span className="font-semibold">Upload Your Resume</span>
+          </button>
+
+
+
+        </div>
+        
+
+      <div className="absolute inset-0 z-0"
+       style={{
+         backgroundImage: `
+           repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(246, 59, 246, 0.2) 20px),
+           repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(246, 59, 171, 0.2) 20px)
+         `
+       }}
+      ></div>
+        
+        
       
       </div>
 
