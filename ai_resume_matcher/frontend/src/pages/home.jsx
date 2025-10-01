@@ -71,105 +71,8 @@ function Home() {
   
 
   return (
-    // <div className="min-h-screen bg-gradient-to-b from-blue-50 to-gray-100 ">
-    //   <div className="container mx-auto px-4">
-    //     <div className="mx-auto">
-    //       <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-    //         <div className="bg-blue-600 p-8 text-center">
-    //           <h1 className="text-3xl font-bold text-white mb-2">Welcome to ResumeMatch</h1>
-    //           <p className="text-blue-100">Your professional career companion</p>
-    //         </div>
-            
-    //         <div className="p-8">
-    //           <div className="text-center mb-10">
-    //             <div className="inline-block p-4 rounded-full bg-blue-100 mb-4">
-    //               <svg className="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    //                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-    //               </svg>
-    //             </div>
-                 
-    //             <p className="text-gray-600">What would you like to do today?</p>
-    //           </div>
-              
-    //            
-
-    //              
-    //            
-
-    //             <Link
-    //               to="/ResumeBuilder"
-    //               className="block bg-purple-600 hover:bg-purple-700 text-white font-semibold py-4 px-6 rounded-lg shadow transition duration-300 flex items-center"
-    //             >
-    //               <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    //                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h2"></path>
-    //               </svg>
-    //               <div>
-    //                 <span className="block">Resume Builder </span>
-    //                 <span className="block text-sm text-purple-200">Build a simlpe Resume With Resume builder  </span>
-    //               </div>
-    //             </Link>
-
-    //             <Link
-    //                   to="/HR"
-    //                   className="block bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-4 px-6 rounded-2xl shadow-lg transition duration-300 flex items-center"
-    //                 >
-    //                   <svg
-    //                     className="w-6 h-6 mr-3 text-white"
-    //                     fill="none"
-    //                     stroke="currentColor"
-    //                     strokeWidth="2"
-    //                     viewBox="0 0 24 24"
-    //                     xmlns="http://www.w3.org/2000/svg"
-    //                   >
-    //                     <path
-    //                       strokeLinecap="round"
-    //                       strokeLinejoin="round"
-    //                       d="M5.121 17.804A5.002 5.002 0 0110 15h4a5.002 5.002 0 014.879 2.804M15 11a3 3 0 10-6 0 3 3 0 006 0z"
-    //                     />
-    //                   </svg>
-    //                   <div>
-    //                     <span className="block text-base">HR Interview Practice</span>
-    //                     <span className="block text-sm text-blue-100">Practice with 100+ HR Questions</span>
-    //                   </div>
-    //                 </Link>
-                    
-
-    //             <Link
-    //               to="/me"
-    //               className="block bg-gray-600 hover:bg-gray-700 text-white font-semibold py-4 px-6 rounded-lg shadow transition duration-300 flex items-center"
-    //             >
-    //              <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    //                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5.121 17.804A9.953 9.953 0 0112 15c2.21 0 4.245.713 5.879 1.904M15 10a3 3 0 11-6 0 3 3 0 016 0zM12 2a10 10 0 100 20 10 10 0 000-20z" />
-    //               </svg>
-                  
-    //               <div>
-    //                 <span className="block">Me</span>
-    //                 <span className="block text-sm text-gray-300">MY Profile</span>
-    //               </div>
-    //             </Link>
-    //           </div>
-              
-    //           <div className="mt-12 pt-8 border-t border-gray-200 text-center">
-    //             <button
-    //               onClick={() => {
-    //                 localStorage.removeItem("access_token");
-    //                 navigate("/login");
-    //               }}
-    //               className="text-red-600 hover:text-red-800 font-medium transition duration-300"
-    //             >
-    //               Sign Out
-    //             </button>
-    //           </div>
-    //         </div>
-    //       </div>
-          
-    //       <div className="mt-8 text-center text-gray-500 text-sm">
-    //         <p>&copy; {new Date().getFullYear()} ResumeMatch. All rights reserved.</p>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
-
+               
+   
     <>
       <div className="fixed top-0 left-0 w-full h-1 bg-gray z-50">
         <motion.div
@@ -327,109 +230,110 @@ function Home() {
      
       {/* FORTH SECTION */}
 
-      <div className="min-h-screen  bg-gradient-to-l from-[#3f0e27] to-black py-16 flex items-center flex-col px-6 md:px-20   ">
-        <div className="flex flex-col md:flex-row md:space-x-5 mb-5 w-full max-w-[1200px]">
-          <Link
-            to="/job-matches"
-            className="relative block w-full md:w-[500px] h-[200px] 
-                      bg-gradient-to-r from-green-400/30 to-green-700/30 
-                      backdrop-blur-md border border-green-400/30 
-                      rounded-2xl shadow-lg transition-transform transform 
-                      hover:-translate-y-2 hover:shadow-2xl flex items-center mr-8 p-6 group">
-            <FaBriefcase className="w-16 h-16 mr-8 text-green-400 flex-shrink-0" />
-            <div className="flex-1">
-              <span className="block text-3xl font-extrabold tracking-wide text-white">
-                View Matching Jobs
-              </span>
-              <span className="block text-sm text-green-200 mt-3 font-medium">
-                Find positions that match your profile
-              </span>
-            </div>
-            <FiArrowRight className="w-6 h-6 text-green-400 ml-4 transition-transform duration-300 group-hover:translate-x-2" />
-        </Link>
-        <Link
-            to="/profiles"
-            className="relative block w-full md:w-[500px] h-[200px] 
-                      bg-gradient-to-r from-blue-400/30 to-blue-700/30 
-                      backdrop-blur-md border border-blue-400/30 
-                      rounded-2xl shadow-lg transition-transform transform 
-                      hover:-translate-y-2 hover:shadow-2xl flex items-center p-6 group">
-            <FaUser className="w-16 h-16 mr-8 text-blue-400 flex-shrink-0" />
-            <div className="flex-1">
-              <span className="block text-3xl font-extrabold tracking-wide text-white">
-                Manage Profiles
-              </span>
-              <span className="block text-sm text-blue-200 mt-3 font-medium">
-                Select and update your profile
-              </span>
-            </div>
-            <FiArrowRight className="w-6 h-6 text-blue-400 ml-4 transition-transform duration-300 group-hover:translate-x-2" />
-        </Link>
-     </div>
-  <div className="flex flex-col md:flex-row md:space-x-5 w-full max-w-[1200px]">
-      <Link
-            to="/ResumeBuilder"
-            className="relative block w-full md:w-[500px] h-[200px] 
-                      bg-gradient-to-r from-yellow-400/30 to-yellow-700/30 
-                      backdrop-blur-md border border-yellow-400/30 
-                      rounded-2xl shadow-lg transition-transform transform 
-                      hover:-translate-y-2 hover:shadow-2xl flex items-center p-6 group">
-            <FaFileAlt className="w-16 h-16 mr-8 text-yellow-400 flex-shrink-0" />
-            <div className="flex-1">
-              <span className="block text-3xl font-extrabold tracking-wide text-white">
-                Resume Builder
-              </span>
-              <span className="block text-sm text-yellow-200 mt-3 font-medium">
-               Create ATS-friendly resumes quickly with our builder
-              </span>
-            </div>
-            <FiArrowRight className="w-6 h-6 text-yellow-400 ml-4 transition-transform duration-300 group-hover:translate-x-2" />
-          </Link>  
-          
-      <Link
-            to="//HR"
-            className="relative block w-full md:w-[500px] h-[200px] 
-                      bg-gradient-to-r from-red-400/30 to-red-700/30 
-                      backdrop-blur-md border border-red-400/30 
-                      rounded-2xl shadow-lg transition-transform transform 
-                      hover:-translate-y-2 hover:shadow-2xl flex items-center p-6 group">
-            <FaQuestionCircle className="w-16 h-16 mr-8 text-red-400 flex-shrink-0" />
-            <div className="flex-1">
-              <span className="block text-3xl font-extrabold tracking-wide text-white">
-                HR Interview Questions
-              </span>
-              <span className="block text-sm text-red-200 mt-3 font-medium">
-               Practice common HR questions and ace your interviews
-              </span>
-            </div>
-            <FiArrowRight className="w-6 h-6 text-red-400 ml-4 transition-transform duration-300 group-hover:translate-x-2" />
-        </Link>  
-          
-      <a
-            href="https://github.com/sayyedrabeeh/resume-ai-"
-            className="relative block w-full md:w-[500px] h-[200px] 
-                      bg-gradient-to-r from-pink-400/30 to-pink-700/30 
-                      backdrop-blur-md border border-pink-400/30 
-                      rounded-2xl shadow-lg transition-transform transform 
-                      hover:-translate-y-2 hover:shadow-2xl flex items-center p-6 group">
-            <FaGithub   className="w-16 h-16 mr-8 text-pink-400 flex-shrink-0" />
-            <div className="flex-1">
-              <span className="block text-3xl font-extrabold tracking-wide text-white">
-                 A star on github
-              </span>
-              <span className="block text-sm text-pink-200 mt-3 font-medium">
-               Practice common HR questions and ace your interviews
-              </span>
-            </div>
-            <FiArrowRight className="w-6 h-6 text-pink-400 ml-4 transition-transform duration-300 group-hover:translate-x-2" />
-        </a>  
+   <div className="min-h-screen bg-gradient-to-l from-[#1a0510] to-black py-20 flex items-center flex-col px-6 md:px-20 relative">
+  <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+  <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-14 text-center relative z-10">
+    Explore Our Features
+  </h2>
+  <div className="flex flex-col md:flex-row md:space-x-6 mb-6 w-full max-w-[1100px] relative z-10">
+    <Link
+      to="/job-matches"
+      className="relative block w-full md:w-1/2 h-[200px] 
+                bg-gradient-to-r from-green-900/70 to-green-950/70 
+                backdrop-blur-xl border border-green-700/40 
+                rounded-2xl shadow-xl transition-transform transform 
+                hover:-translate-y-2 hover:shadow-green-700/30 flex items-center p-6 group">
+      <FaBriefcase className="w-16 h-16 mr-8 text-green-500 flex-shrink-0" />
+      <div className="flex-1">
+        <span className="block text-3xl font-extrabold tracking-wide text-white">
+          View Matching Jobs
+        </span>
+        <span className="block text-sm text-green-300 mt-3 font-medium">
+          Find positions that match your profile
+        </span>
+      </div>
+      <FiArrowRight className="w-6 h-6 text-green-500 ml-4 transition-transform duration-300 group-hover:translate-x-2" />
+    </Link>
+
+    <Link
+      to="/profiles"
+      className="relative block w-full md:w-1/2 h-[200px] 
+                bg-gradient-to-r from-blue-900/70 to-blue-950/70 
+                backdrop-blur-xl border border-blue-700/40 
+                rounded-2xl shadow-xl transition-transform transform 
+                hover:-translate-y-2 hover:shadow-blue-700/30 flex items-center p-6 group mt-6 md:mt-0">
+      <FaUser className="w-16 h-16 mr-8 text-blue-500 flex-shrink-0" />
+      <div className="flex-1">
+        <span className="block text-3xl font-extrabold tracking-wide text-white">
+          Manage Profiles
+        </span>
+        <span className="block text-sm text-blue-300 mt-3 font-medium">
+          Select and update your profile
+        </span>
+      </div>
+      <FiArrowRight className="w-6 h-6 text-blue-500 ml-4 transition-transform duration-300 group-hover:translate-x-2" />
+    </Link>
+  </div>
+  <div className="flex flex-col md:flex-row md:space-x-6 w-full max-w-[1100px] relative z-10">
+    <Link
+      to="/ResumeBuilder"
+      className="relative block w-full md:w-1/3 h-[200px] 
+                bg-gradient-to-r from-yellow-900/70 to-yellow-950/70 
+                backdrop-blur-xl border border-yellow-700/40 
+                rounded-2xl shadow-xl transition-transform transform 
+                hover:-translate-y-2 hover:shadow-yellow-700/30 flex items-center p-6 group mb-6 md:mb-0">
+      <FaFileAlt className="w-16 h-16 mr-8 text-yellow-500 flex-shrink-0" />
+      <div className="flex-1">
+        <span className="block text-3xl font-extrabold tracking-wide text-white">
+          Resume Builder
+        </span>
+        <span className="block text-sm text-yellow-300 mt-3 font-medium">
+          Create ATS-friendly resumes quickly
+        </span>
+      </div>
+      <FiArrowRight className="w-6 h-6 text-yellow-500 ml-4 transition-transform duration-300 group-hover:translate-x-2" />
+    </Link>
+
+    <Link
+      to="/HR"
+      className="relative block w-full md:w-1/3 h-[200px] 
+                bg-gradient-to-r from-red-900/70 to-red-950/70 
+                backdrop-blur-xl border border-red-700/40 
+                rounded-2xl shadow-xl transition-transform transform 
+                hover:-translate-y-2 hover:shadow-red-700/30 flex items-center p-6 group mb-6 md:mb-0">
+      <FaQuestionCircle className="w-16 h-16 mr-8 text-red-500 flex-shrink-0" />
+      <div className="flex-1">
+        <span className="block text-3xl font-extrabold tracking-wide text-white">
+          HR Interview Questions
+        </span>
+        <span className="block text-sm text-red-300 mt-3 font-medium">
+          Practice common HR questions and ace your interviews
+        </span>
+      </div>
+      <FiArrowRight className="w-6 h-6 text-red-500 ml-4 transition-transform duration-300 group-hover:translate-x-2" />
+    </Link>
+
+    <a
+      href="https://github.com/sayyedrabeeh/resume-ai-"
+      className="relative block w-full md:w-1/3 h-[200px] 
+                bg-gradient-to-r from-pink-900/70 to-pink-950/70 
+                backdrop-blur-xl border border-pink-700/40 
+                rounded-2xl shadow-xl transition-transform transform 
+                hover:-translate-y-2 hover:shadow-pink-700/30 flex items-center p-6 group">
+      <FaGithub className="w-16 h-16 mr-8 text-pink-500 flex-shrink-0" />
+      <div className="flex-1">
+        <span className="block text-3xl font-extrabold tracking-wide text-white">
+          ⭐ Star on GitHub
+        </span>
+        <span className="block text-sm text-pink-300 mt-3 font-medium">
+          Support the project and share with others
+        </span>
+      </div>
+      <FiArrowRight className="w-6 h-6 text-pink-500 ml-4 transition-transform duration-300 group-hover:translate-x-2" />
+    </a>
+  </div>
 </div>
 
-        
-        
-
-      
-      </div>
 
 
 
