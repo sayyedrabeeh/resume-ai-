@@ -37,15 +37,15 @@ function Signup() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-gray-100">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-l from-[#E83D95] to-black">
             <div className="w-full max-w-md">
                 <div className="text-center mb-10">
-                    <h1 className="text-4xl font-bold text-gray-800 mb-2">ResumeMatch</h1>
-                    <p className="text-gray-600">Create your account</p>
+                    <h1 className="text-4xl font-bold font-heading  text-[#FF77FF]/50 mb-2">ResumeMatch</h1>
+                    <p className="text-white/90">Create your account</p>
                 </div>
                 
-                <form onSubmit={handleSignup} className="bg-white p-8 rounded-xl shadow-lg">
-                    <h2 className="text-2xl font-bold mb-6 text-gray-800">Sign Up</h2>
+                <form onSubmit={handleSignup} className="bg-black/50 p-8 rounded-xl shadow-lg">
+                    <h2 className="text-2xl font-bold mb-6 text-[#FF77FF]/50">Sign Up</h2>
                     
                     {errorMsg && (
                         <div className="mb-4 p-3 bg-red-50 border-l-4 border-red-500 text-red-700">
@@ -54,7 +54,7 @@ function Signup() {
                     )}
                     
                     <div className="mb-5">
-                        <label htmlFor="username" className="block text-gray-700 text-sm font-medium mb-2">Username</label>
+                        <label htmlFor="username" className="block text-white/80 text-sm font-medium mb-2">Username</label>
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +74,7 @@ function Signup() {
                     </div>
                     
                     <div className="mb-5">
-                        <label htmlFor="email" className="block text-gray-700 text-sm font-medium mb-2">Email Address</label>
+                        <label htmlFor="email" className="block text-white/80 text-sm font-medium mb-2">Email Address</label>
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -94,7 +94,7 @@ function Signup() {
                     </div>
                     
                     <div className="mb-5">
-                        <label htmlFor="password" className="block text-gray-700 text-sm font-medium mb-2">Password</label>
+                        <label htmlFor="password" className="block text-white/80 text-sm font-medium mb-2">Password</label>
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -114,7 +114,7 @@ function Signup() {
                     </div>
                     
                     <div className="mb-6">
-                        <label htmlFor="confirmPassword" className="block text-gray-700 text-sm font-medium mb-2">Confirm Password</label>
+                        <label htmlFor="confirmPassword" className="block text-white/80 text-sm font-medium mb-2">Confirm Password</label>
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -136,8 +136,8 @@ function Signup() {
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className={`w-full bg-green-600 text-white py-3 px-4 rounded-lg font-medium transition duration-200 ${
-                            isLoading ? 'bg-green-400 cursor-not-allowed' : 'hover:bg-green-700'
+                        className={`w-full bg-[#FF77FF]/50 text-white py-3 px-4 rounded-lg font-medium transition duration-200 ${
+                            isLoading ? 'bg-[#FF77FF]/50 cursor-not-allowed' : 'hover:bg-[#FF77FF]'
                         }`}
                     >
                         {isLoading ? (
@@ -152,9 +152,9 @@ function Signup() {
                     </button>
                     
                     <div className="text-center mt-6">
-                        <p className="text-gray-600">
+                        <p className="text-white/70">
                             Already have an account?{' '}
-                            <Link to="/login" className="text-green-600 hover:underline font-medium">
+                            <Link to="/login" className="text-[#FF77FF]/50 hover:underline font-medium">
                                 Sign in
                             </Link>
                         </p>
@@ -162,7 +162,7 @@ function Signup() {
                 </form>
                 
                 <div className="text-center mt-8">
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-white/70">
                         © {new Date().getFullYear()} ResumeMatch. All rights reserved.
                     </p>
                 </div>

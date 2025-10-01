@@ -44,22 +44,22 @@ function Me() {
   }
 
   return (
-    <div className="flex justify-center min-h-screen bg-gray-50 py-12 px-4">
-      <div className="w-full max-w-3xl bg-white rounded-xl shadow-lg overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-700 py-6 px-8">
-          <h1 className="text-2xl font-bold text-white">Your Profile</h1>
+    <div className="flex justify-center min-h-screen bg-gradient-to-l from-[#E83D95] to-black py-12 px-4">
+      <div className="w-full max-w-3xl bg-black/50 rounded-xl shadow-lg overflow-hidden">
+        <div className="bg-bg-gradient-to-l from-[#E83D95] to-black  py-6 px-8">
+          <h1 className="text-2xl font-bold text-[#FF77FF]/50">Your Profile</h1>
         </div>
         
         <div className="flex flex-col md:flex-row">
           <div className="p-6 flex flex-col items-center">
-            <div className="w-40 h-40 bg-gray-200 rounded-full overflow-hidden mb-4 border-4 border-white shadow-md">
+            <div className="w-40 h-40 bg-white/70 rounded-full overflow-hidden mb-4 border-4 border-white/70 shadow-md">
               <img 
                 src="/p.avif" 
                 alt="Profile"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="mt-2 px-4 py-2 bg-blue-100 text-blue-800 rounded-md text-sm font-medium text-center">
+            <div className="mt-2 px-4 py-2 bg-[#FF77FF]/50 text-white/70 rounded-md text-sm font-medium text-center">
               Account Active
             </div>
           </div>
@@ -68,40 +68,40 @@ function Me() {
             <div className="space-y-6">
               <div className="border-b border-gray-200 pb-4">
                 <div className="flex items-center">
-                  <User className="text-blue-600 w-5 h-5 mr-3" />
-                  <span className="text-gray-500 font-medium w-28">Username:</span>
-                  <span className="font-semibold text-gray-800">{user.username}</span>
+                  <User className="text-[#FF77FF]/50 w-5 h-5 mr-3" />
+                  <span className="text-white/80 font-medium w-28">Username:</span>
+                  <span className="font-semibold text-white/80">{user.username}</span>
                 </div>
               </div>
               
               <div className="border-b border-gray-200 pb-4">
                 <div className="flex items-center">
-                  <Mail className="text-blue-600 w-5 h-5 mr-3" />
-                  <span className="text-gray-500 font-medium w-28">Email:</span>
-                  <span className="font-semibold text-gray-800">{user.email}</span>
+                  <Mail className="text-[#FF77FF]/50 w-5 h-5 mr-3" />
+                  <span className="text-white/80 font-medium w-28">Email:</span>
+                  <span className="font-semibold text-white/80">{user.email}</span>
                 </div>
               </div>
               
               <div className="pb-2">
                 <div className="flex items-center">
-                  <Calendar className="text-blue-600 w-5 h-5 mr-3" />
-                  <span className="text-gray-500 font-medium w-28">Date Joined:</span>
-                  <span className="font-semibold text-gray-800">
+                  <Calendar className="text-[#FF77FF]/50 w-5 h-5 mr-3" />
+                  <span className="text-white/80 font-medium w-28">Date Joined:</span>
+                  <span className="font-semibold text-white/80">
                     {new Date(user.date_joined).toLocaleDateString()}
                   </span>
                 </div>
               </div>
             </div>
             
-            <div className="mt-8 pt-4 border-t border-gray-200">
+            <div className="mt-8 pt-4 border-t border-white/80">
             <Link to="/home">
-               <button className="px-5 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors mr-3">
+               <button className="px-5 py-2 bg-[#FF77FF]/50 text-white rounded-md hover:bg-[#FF77FF] transition-colors mr-3">
                  View home
                </button>
              </Link>
              
              <Link to="/profiles">
-               <button className="px-5 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors mr-3">
+               <button className="px-5 py-2 bg-[#FF77FF]/50 text-white rounded-md hover:bg-[#FF77FF] transition-colors mr-3">
                  My Activities
                </button>
              </Link>
