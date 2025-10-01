@@ -5,23 +5,42 @@ import { motion  } from "framer-motion";
 
 
 const steps = [
-  { id: 1, title: "Upload Resume", desc: " upload your existing Resume." },
-  { id: 2, title: "Choose Profile", desc: "Select one of profiles you want to match." },
-  { id: 3, title: "Paste Job Description", desc: "Provide the job description ." },
-  { id: 4, title: "Understand Suggestions", desc: "See instant insights & optimized keywords." },
- ];
+  { id: 1, title: "Upload Resume", desc: "Upload your existing resume in PDF format." },
+  { id: 2, title: "Parse & Manage", desc: "ResuMatch extracts structured data and manages multiple profiles." },
+  { id: 3, title: "Paste Job Description", desc: "Provide the job description of the role you want to apply for." },
+  { id: 4, title: "Get Match Score", desc: "See match percentage and color-coded indicators for quick assessment." },
+  { id: 5, title: "Analyze Gaps", desc: "Identify missing skills and receive actionable suggestions." },
+  { id: 6, title: "Improve Profile", desc: "Optimize resume summary, skills, and experience with feedback." },
+  { id: 7, title: "Practice Interview", desc: "Use AI chatbot with 100+ HR questions and get instant feedback." },
+  { id: 8, title: "Generate Resume", desc: "Build a professional, ATS-friendly resume with custom templates." },
+  { id: 9, title: "Search Jobs", desc: "Find real-time job openings and sort them by match score." },
+  { id: 10, title: "Apply Instantly", desc: "Click on direct application links to apply to matched jobs." },
+];
+
 
 function Home() {
   const navigate = useNavigate();
   const containerRef = useRef(null)
-  const [positions, setPostions] = useState([])
+   const [positions, setPositions] = useState([]);
+
   
   useEffect(() => {
-    setPostions(steps.map(() => ({
-        top: `${10 + Math.random() * 40}%`,
-        left: `${10 + Math.random() * 60}%`,
-    })))
-  },[])
+  const container = containerRef.current;
+  if (!container) return;
+
+  const containerWidth = container.offsetWidth;
+  const containerHeight = container.offsetHeight;
+
+  const cardWidth = 224;  
+  const cardHeight = 96;  
+
+  setPositions(
+    steps.map(() => ({
+      top: Math.random() * (containerHeight - cardHeight),
+      left: Math.random() * (containerWidth - cardWidth),
+    }))
+  );
+}, []);
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
@@ -30,6 +49,7 @@ function Home() {
     }
   }, [navigate]);
    
+ 
 
   return (
     // <div className="min-h-screen bg-gradient-to-b from-blue-50 to-gray-100 ">
@@ -270,7 +290,7 @@ function Home() {
 
       {/* THIRD SECTION  */}
  
-      <div className="min-h-screen bg-black flex flex-col items-center py-16 px-6 md:px-20"ref={containerRef}>
+      <div className="min-h-screen bg-black flex flex-col items-center py-16 px-6 md:px-20">
 
         <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-white">
           ResuMatch Steps 
@@ -280,8 +300,8 @@ function Home() {
             Drag each step anywhere within this section to explore your resume optimization journey.
         </p>
 
-        <div className="relative w-full h-[60vh] border border-white/20  rounded-lg bg-black/80 flex items-center justify-center overflow-hidden ">
-          {steps.map((step, index) => (
+        <div className="relative w-full h-[60vh] border border-white/20  rounded-lg bg-black/80 flex items-center justify-center  overflow-hidden " ref={containerRef}>
+          {containerRef.current && positions.length === steps.length && steps.map((step, index) => (
             <motion.div
               key={step.id}
               drag
@@ -297,8 +317,8 @@ function Home() {
                 stiffness: 120,
                 damping: 15
               }}
-              className="relative bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 rounded-lg p-6 w-56  shadow-lg cursor-grab text-white"
-              style={positions[index] || {}}>
+              className="absolute bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 rounded-lg p-6 w-56  shadow-lg cursor-grab text-white"
+              style={positions[index]}>
                 <div className="w-10 h-10 rounded-full bg-black/50 flex items-center  justify-center font-bold text-lg mb-3">
                   {step.id}
                 </div>
