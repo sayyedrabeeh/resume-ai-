@@ -2,7 +2,7 @@ import { useEffect,useRef,useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Navbar from '../components/Navbar'
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { FaBriefcase, FaUser, FaFileAlt, FaQuestionCircle } from "react-icons/fa";
+import { FaBriefcase, FaUser, FaFileAlt, FaQuestionCircle,FaStar,FaGithub   } from "react-icons/fa";
 import { FiArrowRight } from "react-icons/fi"; 
 
 
@@ -404,6 +404,25 @@ function Home() {
             </div>
             <FiArrowRight className="w-6 h-6 text-red-400 ml-4 transition-transform duration-300 group-hover:translate-x-2" />
         </Link>  
+          
+      <a
+            href="https://github.com/sayyedrabeeh/resume-ai-"
+            className="relative block w-full md:w-[500px] h-[200px] 
+                      bg-gradient-to-r from-pink-400/30 to-pink-700/30 
+                      backdrop-blur-md border border-pink-400/30 
+                      rounded-2xl shadow-lg transition-transform transform 
+                      hover:-translate-y-2 hover:shadow-2xl flex items-center p-6 group">
+            <FaGithub   className="w-16 h-16 mr-8 text-pink-400 flex-shrink-0" />
+            <div className="flex-1">
+              <span className="block text-3xl font-extrabold tracking-wide text-white">
+                 A star on github
+              </span>
+              <span className="block text-sm text-pink-200 mt-3 font-medium">
+               Practice common HR questions and ace your interviews
+              </span>
+            </div>
+            <FiArrowRight className="w-6 h-6 text-pink-400 ml-4 transition-transform duration-300 group-hover:translate-x-2" />
+        </a>  
 </div>
 
         
