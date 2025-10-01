@@ -1,0 +1,17 @@
+asgiref==3.9.1
+certifi==2025.8.3
+charset-normalizer==3.4.3
+Django==5.2.5
+django-cors-headers==4.9.0
+djangorestframework==3.16.1
+djangorestframework_simplejwt==5.5.1
+idna==3.10
+pillow==11.3.0
+psycopg2-binary==2.9.10
+PyJWT==2.10.1
+PyMuPDF==1.26.4
+reportlab==4.4.4
+requests==2.32.5
+sqlparse==0.5.3
+tzdata==2025.2
+urllib3==2.5.0
