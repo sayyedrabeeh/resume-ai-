@@ -69,8 +69,8 @@ function ResumeUpload() {
         if (!content || content.includes("not found")) return null;
         return (
             <div className="mb-8">
-                <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center">
-                    <div className="w-1.5 h-5 bg-blue-600 rounded mr-2"></div>
+                <h3 className="text-lg font-semibold text-[#FF77FF]/50 mb-3 flex items-center">
+                    <div className="w-1.5 h-5 bg-[#FF77FF] rounded mr-2"></div>
                     {title}
                 </h3>
                 <div className="bg-gray-50 p-5 rounded-lg text-gray-700 whitespace-pre-line border-l-2 border-blue-200">
@@ -87,7 +87,7 @@ function ResumeUpload() {
                 href={link} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-blue-700 hover:text-red-900 bg-blue-50 px-3 py-1.5 rounded-full transition-colors"
+                className="flex items-center gap-2 text-[#FF77FF]/50  hover:text-red-900 bg-[#FF77FF]/50  px-3 py-1.5 rounded-full transition-colors"
             >
                 <span className="text-lg">{icon}</span>
                 <span className="font-medium">{title}</span>
@@ -180,8 +180,8 @@ function ResumeUpload() {
                     </div>
 
                     {profile && (
-                        <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden mb-10">
-                            <div className="bg-blue-600 px-8 py-5 text-white">
+                        <div className="bg-black/50 rounded-xl shadow-md border border-gray-100 overflow-hidden mb-10">
+                            <div className="bg-[#FF77FF]/50  px-8 py-5 text-white">
                                 <h2 className="text-xl font-bold">Extracted Profile Information</h2>
                                 <p className="text-blue-100 text-sm mt-1">The following information was extracted from your resume</p>
                             </div>
@@ -190,10 +190,10 @@ function ResumeUpload() {
                                 <div className="mb-8 pb-6 border-b border-gray-200">
                                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
                                         <div>
-                                            <h2 className="text-2xl font-bold text-gray-800">{profile.name}</h2>
+                                            <h2 className="text-2xl font-bold text-[#FF77FF] ">{profile.name}</h2>
                                             <div className="flex flex-col sm:flex-row sm:gap-6 mt-2">
                                                 {profile.email && (
-                                                    <a href={`mailto:${profile.email}`} className="text-blue-700 hover:text-blue-900 flex items-center gap-1">
+                                                    <a href={`mailto:${profile.email}`} className="text-[#FF77FF]/50  hover:text-[#FF77FF]  flex items-center gap-1">
                                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                                                         </svg>
@@ -201,7 +201,7 @@ function ResumeUpload() {
                                                     </a>
                                                 )}
                                                 {profile.phone && (
-                                                    <span className="text-gray-700 flex items-center gap-1">
+                                                    <span className="text-[#FF77FF]/50  flex items-center gap-1">
                                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                                                         </svg>
@@ -235,7 +235,7 @@ function ResumeUpload() {
                                     </button>
                                     <Link 
                                         to="/profiles"
-                                        className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-5 rounded-lg transition duration-200 shadow-sm hover:shadow"
+                                        className="bg-[#FF77FF]/50  hover:bg-[#FF77FF] text-white font-medium py-2.5 px-5 rounded-lg transition duration-200 shadow-sm hover:shadow"
                                     >
                                         View All Profiles
                                     </Link>
