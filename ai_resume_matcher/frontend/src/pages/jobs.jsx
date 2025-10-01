@@ -43,12 +43,12 @@ const JobMatche= () => {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen py-8">
+    <div className="bg-gradient-to-l from-[#E83D95] to-black min-h-screen py-8">
       <div className="max-w-5xl mx-auto px-4">
         <header className="mb-8">
-          <div className="bg-white rounded-xl shadow-md p-6 border-l-4 border-blue-600">
-            <h1 className="text-3xl font-bold text-gray-800">Job Matches</h1>
-            <p className="text-gray-600 mt-1">Opportunities matching your professional profile</p>
+          <div className="bg-black/50 rounded-xl shadow-md p-6 border-l-4 border-[#FF77FF]/50">
+            <h1 className="text-3xl font-bold text-white/70 font-heading">Job Matches</h1>
+            <p className="text-white/50 font-semibold mt-1">Opportunities matching your professional profile</p>
           </div>
         </header>
 
@@ -64,12 +64,12 @@ const JobMatche= () => {
         )}
 
         {loading ? (
-          <div className="bg-white rounded-xl shadow-md p-12 flex flex-col items-center justify-center">
+          <div className="bg-black/50 rounded-xl shadow-md p-12 flex flex-col items-center justify-center">
             <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
             <p className="mt-4 text-gray-600 font-medium">Finding your matching jobs...</p>
           </div>
         ) : jobs.length === 0 ? (
-          <div className="bg-white rounded-xl shadow-md p-12 text-center">
+          <div className="bg-black/50 rounded-xl shadow-md p-12 text-center">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
               <svg className="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -81,12 +81,12 @@ const JobMatche= () => {
         ) : (
           <div className="space-y-6">
             {jobs.map((job, idx) => (
-              <div key={idx} className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+              <div key={idx} className="bg-black/50 rounded-xl shadow-md overflow-hidden border border-black/70 hover:shadow-lg transition-shadow duration-300">
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-1">
-                      <h2 className="text-xl font-bold text-gray-800 mb-1">{job.job_title}</h2>
-                      <div className="flex items-center text-gray-600 text-sm">
+                      <h2 className="text-xl font-bold text-[#FF77FF]/50 mb-1">{job.job_title}</h2>
+                      <div className="flex items-center text-[#FF77FF]/50 text-sm">
                         <span>{job.employer_name}</span>
                         <span className="mx-2">•</span>
                         <span>{job.job_employment_type}</span>
@@ -110,8 +110,8 @@ const JobMatche= () => {
                     </div>
                   )}
                   
-                  <div className="bg-gray-50 rounded-lg p-4 mb-4">
-                    <div className="prose prose-sm max-w-none text-gray-700">
+                  <div className="bg-black/50 rounded-lg p-4 mb-4">
+                    <div className="prose prose-sm max-w-none text-white/70">
                       <p className="whitespace-pre-line">
                         {expandedJob === job.job_id 
                           ? job.job_description 
@@ -121,7 +121,7 @@ const JobMatche= () => {
                     
                     {job.job_description && job.job_description.split("\n").length > 4 && (
                       <button 
-                        className="mt-3 text-blue-600 font-medium flex items-center hover:text-blue-800 transition-colors"
+                        className="mt-3 text-[#FF77FF]/50 font-medium flex items-center hover:text-blue-800 transition-colors"
                         onClick={() => toggleDescription(job.job_id)}
                       >
                         {expandedJob === job.job_id ? (
@@ -145,7 +145,7 @@ const JobMatche= () => {
                   
                   {job.apply_options && job.apply_options.length > 0 && (
                     <div>
-                      <h3 className="font-semibold text-gray-700 mb-3">Application Options</h3>
+                      <h3 className="font-semibold text-[#FF77FF]/50 mb-3">Application Options</h3>
                       <div className="flex flex-wrap gap-2">
                         {job.apply_options.map((option, index) => (
                           <a
@@ -153,7 +153,7 @@ const JobMatche= () => {
                             href={option.apply_link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                            className="inline-flex items-center px-4 py-2 bg-[#FF77FF]/50 text-white rounded-md hover:bg-[#FF77FF] transition-colors"
                           >
                             <span>{option.publisher}</span>
                             <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
