@@ -22,7 +22,7 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-black/40 backdrop-blur-md z-50">
+    <nav className="fixed top-0 left-0 w-full bg-black/40 backdrop-blur-md z-40 ">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         
         

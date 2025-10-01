@@ -1,7 +1,10 @@
 import { useEffect,useRef,useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Navbar from '../components/Navbar'
-import { motion  } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import { FaBriefcase, FaUser, FaFileAlt, FaQuestionCircle } from "react-icons/fa";
+import { FiArrowRight } from "react-icons/fi"; 
+
 
 
 const steps = [
@@ -49,7 +52,23 @@ function Home() {
     }
   }, [navigate]);
    
- 
+  
+    const scrollY = useMotionValue(0)
+    
+    
+    useEffect(() => {
+      const handleScroll = () => {
+        const scrollTop = window.scrollY
+        const docHieght = document.body.scrollHeight - window.innerHeight
+        const progress = docHieght ? scrollTop / docHieght : 0
+        scrollY.set(progress)
+      }
+        window.addEventListener('scroll', handleScroll)
+        return () => removeEventListener('scroll',handleScroll)
+      
+    },[scrollY])
+    
+  
 
   return (
     // <div className="min-h-screen bg-gradient-to-b from-blue-50 to-gray-100 ">
@@ -72,19 +91,7 @@ function Home() {
     //             <p className="text-gray-600">What would you like to do today?</p>
     //           </div>
               
-    //           <div className="space-y-4">
-    //             <Link
-    //               to="/upload"
-    //               className="block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg shadow transition duration-300 flex items-center"
-    //             >
-    //               <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    //                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0l-4 4m4-4v12"></path>
-    //               </svg>
-    //               <div>
-    //                 <span className="block">Upload Your Resume</span>
-    //                 <span className="block text-sm text-blue-200">Parse and extract your skills and experience</span>
-    //               </div>
-    //             </Link>
+    //            
 
     //             <Link
     //               to="/job-matches"
@@ -187,6 +194,14 @@ function Home() {
     // </div>
 
     <>
+      <div className="fixed top-0 left-0 w-full h-1 bg-gray z-50">
+        <motion.div
+          className="h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500"
+          style={{ scaleX: scrollY }}
+          transformOrigin="0% 50%" />
+        
+      </div>
+
         <Navbar/>
       <div className="min-h-screen relative overflow-hidden bg-gradient-to-l from-[#E83D95] to-black py-16 flex items-center px-6 md:px-20   ">
         <div className=" flex-1  space-y-6 z-10">
@@ -333,6 +348,36 @@ function Home() {
 
       </div>
      
+      {/* FORTH SECTION */}
+
+      <div className="min-h-screen  bg-gradient-to-l from-[#3f0e27] to-black py-16 flex items-center px-6 md:px-20   ">
+        <Link
+            to="/job-matches"
+            className="relative block w-full md:w-[500px] h-[200px] 
+                      bg-gradient-to-r from-green-400/30 to-green-700/30 
+                      backdrop-blur-md border border-green-400/30 
+                      rounded-2xl shadow-lg transition-transform transform 
+                      hover:-translate-y-2 hover:shadow-2xl flex items-center p-6 group">
+            <FaBriefcase className="w-16 h-16 mr-8 text-green-400 flex-shrink-0" />
+            <div className="flex-1">
+              <span className="block text-3xl font-extrabold tracking-wide text-white">
+                View Matching Jobs
+              </span>
+              <span className="block text-sm text-green-200 mt-3 font-medium">
+                Find positions that match your profile
+              </span>
+            </div>
+            <FiArrowRight className="w-6 h-6 text-green-400 ml-4 transition-transform duration-300 group-hover:translate-x-2" />
+        </Link>
+
+
+        
+        
+
+      
+      </div>
+
+
 
     </>
   );
