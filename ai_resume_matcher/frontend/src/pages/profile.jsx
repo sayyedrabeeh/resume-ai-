@@ -62,18 +62,18 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12">
+    <div className="min-h-screen bg-gradient-to-l from-[#E83D95] to-black py-12">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">Profile Management</h1>
-              <p className="text-gray-600 mt-1">Select and manage your professional profiles</p>
+              <h1 className="text-3xl font-bold font-heading text-white/70">Profile Management</h1>
+              <p className="text-white/60 font-semibold mt-1">Select and manage your professional profiles</p>
             </div>
             <Link 
               to="/"
-              className="text-blue-700 hover:text-blue-900 flex items-center gap-1 font-medium"
+              className="text-white/70 hover:text-white/50 flex items-center gap-1 font-medium"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
@@ -84,7 +84,7 @@ const Profile = () => {
 
           {/* Main Content */}
           {loading ? (
-            <div className="bg-white rounded-xl shadow-md p-12 flex justify-center items-center">
+            <div className="bg-black/50 rounded-xl shadow-md p-12 flex justify-center items-center">
               <div className="flex items-center">
                 <svg className="animate-spin -ml-1 mr-3 h-8 w-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -94,7 +94,7 @@ const Profile = () => {
               </div>
             </div>
           ) : error ? (
-            <div className="bg-white rounded-xl shadow-md p-8 border-l-4 border-red-500">
+            <div className="bg-black/50 rounded-xl shadow-md p-8 border-l-4 border-red-500">
               <div className="flex items-start">
                 <svg className="w-6 h-6 text-red-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -110,9 +110,9 @@ const Profile = () => {
             </div>
           ) : (
             <>
-              <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8 border border-gray-100">
-                <div className="bg-blue-600 px-8 py-5 text-white">
-                  <h2 className="text-xl font-bold">Profile Selection</h2>
+              <div className="bg-black/50 rounded-xl shadow-md overflow-hidden mb-8 border border-gray-100">
+                <div className="bg-black/50 px-8 py-5 text-[#FF77FF]/50">
+                  <h2 className="text-xl text-[#FF77FF]/50 font-bold">Profile Selection</h2>
                   <p className="text-blue-100 text-sm mt-1">Choose which profile to use for job matching</p>
                 </div>
                 
@@ -122,22 +122,22 @@ const Profile = () => {
                       <svg className="mx-auto h-16 w-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
                       </svg>
-                      <h3 className="mt-4 text-lg font-medium text-gray-800">No profiles available</h3>
-                      <p className="mt-1 text-gray-500">Upload a resume to create your first profile</p>
+                      <h3 className="mt-4 text-lg font-medium text-white/70">No profiles available</h3>
+                      <p className="mt-1 text-white/70">Upload a resume to create your first profile</p>
                       <Link 
                         to="/upload" 
-                        className="mt-4 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
+                        className="mt-4 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#FF77FF]/50 hover:bg-[#FF77FF]"
                       >
                         Upload Resume
                       </Link>
                     </div>
                   ) : (
                     <>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Select a profile</label>
+                      <label className="block text-sm font-medium text-white/70 mb-2">Select a profile</label>
                       <div className="flex items-center">
                         <div className="relative flex-grow">
                           <select
-                            className="block w-full pl-3 pr-10 py-3 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 rounded-lg shadow-sm"
+                            className="block w-full pl-3 pr-10 py-3 text-base border-gray-300 focus:outline-none focus:ring--[#FF77FF]/50 focus:border--[#FF77FF]/50 rounded-lg shadow-sm"
                             onChange={(e) => handleChooseProfile(e.target.value)}
                             value={currentProfile?.id || ""}
                           >
@@ -234,7 +234,7 @@ const Profile = () => {
                 {currentProfile && (
                    <Link 
                      to="/job-matcher"
-                     className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow hover:shadow-md transition duration-150 flex items-center"
+                     className="px-5 py-2.5 bg--[#FF77FF]/50 hover:bg--[#FF77FF] text-white font-medium rounded-lg shadow hover:shadow-md transition duration-150 flex items-center"
                    >
                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
