@@ -198,8 +198,8 @@ const ResumeBuilder = () => {
           onClick={() => setActiveTab(tab)}
           className={`px-4 py-2 font-medium transition-colors whitespace-nowrap ${
             activeTab === tab
-              ? "border-b-2 border-blue-600 text-blue-600"
-              : "text-gray-500 hover:text-blue-500"
+              ? "border-b-2 border-[#FF77FF]/50  text-[#FF77FF]/50 "
+              : "text-[#FF77FF]/50  hover:text-[#FF77FF]"
           }`}
         >
           {tab === "mini-projects" ? "Mini Projects" : tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -209,10 +209,10 @@ const ResumeBuilder = () => {
   );
 
   return (
-    <div className="bg-gradient-to-b from-blue-50 to-white min-h-screen py-10">
-      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white">
-          <h1 className="text-3xl font-bold">Professional Resume Builder</h1>
+    <div className="bg-gradient-to-l from-[#E83D95] to-black min-h-screen py-10">
+      <div className="max-w-4xl mx-auto bg-black/50 rounded-lg shadow-xl overflow-hidden">
+        <div className="bg-gradient-to-r from-black/30 to-purple-600 p-6 text-white">
+          <h1 className="text-3xl font-heading font-bold">Professional Resume Builder</h1>
           <p className="text-blue-100">Create a polished, professional resume in minutes</p>
         </div>
 
@@ -222,12 +222,12 @@ const ResumeBuilder = () => {
           
           {activeTab === "personal" && (
             <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-gray-800">Personal Information</h2>
-              <p className="text-gray-600 text-sm">Tell us about yourself so employers can contact you.</p>
+              <h2 className="text-xl font-semibold text-[#FF77FF]/50">Personal Information</h2>
+              <p className="text-white/90 text-sm">Tell us about yourself so employers can contact you.</p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                  <label className="block text-sm font-medium text-white/70 mb-1">Full Name</label>
                   <input
                     type="text"
                     name="name"
@@ -238,7 +238,7 @@ const ResumeBuilder = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Professional Title</label>
+                  <label className="block text-sm font-medium text-white/70 mb-1">Professional Title</label>
                   <input
                     type="text"
                     name="title"
@@ -249,7 +249,7 @@ const ResumeBuilder = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                  <label className="block text-sm font-medium text-white/70 mb-1">Email Address</label>
                   <input
                     type="email"
                     name="email"
@@ -260,7 +260,7 @@ const ResumeBuilder = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                  <label className="block text-sm font-medium text-white/70 mb-1">Phone Number</label>
                   <input
                     type="tel"
                     name="phone"
@@ -271,7 +271,7 @@ const ResumeBuilder = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                  <label className="block text-sm font-medium text-white/70 mb-1">Location</label>
                   <input
                     type="text"
                     name="location"
@@ -282,7 +282,7 @@ const ResumeBuilder = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Website/Portfolio</label>
+                  <label className="block text-sm font-medium text-white/70 mb-1">Website/Portfolio</label>
                   <input
                     type="url"
                     name="portfolio"
@@ -293,7 +293,7 @@ const ResumeBuilder = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">LinkedIn</label>
+                  <label className="block text-sm font-medium text-white/70 mb-1">LinkedIn</label>
                   <input
                     type="url"
                     name="linkedin"
@@ -304,7 +304,7 @@ const ResumeBuilder = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">GitHub</label>
+                  <label className="block text-sm font-medium text-white/70 mb-1">GitHub</label>
                   <input
                     type="url"
                     name="github"
@@ -315,7 +315,7 @@ const ResumeBuilder = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">LeetCode</label>
+                  <label className="block text-sm font-medium text-white/70 mb-1">LeetCode</label>
                   <input
                     type="url"
                     name="leetcode"
@@ -328,7 +328,7 @@ const ResumeBuilder = () => {
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Professional Summary</label>
+                <label className="block text-sm font-medium text-white/70 mb-1">Professional Summary</label>
                 <textarea
                   name="summary"
                   placeholder="Write a brief overview of your professional background, key strengths, and career goals..."
@@ -337,7 +337,7 @@ const ResumeBuilder = () => {
                   rows={4}
                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <p className="mt-1 text-xs text-gray-500">Keep your summary concise and impactful - 3-5 sentences is ideal.</p>
+                <p className="mt-1 text-xs text-white/70">Keep your summary concise and impactful - 3-5 sentences is ideal.</p>
               </div>
             </div>
           )}
@@ -346,13 +346,13 @@ const ResumeBuilder = () => {
           {activeTab === "skills" && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-xl font-semibold text-gray-800">Technical Skills</h2>
-                <p className="text-gray-600 text-sm">Categorize your skills by type for better organization.</p>
+                <h2 className="text-xl font-semibold text-[#FF77FF]/50 ">Technical Skills</h2>
+                <p className="text-white/70 text-sm">Categorize your skills by type for better organization.</p>
               </div>
               
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Languages</label>
+                  <label className="block text-sm font-medium text-white/70 mb-1">Languages</label>
                   <input
                     type="text"
                     placeholder="JavaScript, TypeScript, Python, C#, MongoDB, MySQL, HTML, (S)CSS"
@@ -360,11 +360,11 @@ const ResumeBuilder = () => {
                     onChange={(e) => handleSkillChange("languages", e.target.value)}
                     className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <p className="mt-1 text-xs text-gray-500">Separate with commas</p>
+                  <p className="mt-1 text-xs text-white/70">Separate with commas</p>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Libraries & Frameworks</label>
+                  <label className="block text-sm font-medium text-white/70 mb-1">Libraries & Frameworks</label>
                   <input
                     type="text"
                     placeholder="Node.js, Express, React, NextJS, TailwindCSS, Ionic, Electron"
@@ -372,11 +372,11 @@ const ResumeBuilder = () => {
                     onChange={(e) => handleSkillChange("librariesFrameworks", e.target.value)}
                     className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <p className="mt-1 text-xs text-gray-500">Separate with commas</p>
+                  <p className="mt-1 text-xs text-white/70">Separate with commas</p>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Microservices</label>
+                  <label className="block text-sm font-medium text-white/70 mb-1">Microservices</label>
                   <input
                     type="text"
                     placeholder="Docker, Kubernetes, Apache Kafka, NATS, Redis, Helm"
@@ -384,11 +384,11 @@ const ResumeBuilder = () => {
                     onChange={(e) => handleSkillChange("microservices", e.target.value)}
                     className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <p className="mt-1 text-xs text-gray-500">Separate with commas</p>
+                  <p className="mt-1 text-xs text-white/70">Separate with commas</p>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Tools & Platforms</label>
+                  <label className="block text-sm font-medium text-white/70 mb-1">Tools & Platforms</label>
                   <input
                     type="text"
                     placeholder="Git, Jest, Github Actions, Netlify, Render, Vercel, AWS, Firebase"
@@ -396,11 +396,11 @@ const ResumeBuilder = () => {
                     onChange={(e) => handleSkillChange("toolsPlatforms", e.target.value)}
                     className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <p className="mt-1 text-xs text-gray-500">Separate with commas</p>
+                  <p className="mt-1 text-xs text-white/70">Separate with commas</p>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Design & Prototyping</label>
+                  <label className="block text-sm font-medium text-white/70 mb-1">Design & Prototyping</label>
                   <input
                     type="text"
                     placeholder="Figma, Illustrator, Photoshop, Blender"
@@ -408,11 +408,11 @@ const ResumeBuilder = () => {
                     onChange={(e) => handleSkillChange("designPrototyping", e.target.value)}
                     className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <p className="mt-1 text-xs text-gray-500">Separate with commas</p>
+                  <p className="mt-1 text-xs text-white/70">Separate with commas</p>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Concepts</label>
+                  <label className="block text-sm font-medium text-white/70 mb-1">Concepts</label>
                   <input
                     type="text"
                     placeholder="Clean Architecture, MVC Architecture, SOLID Principles, Agile Methodologies"
@@ -420,7 +420,7 @@ const ResumeBuilder = () => {
                     onChange={(e) => handleSkillChange("concepts", e.target.value)}
                     className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <p className="mt-1 text-xs text-gray-500">Separate with commas</p>
+                  <p className="mt-1 text-xs text-white/70">Separate with commas</p>
                 </div>
               </div>
             </div>
@@ -431,13 +431,13 @@ const ResumeBuilder = () => {
             <div className="space-y-6">
               <div className="flex justify-between items-center">
                 <div>
-                  <h2 className="text-xl font-semibold text-gray-800">Major Projects</h2>
-                  <p className="text-gray-600 text-sm">Highlight your most significant projects with detailed descriptions.</p>
+                  <h2 className="text-xl font-semibold text-[#FF77FF]/50 ">Major Projects</h2>
+                  <p className="text-white/70 text-sm">Highlight your most significant projects with detailed descriptions.</p>
                 </div>
                 <button 
                   type="button"
                   onClick={() => addItem("projects")}
-                  className="flex items-center text-blue-600 hover:text-blue-800"
+                  className="flex items-center text-[#FF77FF]/50  hover:text-[#FF77FF]"
                 >
                   <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
@@ -447,9 +447,9 @@ const ResumeBuilder = () => {
               </div>
               
               {formData.projects.map((project, projectIndex) => (
-                <div key={projectIndex} className="p-5 border border-gray-200 rounded-lg bg-white">
+                <div key={projectIndex} className="p-5 border border-black/50 rounded-lg bg-black/40">
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="font-medium text-lg text-gray-800">Project {projectIndex + 1}</h3>
+                    <h3 className="font-medium text-lg text-white/70">Project {projectIndex + 1}</h3>
                     {formData.projects.length > 1 && (
                       <button
                         type="button"
@@ -465,7 +465,7 @@ const ResumeBuilder = () => {
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Project Name</label>
+                      <label className="block text-sm font-medium text-white/70 mb-1">Project Name</label>
                       <input
                         type="text"
                         placeholder="BitWarriors: Competitive Coding Platform"
@@ -475,7 +475,7 @@ const ResumeBuilder = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Technologies</label>
+                      <label className="block text-sm font-medium text-white/70 mb-1">Technologies</label>
                       <input
                         type="text"
                         placeholder="Next.js, React.js, Node, Docker, Kubernetes, Apache Kafka"
@@ -485,7 +485,7 @@ const ResumeBuilder = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Live Link (Optional)</label>
+                      <label className="block text-sm font-medium text-white/70 mb-1">Live Link (Optional)</label>
                       <input
                         type="url"
                         placeholder="https://project-demo.com"
@@ -495,7 +495,7 @@ const ResumeBuilder = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">GitHub Link (Optional)</label>
+                      <label className="block text-sm font-medium text-white/70 mb-1">GitHub Link (Optional)</label>
                       <input
                         type="url"
                         placeholder="https://github.com/username/project"
@@ -507,7 +507,7 @@ const ResumeBuilder = () => {
                   </div>
                   
                   <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Brief Description</label>
+                    <label className="block text-sm font-medium text-white/70 mb-1">Brief Description</label>
                     <textarea
                       placeholder="A brief one-liner describing the project..."
                       value={project.description}
@@ -519,11 +519,11 @@ const ResumeBuilder = () => {
                   
                   <div>
                     <div className="flex justify-between items-center mb-2">
-                      <label className="block text-sm font-medium text-gray-700">Key Points</label>
+                      <label className="block text-sm font-medium text-white/70">Key Points</label>
                       <button 
                         type="button"
                         onClick={() => addPoint("projects", projectIndex)}
-                        className="text-xs text-blue-600 hover:text-blue-800 flex items-center"
+                        className="text-xs text-[#FF77FF]/50 hover:text-[#FF77FF]/ flex items-center"
                       >
                         <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                           <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
@@ -566,13 +566,13 @@ const ResumeBuilder = () => {
             <div className="space-y-6">
               <div className="flex justify-between items-center">
                 <div>
-                  <h2 className="text-xl font-semibold text-gray-800">Mini Projects</h2>
-                  <p className="text-gray-600 text-sm">Include smaller projects or side projects with brief descriptions.</p>
+                  <h2 className="text-xl font-semibold text-[#FF77FF]/50 ">Mini Projects</h2>
+                  <p className="text-white/70 text-sm">Include smaller projects or side projects with brief descriptions.</p>
                 </div>
                 <button 
                   type="button"
                   onClick={() => addItem("miniProjects")}
-                  className="flex items-center text-blue-600 hover:text-blue-800"
+                  className="flex items-center text-[#FF77FF]/50  hover:text-[#FF77FF]"
                 >
                   <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
@@ -582,9 +582,9 @@ const ResumeBuilder = () => {
               </div>
               
               {formData.miniProjects.map((project, projectIndex) => (
-                <div key={projectIndex} className="p-5 border border-gray-200 rounded-lg bg-white">
+                <div key={projectIndex} className="p-5 border border-black/50 rounded-lg bg-black/40">
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="font-medium text-lg text-gray-800">Mini Project {projectIndex + 1}</h3>
+                    <h3 className="font-medium text-lg text-white/70">Mini Project {projectIndex + 1}</h3>
                     {formData.miniProjects.length > 1 && (
                       <button
                         type="button"
@@ -600,7 +600,7 @@ const ResumeBuilder = () => {
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Project Name</label>
+                      <label className="block text-sm font-medium text-white/70 mb-1">Project Name</label>
                       <input
                         type="text"
                         placeholder="BitBin"
@@ -610,7 +610,7 @@ const ResumeBuilder = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Technologies</label>
+                      <label className="block text-sm font-medium text-white/70 mb-1">Technologies</label>
                       <input
                         type="text"
                         placeholder="MongoDB, Express, Node, EJS"
@@ -620,7 +620,7 @@ const ResumeBuilder = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Live Link (Optional)</label>
+                      <label className="block text-sm font-medium text-white/70 mb-1">Live Link (Optional)</label>
                       <input
                         type="url"
                         placeholder="https://project-demo.com"
@@ -630,7 +630,7 @@ const ResumeBuilder = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">GitHub Link (Optional)</label>
+                      <label className="block text-sm font-medium text-white/70 mb-1">GitHub Link (Optional)</label>
                       <input
                         type="url"
                         placeholder="https://github.com/username/project"
@@ -642,7 +642,7 @@ const ResumeBuilder = () => {
                   </div>
                   
                   <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Brief Description</label>
+                    <label className="block text-sm font-medium text-white/70 mb-1">Brief Description</label>
                     <textarea
                       placeholder="A modern pastebin alternative with syntax highlighting and expiration support"
                       value={project.description}
@@ -661,13 +661,13 @@ const ResumeBuilder = () => {
             <div className="space-y-6">
               <div className="flex justify-between items-center">
                 <div>
-                  <h2 className="text-xl font-semibold text-gray-800">Work Experience</h2>
-                  <p className="text-gray-600 text-sm">Add your professional experience, starting with the most recent.</p>
+                  <h2 className="text-xl font-semibold text-[#FF77FF]/50 ">Work Experience</h2>
+                  <p className="text-white/70 text-sm">Add your professional experience, starting with the most recent.</p>
                 </div>
                 <button 
                   type="button"
                   onClick={() => addItem("experience")}
-                  className="flex items-center text-blue-600 hover:text-blue-800"
+                  className="flex items-center text-[#FF77FF]/50  hover:text-[#FF77FF]"
                 >
                   <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
@@ -677,9 +677,9 @@ const ResumeBuilder = () => {
               </div>
               
               {formData.experience.map((exp, expIndex) => (
-                <div key={expIndex} className="p-5 border border-gray-200 rounded-lg bg-white">
+                <div key={expIndex} className="p-5 border border-black/50 rounded-lg bg-black/40">
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="font-medium text-lg text-gray-800">Position {expIndex + 1}</h3>
+                    <h3 className="font-medium text-lg text-white/70">Position {expIndex + 1}</h3>
                     {formData.experience.length > 1 && (
                       <button
                         type="button"
@@ -695,7 +695,7 @@ const ResumeBuilder = () => {
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Job Title</label>
+                      <label className="block text-sm font-medium text-white/70 mb-1">Job Title</label>
                       <input
                         type="text"
                         placeholder="Senior MERN Stack Developer"
@@ -705,7 +705,7 @@ const ResumeBuilder = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Company</label>
+                      <label className="block text-sm font-medium text-white/70 mb-1">Company</label>
                       <input
                         type="text"
                         placeholder="Tech Innovations Inc."
@@ -715,7 +715,7 @@ const ResumeBuilder = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Duration</label>
+                      <label className="block text-sm font-medium text-white/70 mb-1">Duration</label>
                       <input
                         type="text"
                         placeholder="Jan 2022 - Present"
@@ -725,7 +725,7 @@ const ResumeBuilder = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                      <label className="block text-sm font-medium text-white/70 mb-1">Location</label>
                       <input
                         type="text"
                         placeholder="New York, NY (Remote)"
@@ -742,7 +742,7 @@ const ResumeBuilder = () => {
                       <button 
                         type="button"
                         onClick={() => addPoint("experience", expIndex)}
-                        className="text-xs text-blue-600 hover:text-blue-800 flex items-center"
+                        className="text-xs text-[#FF77FF]/50  hover:text-[#FF77FF] flex items-center"
                       >
                         <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                           <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
@@ -785,13 +785,13 @@ const ResumeBuilder = () => {
             <div className="space-y-6">
               <div className="flex justify-between items-center">
                 <div>
-                  <h2 className="text-xl font-semibold text-gray-800">Education</h2>
-                  <p className="text-gray-600 text-sm">Add your educational background, starting with the most recent.</p>
+                  <h2 className="text-xl font-semibold text-[#FF77FF]/50 ">Education</h2>
+                  <p className="text-white/70 text-sm">Add your educational background, starting with the most recent.</p>
                 </div>
                 <button 
                   type="button"
                   onClick={() => addItem("education")}
-                  className="flex items-center text-blue-600 hover:text-blue-800"
+                  className="flex items-center text-[#FF77FF]/50  hover:text-[#FF77FF]"
                 >
                   <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd" />
@@ -801,9 +801,9 @@ const ResumeBuilder = () => {
               </div>
               
               {formData.education.map((edu, eduIndex) => (
-                <div key={eduIndex} className="p-5 border border-gray-200 rounded-lg bg-white">
+                <div key={eduIndex} className="p-5 border border-black/50 rounded-lg bg-black/40">
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="font-medium text-lg text-gray-800">Education {eduIndex + 1}</h3>
+                    <h3 className="font-medium text-lg text-white/70">Education {eduIndex + 1}</h3>
                     {formData.education.length > 1 && (
                       <button
                         type="button"
@@ -819,7 +819,7 @@ const ResumeBuilder = () => {
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Degree / Program</label>
+                      <label className="block text-sm font-medium text-white/70 mb-1">Degree / Program</label>
                       <input
                         type="text"
                         placeholder="Bachelor of Science in Computer Science"
@@ -829,7 +829,7 @@ const ResumeBuilder = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Institution</label>
+                      <label className="block text-sm font-medium text-white/70 mb-1">Institution</label>
                       <input
                         type="text"
                         placeholder="Massachusetts Institute of Technology"
@@ -839,7 +839,7 @@ const ResumeBuilder = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                      <label className="block text-sm font-medium text-white/70 mb-1">Location</label>
                       <input
                         type="text"
                         placeholder="Cambridge, MA"
@@ -849,7 +849,7 @@ const ResumeBuilder = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Duration</label>
+                      <label className="block text-sm font-medium text-white/70 mb-1">Duration</label>
                       <input
                         type="text"
                         placeholder="2016 - 2020"
@@ -870,7 +870,7 @@ const ResumeBuilder = () => {
               type="button"
               onClick={handleSubmit}
               disabled={isLoading}
-              className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium py-3 px-6 rounded-md hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 flex items-center justify-center space-x-2"
+              className="w-full sm:w-auto bg-[#FF77FF]/50  text-white font-medium py-3 px-6 rounded-md hover:bg-[#FF77FF] focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-300 flex items-center justify-center space-x-2"
             >
               {isLoading ? (
                 <>
@@ -890,7 +890,7 @@ const ResumeBuilder = () => {
               )}
             </button>
             
-            <p className="text-sm text-gray-500 mt-2">
+            <p className="text-sm text-white/70 mt-2">
               Creates a professional Microsoft Word (.docx) document
             </p>
           </div>
@@ -898,7 +898,7 @@ const ResumeBuilder = () => {
       </div>
       
      
-      <div className="max-w-4xl mx-auto text-center mt-8 text-gray-500 text-sm">
+      <div className="max-w-4xl mx-auto text-center mt-8 text-white/70 text-sm">
         &copy; {new Date().getFullYear()} ResuMatch. All rights reserved.
       </div>
     </div>
