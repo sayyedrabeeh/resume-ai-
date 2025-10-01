@@ -3,6 +3,8 @@ import HRChatBot from "../components/HRChatBot";
 import HRQuestionsPage from "../components/HRQuestionsPage";
 import api from "../api/axiosConfig";
 import { Bot } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+
 
 export default function HRInterviewPractice() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -68,13 +70,26 @@ export default function HRInterviewPractice() {
   );
 
   return (
-    <div className="max-w-6xl mx-auto p-6 bg-gray-50 min-h-screen">
-      <header className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 rounded-lg shadow-lg mb-6">
-        <h1 className="text-3xl font-bold mb-2">HR Interview Practice</h1>
-        <p className="opacity-90">Prepare for your next interview with confidence</p>
+    <div className="max-w-7xl mx-auto p-6 bg-gradient-to-l from-[#E83D95] to-black min-h-screen">
+      <header className="bg-black/50  p-6 rounded-lg shadow-lg mb-6 flex items-center justify-between">
+        <div>
+        <h1 className="text-3xl text-[#FF77FF]/50 font-heading font-bold mb-2">HR Interview Practice</h1>
+          <p className="opacity-90 text-white/70">Prepare for your next interview with confidence</p>
+          </div>
+        <div>
+        <Link 
+                            to="/"
+                            className="text-white/80 hover:text-white/50 flex items-center gap-1 font-medium"
+                        >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                            </svg>
+                            Back to Dashboard
+          </Link>
+          </div>
       </header>
 
-      <div className="bg-white p-4 rounded-lg shadow-md mb-6">
+      <div className="bg-black/50 p-4 rounded-lg shadow-md mb-6">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-grow">
             <input
@@ -82,7 +97,7 @@ export default function HRInterviewPractice() {
               placeholder="Search questions or answers..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full bg-black/50 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF77FF]/50 focus:border-[#FF77FF] "
             />
           </div>
           {categories.length > 1 && (
@@ -90,7 +105,7 @@ export default function HRInterviewPractice() {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF77FF]/50  focus:border-[#FF77FF]/50  bg-black/50"
               >
                 {categories.map((category) => (
                   <option key={category} value={category}>
@@ -104,7 +119,7 @@ export default function HRInterviewPractice() {
       </div>
 
       {isLoading ? (
-        <div className="text-center py-12 bg-white rounded-lg shadow">
+        <div className="text-center py-12 bg-black/50 rounded-lg shadow">
           <p className="text-gray-600">Loading questions...</p>
         </div>
       ) : (
@@ -122,8 +137,8 @@ export default function HRInterviewPractice() {
                   onClick={() => setCurrentPage(index + 1)}
                   className={`px-4 py-2 rounded ${
                     currentPage === index + 1
-                      ? "bg-blue-600 text-white"
-                      : "bg-white border border-gray-300"
+                      ? "bg-[#FF77FF]/50  text-white"
+                      : "bg-black/60 border border-black/40"
                   }`}
                 >
                   {index + 1}
