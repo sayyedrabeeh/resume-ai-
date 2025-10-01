@@ -384,6 +384,25 @@ function Home() {
               </span>
             </div>
             <FiArrowRight className="w-6 h-6 text-yellow-400 ml-4 transition-transform duration-300 group-hover:translate-x-2" />
+          </Link>  
+          
+      <Link
+            to="//HR"
+            className="relative block w-full md:w-[500px] h-[200px] 
+                      bg-gradient-to-r from-red-400/30 to-red-700/30 
+                      backdrop-blur-md border border-red-400/30 
+                      rounded-2xl shadow-lg transition-transform transform 
+                      hover:-translate-y-2 hover:shadow-2xl flex items-center p-6 group">
+            <FaQuestionCircle className="w-16 h-16 mr-8 text-red-400 flex-shrink-0" />
+            <div className="flex-1">
+              <span className="block text-3xl font-extrabold tracking-wide text-white">
+                HR Interview Questions
+              </span>
+              <span className="block text-sm text-red-200 mt-3 font-medium">
+               Practice common HR questions and ace your interviews
+              </span>
+            </div>
+            <FiArrowRight className="w-6 h-6 text-red-400 ml-4 transition-transform duration-300 group-hover:translate-x-2" />
         </Link>  
 </div>
 
