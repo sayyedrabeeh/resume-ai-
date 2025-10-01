@@ -328,7 +328,7 @@ function Home() {
       {/* FORTH SECTION */}
 
       <div className="min-h-screen  bg-gradient-to-l from-[#3f0e27] to-black py-16 flex items-center flex-col px-6 md:px-20   ">
-        <div className="flex flex-col md:flex-row md:space-x-8 mb-8 w-full max-w-[1200px]">
+        <div className="flex flex-col md:flex-row md:space-x-5 mb-5 w-full max-w-[1200px]">
           <Link
             to="/job-matches"
             className="relative block w-full md:w-[500px] h-[200px] 
@@ -366,8 +366,25 @@ function Home() {
             <FiArrowRight className="w-6 h-6 text-blue-400 ml-4 transition-transform duration-300 group-hover:translate-x-2" />
         </Link>
      </div>
-  <div className="flex flex-col md:flex-row md:space-x-8 w-full max-w-[1200px]">
-        
+  <div className="flex flex-col md:flex-row md:space-x-5 w-full max-w-[1200px]">
+      <Link
+            to="/ResumeBuilder"
+            className="relative block w-full md:w-[500px] h-[200px] 
+                      bg-gradient-to-r from-yellow-400/30 to-yellow-700/30 
+                      backdrop-blur-md border border-yellow-400/30 
+                      rounded-2xl shadow-lg transition-transform transform 
+                      hover:-translate-y-2 hover:shadow-2xl flex items-center p-6 group">
+            <FaFileAlt className="w-16 h-16 mr-8 text-yellow-400 flex-shrink-0" />
+            <div className="flex-1">
+              <span className="block text-3xl font-extrabold tracking-wide text-white">
+                Resume Builder
+              </span>
+              <span className="block text-sm text-yellow-200 mt-3 font-medium">
+               Create ATS-friendly resumes quickly with our builder
+              </span>
+            </div>
+            <FiArrowRight className="w-6 h-6 text-yellow-400 ml-4 transition-transform duration-300 group-hover:translate-x-2" />
+        </Link>  
 </div>
 
         
