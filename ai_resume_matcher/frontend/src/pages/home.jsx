@@ -106,12 +106,13 @@ function Home() {
 
       {/* CTA Buttons */}
       <div className="flex gap-4 flex-wrap mt-4 animate-fadeIn delay-800">
-        <button className="bg-[#FFD6FF] text-black font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-[#FF77FF] transition duration-300 font-body">
+        <Link to={'/upload'} className="bg-[#FFD6FF] text-black font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-[#FF77FF] transition duration-300 font-body">
           Get Started
-        </button>
-        <button className="border border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white/20 transition duration-300 font-body">
+        </Link>
+      <Link to='https://github.com/sayyedrabeeh/resume-ai-'
+                className="border border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white/20 transition duration-300 font-body">
           Learn More
-        </button>
+        </Link>
       </div>
     </div>
 
@@ -158,7 +159,7 @@ function Home() {
           
 
           <div className="flex justify-center mt-8">
-            <Link to={'/upload'} className="bg-[#FFD6FF]/70 text-black py-3 px-6 rounded-full shadow-lg hover:bg-[#FF77FF] transition">
+            <Link to={'/upload'} className="bg-[#E83D65]/70 text-black py-3 px-6 rounded-full shadow-lg hover:bg-[#FF77FF] transition">
               <span className="font-semibold">Upload Your Resume</span>
             </Link>
           </div>
@@ -333,7 +334,66 @@ function Home() {
       <FiArrowRight className="w-6 h-6 text-pink-500 ml-4 transition-transform duration-300 group-hover:translate-x-2" />
     </a>
   </div>
-</div>
+      </div>
+      
+
+
+      {/* LEFT HOVER SIDEBAR */}
+
+<motion.div
+  initial={{ x: -250 }}  
+  whileHover={{ x: 0 }} 
+  transition={{ type: "spring", stiffness: 200, damping: 30 }}
+  className="fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-[#1a0510] to-black shadow-xl z-50 flex flex-col p-6 space-y-6"
+>
+  <h3 className="text-white text-xl font-bold">Quick Access</h3>
+  <Link
+    to="/upload"
+    className="text-white hover:text-green-400 transition-colors"
+  >
+    Upload profile
+  </Link>
+  <Link
+    to="/job-matcher"
+    className="text-white hover:text-red-400 transition-colors"
+  >
+          Analyze description 
+          
+  </Link>
+  <Link
+    to="/job-matches"
+    className="text-white hover:text-purple-400 transition-colors"
+  >
+    Jobs
+  </Link>
+  <Link
+    to="/profiles"
+    className="text-white hover:text-blue-400 transition-colors"
+  >
+    Profiles
+  </Link>
+  <Link
+    to="/ResumeBuilder"
+    className="text-white hover:text-yellow-400 transition-colors"
+  >
+    Resume Builder
+  </Link>
+  <Link
+    to="/HR"
+    className="text-white hover:text-red-400 transition-colors"
+  >
+    HR Questions
+  </Link>
+  <a
+    href="https://github.com/sayyedrabeeh/resume-ai-"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-white hover:text-pink-400 transition-colors"
+  >
+    GitHub
+  </a>
+</motion.div>
+
 
       {/* FOOTER  */}
 
