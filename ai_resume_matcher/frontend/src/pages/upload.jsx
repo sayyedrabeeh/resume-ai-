@@ -87,7 +87,7 @@ function ResumeUpload() {
                 href={link} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-blue-700 hover:text-blue-900 bg-blue-50 px-3 py-1.5 rounded-full transition-colors"
+                className="flex items-center gap-2 text-blue-700 hover:text-red-900 bg-blue-50 px-3 py-1.5 rounded-full transition-colors"
             >
                 <span className="text-lg">{icon}</span>
                 <span className="font-medium">{title}</span>
@@ -96,17 +96,17 @@ function ResumeUpload() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+        <div className="min-h-screen  bg-gradient-to-l from-[#E83D95] to-black">
             <div className="container mx-auto px-4 py-12">
                 <div className="max-w-4xl mx-auto">
                     <div className="flex items-center justify-between mb-10">
                         <div>
-                            <h1 className="text-3xl font-bold text-gray-800">Resume Parser</h1>
-                            <p className="text-gray-600 mt-1">Upload your resume and we'll extract the key information</p>
+                            <h1 className="text-3xl font-bold text-white font-heading">Resume Parser</h1>
+                            <p className="text-white/60 font-semibold font-body mt-1">Upload your resume and we'll extract the key information</p>
                         </div>
                         <Link 
                             to="/"
-                            className="text-blue-700 hover:text-blue-900 flex items-center gap-1 font-medium"
+                            className="text-white/80 hover:text-white/50 flex items-center gap-1 font-medium"
                         >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
@@ -115,19 +115,19 @@ function ResumeUpload() {
                         </Link>
                     </div>
 
-                    <div className="bg-white rounded-xl shadow-md p-8 mb-10 border border-gray-100">
+                    <div className="bg-black/50 rounded-xl shadow-md p-8 mb-10 border border-black/80">
                         <div className="mb-8">
-                            <h2 className="text-xl font-semibold text-gray-800 mb-4">Upload Your Resume</h2>
+                            <h2 className="text-xl font-semibold text-white/70 mb-4">Upload Your Resume</h2>
                             <div className="flex items-center">
                                 <label className="flex-1">
-                                    <div className={`border-2 border-dashed rounded-lg px-6 py-10 text-center cursor-pointer transition-all ${fileName ? 'bg-blue-50 border-blue-300' : 'border-gray-300 hover:border-blue-400 hover:bg-blue-50'}`}>
+                                    <div className={`border-2 border-dashed rounded-lg px-6 py-10 text-center cursor-pointer transition-all ${fileName ? ' border-[#FF77FF]/50 ' : 'border-gray-300 hover:border-[#FF77FF]/50   '}`}>
                                         {fileName ? (
                                             <div className="flex flex-col items-center">
-                                                <svg className="h-12 w-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <svg className="h-12 w-12 text-[#FF77FF]/50 " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                                 </svg>
-                                                <span className="mt-2 text-blue-700 font-medium">{fileName}</span>
-                                                <span className="text-sm text-blue-500 mt-1">Click to change file</span>
+                                                <span className="mt-2 text-[#FF77FF]/50 font-medium">{fileName}</span>
+                                                <span className="text-sm text-[#FF77FF]/50  mt-1">Click to change file</span>
                                             </div>
                                         ) : (
                                             <>
@@ -135,7 +135,7 @@ function ResumeUpload() {
                                                     <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                                 </svg>
                                                 <div className="mt-4">
-                                                    <span className="text-sm font-medium text-blue-600">Click to select a file</span>
+                                                    <span className="text-sm font-medium text-[#FF77FF]/50 ">Click to select a file</span>
                                                     <p className="text-xs text-gray-500 mt-1">or drag and drop your PDF here</p>
                                                 </div>
                                                 <p className="text-xs text-gray-400 mt-2">PDF files only (Max 10MB)</p>
@@ -165,7 +165,7 @@ function ResumeUpload() {
                             disabled={loading || !file}
                             className={`w-full py-3 px-4 rounded-lg font-medium text-white shadow-sm transition-all ${loading || !file 
                                 ? 'bg-gray-400 cursor-not-allowed' 
-                                : 'bg-blue-600 hover:bg-blue-700 hover:shadow'}`}
+                                : 'bg-[#FF77FF]/50 hover:bg-[#FF77FF] hover:shadow'}`}
                         >
                             {loading ? (
                                 <span className="flex items-center justify-center">
@@ -248,7 +248,7 @@ function ResumeUpload() {
                         <div className="text-center mt-8">
                             <Link 
                                 to="/profiles"
-                                className="inline-flex items-center gap-2 text-blue-700 hover:text-blue-900 font-medium"
+                                className="inline-flex items-center gap-2 text-[#FF77FF]  hover:text-[#FF77FF]/50 font-medium"
                             >
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
