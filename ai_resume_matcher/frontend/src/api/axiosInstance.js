@@ -1,8 +1,9 @@
 import axios from 'axios';
+import API_URL from "./config";
 
 // Create an Axios instance
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8000', // Adjust if needed
+  baseURL: API_URL, // Adjust if needed
   headers: {
     'Content-Type': 'application/json',
   },
@@ -35,7 +36,8 @@ axiosInstance.interceptors.response.use(
 
       try {
         // Refresh token request
-        const tokenResponse = await axios.post("http://localhost:8000/api/token/refresh/", {
+        const tokenResponse = await axios.post(`${API_URL}/api/token/refresh/`
+, {
           refresh: localStorage.getItem("refresh_token"),
         });
 

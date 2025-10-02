@@ -1,8 +1,9 @@
 // src/api/axiosConfig.js
 import axios from 'axios';
+import API_URL from "./config";
 
 const api = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: API_URL,
   withCredentials: true,
 });
 
@@ -29,7 +30,8 @@ api.interceptors.response.use(
       if (!refresh) return Promise.reject(error);
 
       try {
-        const response = await axios.post('http://localhost:8000/api/token/refresh/', {
+        const response = await axios.post(`${API_URL}/api/token/refresh/`
+, {
           refresh: refresh
         });
 
