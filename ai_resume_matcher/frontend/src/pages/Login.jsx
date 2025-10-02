@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import API_URL from '../api/config';
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -16,7 +17,7 @@ function Login() {
         
         try {
             const response = await axios.post(
-                'http://localhost:8000/login/',
+                `${API_URL}/login/`,
                 { username, password },
                 { headers: { 'Content-Type': 'application/json' } }
             );

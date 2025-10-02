@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import API_URL from '../api/config';
 
 function Signup() {
     const [username, setUsername] = useState('');
@@ -20,7 +21,7 @@ function Signup() {
         setIsLoading(true);
         setErrorMsg('');
         try {
-            await axios.post('http://localhost:8000/signup/', {
+            await axios.post(`${API_URL}/signup/`, {
                 username,
                 email,
                 password
