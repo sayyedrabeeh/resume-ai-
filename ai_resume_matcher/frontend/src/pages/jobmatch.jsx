@@ -32,17 +32,17 @@ const JobMatcher = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Job Description Matcher</h2>
+    <div className="max-w-4xl mx-auto p-6 bg-gradient-to-l from-[#E83D95] to-black rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold text-white/70 mb-6">Job Description Matcher</h2>
       
       <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-white/70 mb-2">
           Paste Job Description
         </label>
         <textarea
           value={jobDsc}
           onChange={(e) => setJobDsc(e.target.value)}
-          className="w-full p-4 border border-gray-300 rounded-md mb-4 h-48 focus:ring-blue-500 focus:border-blue-500"
+          className="w-full p-4 border border-white/70 rounded-md mb-4 h-48 focus:ring-blue-500 focus:border-blue-500"
           placeholder="Paste job description here..."
         />
         
@@ -50,7 +50,7 @@ const JobMatcher = () => {
               <button
                 onClick={handleSubmit}
                 disabled={isLoading}
-                className={`w-full md:w-auto px-6 py-3 rounded-md text-white font-medium ${
+                className={`w-full md:w-auto px-6 py-3 rounded-md text-white/80 font-medium ${
                   isLoading ? "bg-blue-400" : "bg-blue-600 hover:bg-blue-700"
                 } transition-colors duration-200 flex items-center justify-center`}
               >
@@ -75,9 +75,9 @@ const JobMatcher = () => {
 
       {matchResult && (
         <div className="space-y-6">
-          <div className="p-6 border border-gray-200 rounded-lg bg-gray-50">
+          <div className="p-6 border border-white/70 rounded-lg bg-black/50">
             <div className="flex items-center mb-4">
-              <div className="text-xl font-bold text-gray-800">Match Score:</div>
+              <div className="text-xl font-bold text-white/50">Match Score:</div>
               <div className="ml-2 text-xl font-bold">
                 <span className={`${
                   matchResult.match_percentage >= 80
@@ -91,7 +91,7 @@ const JobMatcher = () => {
               </div>
             </div>
 
-            <h3 className="font-semibold text-lg text-gray-700 mb-2">Match Reasons:</h3>
+            <h3 className="font-semibold text-lg text-white/50 mb-2">Match Reasons:</h3>
             <ul className="space-y-2 text-gray-700">
               {matchResult.reasons && matchResult.reasons.map((reason, idx) => (
                 <li key={idx} className="flex items-start">
@@ -104,7 +104,7 @@ const JobMatcher = () => {
 
           {matchResult.missing_skills && matchResult.missing_skills.length > 0 && (
             <div className="p-6 border border-gray-200 rounded-lg bg-gray-50">
-              <h3 className="font-semibold text-lg text-gray-700 mb-2">Missing Skills:</h3>
+              <h3 className="font-semibold text-lg text-white/80 mb-2">Missing Skills:</h3>
               <ul className="space-y-2 text-gray-700">
                 {matchResult.missing_skills.map((skill, idx) => (
                   <li key={idx} className="flex items-start">
@@ -118,7 +118,7 @@ const JobMatcher = () => {
 
           {matchResult.suggestions && matchResult.suggestions.length > 0 && (
             <div className="p-6 border border-gray-200 rounded-lg bg-gray-50">
-              <h3 className="font-semibold text-lg text-gray-700 mb-2">Improvement Suggestions:</h3>
+              <h3 className="font-semibold text-lg text-white/50 mb-2">Improvement Suggestions:</h3>
               <ul className="space-y-2 text-gray-700">
                 {matchResult.suggestions.map((tip, idx) => (
                   <li key={idx} className="flex items-start">

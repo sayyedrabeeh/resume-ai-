@@ -109,7 +109,7 @@ function Home() {
         <Link to={'/upload'} className="bg-[#FFD6FF] text-black font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-[#FF77FF] transition duration-300 font-body">
           Get Started
         </Link>
-      <Link to='https://github.com/sayyedrabeeh/resume-ai-'
+      <Link to='https://github.com/sayyedrabeeh/resume-ai-' target="_blank"
                 className="border border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white/20 transition duration-300 font-body">
           Learn More
         </Link>
@@ -316,7 +316,7 @@ function Home() {
     </Link>
 
     <a
-      href="https://github.com/sayyedrabeeh/resume-ai-"
+      href="https://github.com/sayyedrabeeh/resume-ai-" target="_blank"
       className="relative block w-full md:w-1/3 h-[200px] 
                 bg-gradient-to-r from-pink-900/70 to-pink-950/70 
                 backdrop-blur-xl border border-pink-700/40 

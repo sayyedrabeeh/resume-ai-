@@ -97,7 +97,7 @@ export default function HRInterviewPractice() {
               placeholder="Search questions or answers..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-black/50 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF77FF]/50 focus:border-[#FF77FF] "
+              className="w-full bg-black/50 p-3 border text-white/80 border-white/50 rounded-lg focus:ring-2 focus:ring-[#FF77FF]/50 focus:border-[#FF77FF] "
             />
           </div>
           {categories.length > 1 && (
