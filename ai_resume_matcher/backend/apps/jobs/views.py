@@ -79,3 +79,37 @@ def fetch_jooble_jobs(keywords, location="", page=1):
         return response.json().get("jobs", [])
 
     return []
+
+def fetch_remoteok_jobs(keyword):
+    url = "https://remoteok.com/api"
+
+    headers = {
+        "User-Agent": "Mozilla/5.0"  
+    }
+
+    try:
+        response = requests.get(url, headers=headers, timeout=10)
+
+        if response.status_code != 200:
+            return []
+
+        data = response.json()
+
+        jobs = []
+
+        for job in data[1:]: 
+            text = f"{job.get('position', '')} {job.get('description', '')}".lower()
+
+            if keyword.lower() in text:
+                jobs.append({
+                    "title": job.get("position"),
+                    "description": job.get("description"),
+                    "company": job.get("company"),
+                    "url": job.get("url"),
+                    "source": "RemoteOK"
+                })
+
+        return jobs
+
+    except requests.exceptions.RequestException:
+        return []
