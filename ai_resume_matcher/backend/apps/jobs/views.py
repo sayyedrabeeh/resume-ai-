@@ -56,3 +56,26 @@ def fetch_matching_jobs(request):
 
     
     return Response({"matches": matching_jobs})
+
+
+def fetch_jooble_jobs(keywords, location="", page=1):
+    api_key = os.environ.get("JOOBLE_API_KEY")
+    url = f"https://jooble.org/api/{api_key}"
+
+    payload = {
+        "keywords": keywords,
+        "location": location,
+        "page": page
+    }
+
+    response = requests.post(
+        url,
+        json=payload,
+        headers={"Content-Type": "application/json"},
+        timeout=10
+    )
+
+    if response.status_code == 200:
+        return response.json().get("jobs", [])
+
+    return []
