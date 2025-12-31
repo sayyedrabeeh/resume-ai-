@@ -32,7 +32,7 @@ const JobMatcher = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-gradient-to-l from-[#E83D95] to-black rounded-lg shadow-lg">
+    <div className="max-w-4xl   p-6 bg-gradient-to-l from-[#E83D95] to-black rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold text-white/70 mb-6">Job Description Matcher</h2>
       
       <div className="mb-6">
@@ -42,7 +42,7 @@ const JobMatcher = () => {
         <textarea
           value={jobDsc}
           onChange={(e) => setJobDsc(e.target.value)}
-          className="w-full p-4 border border-white/70 rounded-md mb-4 h-48 focus:ring-blue-500 focus:border-blue-500"
+          className="w-full p-4 border border-white/70 bg-black/50 rounded-md mb-4 h-48 focus:ring-black/50 focus:border-black/50"
           placeholder="Paste job description here..."
         />
         
@@ -103,7 +103,7 @@ const JobMatcher = () => {
           </div>
 
           {matchResult.missing_skills && matchResult.missing_skills.length > 0 && (
-            <div className="p-6 border border-gray-200 rounded-lg bg-gray-50">
+            <div className="p-6 border border-white/90 rounded-lg bg-white/90">
               <h3 className="font-semibold text-lg text-white/80 mb-2">Missing Skills:</h3>
               <ul className="space-y-2 text-gray-700">
                 {matchResult.missing_skills.map((skill, idx) => (
@@ -117,12 +117,12 @@ const JobMatcher = () => {
           )}
 
           {matchResult.suggestions && matchResult.suggestions.length > 0 && (
-            <div className="p-6 border border-gray-200 rounded-lg bg-gray-50">
+            <div className="p-6 border border-white/70 rounded-lg bg-white/80">
               <h3 className="font-semibold text-lg text-white/50 mb-2">Improvement Suggestions:</h3>
               <ul className="space-y-2 text-gray-700">
                 {matchResult.suggestions.map((tip, idx) => (
                   <li key={idx} className="flex items-start">
-                    <span className="inline-block w-4 h-4 mr-2 mt-1 bg-blue-500 rounded-full flex-shrink-0"></span>
+                    <span className="inline-block w-4 h-4 mr-2 mt-1 bg-black/50 rounded-full flex-shrink-0"></span>
                     <span>{tip}</span>
                   </li>
                 ))}

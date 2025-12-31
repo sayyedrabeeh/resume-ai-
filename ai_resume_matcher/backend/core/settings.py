@@ -76,12 +76,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database (PostgreSQL)
+
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f"postgres://aiuser:aipassword@localhost:5432/ai_resume_db"
+    "default": dj_database_url.config(
+        default=os.environ.get("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True,
     )
 }
-
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
@@ -107,7 +109,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # CORS settings (React frontend)
 CORS_ALLOWED_ORIGINS = [
-    'https://resume-ai-1-q2lm.onrender.com',  # React frontend URL
+    'https://resume-ai-1-q2lm.onrender.com',
+      "http://localhost:3000",  # React frontend URL
 ]
 CSRF_TRUSTED_ORIGINS = [
     'https://resume-ai-1-q2lm.onrender.com',
