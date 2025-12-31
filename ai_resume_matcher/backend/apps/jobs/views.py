@@ -17,9 +17,19 @@ def fetch_matching_jobs(request):
     }
     
    
-    profile = Profile.objects.get(user=request.user, is_current=True)
+    try:
+      profile = Profile.objects.get(user=request.user, is_current=True)
+    except Profile.DoesNotExist:
+      return Response({
+        "count": 0,
+        "matches": [],
+        "message": "Profile not found. Please complete your profile."
+    }, status=200)
+
   
-    keywords = ' '.join(profile.skills.split(',')[:1])   
+    skills = [s.strip() for s in profile.skills.split(',') if s.strip()]
+    keywords = " ".join(skills[:3]) or "software developer"
+ 
     params = {"query": keywords, "results_per_page": "20"}
     
      
@@ -56,9 +66,10 @@ def fetch_matching_jobs(request):
             profile,
             f"{job['title']} {job['description']}"
         )
+         
         job["score"] = score
         matched.append(job)
-
+        
     matched.sort(key=lambda x: x["score"], reverse=True)
     return Response({
         "count": len(matched),
@@ -94,7 +105,7 @@ def fetch_remoteok_jobs(keyword):
     headers = {
         "User-Agent": "Mozilla/5.0"  
     }
-
+    keywords = keyword.lower().split()
     try:
         response = requests.get(url, headers=headers, timeout=10)
 
@@ -106,9 +117,9 @@ def fetch_remoteok_jobs(keyword):
         jobs = []
 
         for job in data[1:]: 
-            text = f"{job.get('position', '')} {job.get('description', '')}".lower()
+            text = f"{job.get('position','')} {job.get('description','')}".lower()
 
-            if keyword.lower() in text:
+            if any(k in text for k in keywords):
                 jobs.append({
                     "title": job.get("position"),
                     "description": job.get("description"),
@@ -133,7 +144,6 @@ def fetch_muse_jobs(keyword, page=1):
     url = "https://www.themuse.com/api/public/jobs"
 
     params = {
-        "page": page,
         "category": "Software Engineering",
         "level": "Mid Level",
     }
