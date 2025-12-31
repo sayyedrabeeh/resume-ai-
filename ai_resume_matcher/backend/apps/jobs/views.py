@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import os
 import requests
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -17,45 +18,52 @@ def fetch_matching_jobs(request):
     
    
     profile = Profile.objects.get(user=request.user, is_current=True)
-    
   
     keywords = ' '.join(profile.skills.split(',')[:1])   
+    params = {"query": keywords, "results_per_page": "20"}
     
-    params = {
-        "query": keywords,
-        "page": "1",
-        "results_per_page": "20",   
-         
-    }
+     
     
-    all_jobs = []
-    
-    
-    for page_num in range(1, 6):   
-        params["page"] = str(page_num)
-        response = requests.get("https://jsearch.p.rapidapi.com/search", headers=headers, params=params)
-        
-        if response.status_code == 200:
-            jobs = response.json().get("data", [])
-            all_jobs.extend(jobs)   
-        else:
-             
-            return Response({"error": "Failed to fetch jobs"}, status=500)
+    all_jobs = []    
+
+    for page in range(1, 4):
+        params["page"] = page
+        res = requests.get(
+            "https://jsearch.p.rapidapi.com/search",
+            headers=headers,
+            params=params,
+            timeout=10
+        )
+        if res.status_code == 200:
+            for job in res.json().get("data", []):
+                all_jobs.append({
+                    "title": job.get("job_title"),
+                    "description": job.get("job_description"),
+                    "company": job.get("employer_name"),
+                    "url": job.get("job_apply_link"),
+                    "source": "JSearch"
+                })
+    all_jobs.extend(fetch_remoteok_jobs(keywords))
+
+ 
+    for p in range(1, 3):
+        all_jobs.extend(fetch_muse_jobs(keywords, p))
 
      
-    matching_jobs = []
-    
-   
+    matched = []
     for job in all_jobs:
-        job_description = job.get("description", "") + " " + job.get("title", "")
-        score, _, _, _ = calculate_match_score(profile, job_description)
+        score, _, _, _ = calculate_match_score(
+            profile,
+            f"{job['title']} {job['description']}"
+        )
+        job["score"] = score
+        matched.append(job)
 
-        job_data = job.copy()
-        job_data["score"] = score   
-        matching_jobs.append(job_data)
-
-    
-    return Response({"matches": matching_jobs})
+    matched.sort(key=lambda x: x["score"], reverse=True)
+    return Response({
+        "count": len(matched),
+        "matches": matched
+        })
 
 
 def fetch_jooble_jobs(keywords, location="", page=1):
