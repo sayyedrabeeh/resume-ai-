@@ -113,3 +113,49 @@ def fetch_remoteok_jobs(keyword):
 
     except requests.exceptions.RequestException:
         return []
+
+
+import re
+
+def strip_html(html):
+    return re.sub(r"<.*?>", "", html or "")
+
+
+def fetch_muse_jobs(keyword, page=1):
+    url = "https://www.themuse.com/api/public/jobs"
+
+    params = {
+        "page": page,
+        "category": "Software Engineering",
+        "level": "Mid Level",
+    }
+
+    try:
+        response = requests.get(url, params=params, timeout=10)
+
+        if response.status_code != 200:
+            return []
+
+        data = response.json()
+        jobs = []
+
+        for job in data.get("results", []):
+            description = strip_html(job.get("contents"))
+
+            text = f"{job.get('name', '')} {description}".lower()
+
+            if keyword.lower() in text:
+                jobs.append({
+                    "title": job.get("name"),
+                    "company": job.get("company", {}).get("name"),
+                    "description": description,
+                    "url": job.get("refs", {}).get("landing_page"),
+                    "source": "The Muse"
+                })
+
+        return jobs
+
+    except requests.exceptions.RequestException:
+        return []
+
+
