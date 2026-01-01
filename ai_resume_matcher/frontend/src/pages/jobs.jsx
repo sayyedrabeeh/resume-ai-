@@ -24,9 +24,23 @@ const JobMatcher = () => {
     fetchJobs();
   }, []);
 
-  const truncateDescription = (description, maxLines) => {
+    const cleanDescription = (description) => {
     if (!description) return "";
-    const lines = description.split("\n");
+   
+    const temp = document.createElement('div');
+    temp.innerHTML = description;
+
+    let text = temp.textContent || temp.innerText || "";
+    text = text.replace(/\s+/g, ' ').trim();
+    
+    return text;
+  };
+
+  const truncateDescription = (description, maxLines) => {
+
+    if (!description) return "";
+    const cleaned = cleanDescription(description)
+    const lines = cleaned.split("\n");
     if (lines.length <= maxLines) {
       return description;
     }
@@ -199,7 +213,7 @@ const JobMatcher = () => {
                       <div className="prose prose-sm max-w-none text-white/60">
                         <p className="whitespace-pre-line">
                           {expandedJob === job.id 
-                            ? (job.description || 'No description available') 
+                            ? cleanDescription(job.description || 'No description available') 
                             : truncateDescription(job.description || 'No description available', 4)}
                         </p>
                       </div>
