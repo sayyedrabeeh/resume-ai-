@@ -85,9 +85,9 @@ const JobMatche= () => {
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-1">
-                      <h2 className="text-xl font-bold text-[#FF77FF]/50 mb-1">{job.job_title}</h2>
+                      <h2 className="text-xl font-bold text-[#FF77FF]/50 mb-1">{job.title}</h2>
                       <div className="flex items-center text-[#FF77FF]/50 text-sm">
-                        <span>{job.employer_name}</span>
+                        <span>{job.company}</span>
                         <span className="mx-2">•</span>
                         <span>{job.job_employment_type}</span>
                       </div>
@@ -104,7 +104,7 @@ const JobMatche= () => {
                     <div className="mb-4 p-2 bg-gray-50 inline-block rounded-lg">
                       <img 
                         src={job.employer_logo} 
-                        alt={`${job.employer_name} Logo`} 
+                        alt={`${job.company} Logo`} 
                         className="h-12 object-contain" 
                       />
                     </div>
@@ -113,18 +113,18 @@ const JobMatche= () => {
                   <div className="bg-black/50 rounded-lg p-4 mb-4">
                     <div className="prose prose-sm max-w-none text-white/70">
                       <p className="whitespace-pre-line">
-                        {expandedJob === job.job_id 
-                          ? job.job_description 
-                          : truncateDescription(job.job_description, 4)}
+                        {expandedJob === job.id 
+                          ? job.description 
+                          : truncateDescription(job.description, 4)}
                       </p>
                     </div>
                     
-                    {job.job_description && job.job_description.split("\n").length > 4 && (
+                    {job.description && job.description.split("\n").length > 4 && (
                       <button 
                         className="mt-3 text-[#FF77FF]/50 font-medium flex items-center hover:text-blue-800 transition-colors"
-                        onClick={() => toggleDescription(job.job_id)}
+                        onClick={() => toggleDescription(job.id)}
                       >
-                        {expandedJob === job.job_id ? (
+                        {expandedJob === job.id ? (
                           <>
                             <span>Read Less</span>
                             <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
