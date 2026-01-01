@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
- 
+
 
 class GenerateResumeView(APIView):
     permission_classes = [IsAuthenticated]
@@ -15,20 +15,26 @@ class GenerateResumeView(APIView):
         data = request.data
 
         response = HttpResponse(content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename="resume.pdf"'
+        response['Content-Disposition'] = 'attachment; filename="professional_resume.pdf"'
 
+        # Professional font choices
         base_font = 'Helvetica'
         bold_font = 'Helvetica-Bold'
 
         c = canvas.Canvas(response, pagesize=A4)
         width, height = A4
-        main_color = colors.HexColor("#2E75B5")
-        text_color = colors.black
-        section_color = colors.HexColor("#333333")
         
-        left_margin = 60
-        right_margin = width - 60
-        top_margin = height - 50
+        # Professional color scheme - Corporate blue theme
+        primary_color = colors.HexColor("#1a4d8f")  # Professional navy blue
+        accent_color = colors.HexColor("#2563eb")   # Accent blue
+        text_color = colors.HexColor("#1f2937")     # Dark gray for text
+        light_gray = colors.HexColor("#6b7280")     # Light gray for secondary text
+        divider_color = colors.HexColor("#e5e7eb")  # Subtle divider
+        
+        # Margins and spacing
+        left_margin = 50
+        right_margin = width - 50
+        top_margin = height - 40
         content_width = right_margin - left_margin
 
         y = top_margin
@@ -36,16 +42,24 @@ class GenerateResumeView(APIView):
         max_page = 2
 
         def draw_header():
+            """Enhanced professional header with better spacing"""
             nonlocal y
-            c.setFont(bold_font, 18)
-            c.setFillColor(main_color)
-            c.drawCentredString(width / 2, y, data.get("name", "Your Name").upper())
-            y -= 20
-            c.setFont(base_font, 12)
+            
+            # Name - Bold and prominent
+            c.setFont(bold_font, 22)
+            c.setFillColor(primary_color)
+            name = data.get("name", "YOUR NAME").upper()
+            c.drawCentredString(width / 2, y, name)
+            y -= 25
+            
+            # Title/Position
+            c.setFont(base_font, 13)
             c.setFillColor(text_color)
-            c.drawCentredString(width / 2, y, data.get("title", "Your Position"))
-            y -= 20
-
+            title = data.get("title", "Professional Title")
+            c.drawCentredString(width / 2, y, title)
+            y -= 22
+            
+            # Contact information - Clean single line
             contact_parts = []
             if data.get('email'):
                 contact_parts.append(data.get('email'))
@@ -53,45 +67,50 @@ class GenerateResumeView(APIView):
                 contact_parts.append(data.get('phone'))
             if data.get('location'):
                 contact_parts.append(data.get('location'))
-            if data.get('linkedin'):  
-                contact_parts.append(data.get('linkedin'))
-
-            contact_info = ' | '.join(contact_parts)
-            c.setFont(base_font, 10)
-            c.drawCentredString(width/2, y, contact_info)
+            if data.get('linkedin'):
+                linkedin = data.get('linkedin').replace('https://', '').replace('http://', '')
+                contact_parts.append(linkedin)
+            
+            contact_info = '  •  '.join(contact_parts)
+            c.setFont(base_font, 9)
+            c.setFillColor(light_gray)
+            c.drawCentredString(width / 2, y, contact_info)
+            y -= 20
+            
+            # Professional divider line
+            c.setStrokeColor(primary_color)
+            c.setLineWidth(2)
+            c.line(left_margin, y, right_margin, y)
             y -= 25
 
-            c.setStrokeColor(main_color)
-            c.setLineWidth(1)
-            c.line(left_margin, y, right_margin, y)
-            y -= 20
-
         def draw_section_header(title):
+            """Professional section headers with underline"""
             nonlocal y
-            c.setFont(bold_font, 12)
-            c.setFillColor(section_color)
+            c.setFont(bold_font, 13)
+            c.setFillColor(primary_color)
             c.drawString(left_margin, y, title.upper())
-            y -= 5
-
-            c.setStrokeColor(main_color)
-            c.setLineWidth(1)
+            y -= 8
+            
+            # Section underline
+            c.setStrokeColor(accent_color)
+            c.setLineWidth(1.5)
             c.line(left_margin, y, right_margin, y)
-            y -= 15
-            return y 
-        
+            y -= 18
+            return y
+
         def wrap_text(text, max_width, font_name, font_size):
-            """Fixed text wrapping function"""
+            """Optimized text wrapping"""
             lines = []
             for paragraph in text.split('\n'):
                 if not paragraph:
                     lines.append('')
                     continue
-                    
+                
                 words = paragraph.split()
                 if not words:
                     lines.append('')
                     continue
-                    
+                
                 current_line = words[0]
                 for word in words[1:]:
                     test_line = current_line + " " + word
@@ -104,14 +123,14 @@ class GenerateResumeView(APIView):
             return lines
 
         def draw_paragraph(text, x, y, width, font_name=base_font, font_size=10):
+            """Draw multi-line text with proper spacing"""
             nonlocal current_page
             c.setFont(font_name, font_size)
             c.setFillColor(text_color)
-
+            
             lines = wrap_text(text, width, font_name, font_size)
-            original_y = y
             for line in lines:
-                if y < 50:  
+                if y < 50:
                     if current_page < max_page:
                         c.showPage()
                         current_page += 1
@@ -119,11 +138,13 @@ class GenerateResumeView(APIView):
                         c.setFont(font_name, font_size)
                         c.setFillColor(text_color)
                     else:
-                        return -1  
+                        return -1
                 c.drawString(x, y, line)
-                y -= font_size + 2
+                y -= font_size + 3
             return y
+
         def check_page_space(needed_height):
+            """Check if enough space on page"""
             nonlocal y, current_page
             if y - needed_height < 50:
                 if current_page < max_page:
@@ -131,72 +152,100 @@ class GenerateResumeView(APIView):
                     current_page += 1
                     y = height - 50
                     return True
-                else:
-                    return False
+                return False
             return True
+
         def draw_summary():
-            nonlocal y 
+            """Professional summary section"""
+            nonlocal y
             if not data.get('summary'):
                 return True
-            y = draw_section_header('PROFILE SUMMARY')
+            
+            y = draw_section_header('PROFESSIONAL SUMMARY')
+            c.setFont(base_font, 10)
+            c.setFillColor(text_color)
             summary_text = data.get('summary', '')
-            new_y = draw_paragraph(summary_text, left_margin, y, content_width)
+            new_y = draw_paragraph(summary_text, left_margin, y, content_width, base_font, 10)
             if new_y == -1:
                 return False
-            y = new_y - 10
+            y = new_y - 15
             return True
+
         def draw_experience():
-            nonlocal y 
+            """Enhanced experience section with better formatting"""
+            nonlocal y
             if not data.get('experience'):
                 return True
-            y = draw_section_header('EXPERIENCE')
+            
+            y = draw_section_header('PROFESSIONAL EXPERIENCE')
+            
             for exp in data.get('experience', []):
-                if not check_page_space(50):
+                if not check_page_space(60):
                     return False
+                
+                # Job title and company
                 c.setFont(bold_font, 11)
                 c.setFillColor(text_color)
                 title = exp.get('title', '')
                 company = exp.get('company', '')
-                position_text = f"{title} - {company}"
-                c.drawString(left_margin, y, position_text)
+                c.drawString(left_margin, y, title)
+                y -= 14
+                
+                # Company name with location
+                c.setFont(base_font, 10)
+                c.setFillColor(primary_color)
+                company_line = company
+                if exp.get('location'):
+                    company_line += f" | {exp.get('location')}"
+                c.drawString(left_margin, y, company_line)
+                
+                # Duration on the right
                 if exp.get('duration'):
                     c.setFont(base_font, 10)
+                    c.setFillColor(light_gray)
                     duration = exp.get('duration', '')
                     duration_width = c.stringWidth(duration, base_font, 10)
                     c.drawString(right_margin - duration_width, y, duration)
-                y -= 15
-                if exp.get('location'):
-                    c.setFont(base_font, 10)
-                    c.setFillColor(text_color)
-                    c.drawString(left_margin, y, exp.get('location', ''))
-                    y -= 15
+                
+                y -= 18
+                
+                # Achievement bullets
                 for point in exp.get('points', []):
                     if not check_page_space(15):
                         return False
+                    
                     c.setFont(base_font, 10)
                     c.setFillColor(text_color)
                     c.drawString(left_margin, y, "•")
-                    new_y = draw_paragraph(point, left_margin + 15, y, content_width - 15, base_font, 10)
+                    new_y = draw_paragraph(point, left_margin + 18, y, content_width - 18, base_font, 10)
                     if new_y == -1:
                         return False
-                    y = new_y - 5
-                y -= 10
+                    y = new_y - 3
+                
+                y -= 12
+            
             return True
+
         def draw_projects():
+            """Enhanced projects section"""
             nonlocal y
             if not data.get('projects'):
                 return True
-            y = draw_section_header('PROJECTS')
+            
+            y = draw_section_header('KEY PROJECTS')
+            
             for project in data.get('projects', []):
-                project_start_y = y
                 if not check_page_space(50):
                     return False
+                
+                # Project name
                 c.setFont(bold_font, 11)
-                c.setFillColor(section_color)
-                name = project.get('name', '')  
+                c.setFillColor(text_color)
+                name = project.get('name', '')
                 c.drawString(left_margin, y, name)
-                name_width = c.stringWidth(name, bold_font, 11)
                 y -= 15
+                
+                # Description
                 if project.get("description"):
                     c.setFont(base_font, 10)
                     c.setFillColor(text_color)
@@ -204,259 +253,193 @@ class GenerateResumeView(APIView):
                     desc_lines = wrap_text(description, content_width, base_font, 10)
                     for line in desc_lines:
                         c.drawString(left_margin, y, line)
-                        y -= 15
-                    y += 5  
+                        y -= 13
+                
+                # Technologies
                 technologies = project.get("technologies", '')
                 if technologies:
-                    c.setFont(base_font, 10)
-                    c.setFillColor(main_color)
-                    tech_prefix = "Technologies: "
-                    prefix_width = c.stringWidth(tech_prefix, base_font, 10)
-                    c.drawString(left_margin, y, tech_prefix)
-                    remaining_width = content_width - prefix_width
-                    tech_text = technologies
-                    tech_lines = wrap_text(tech_text, remaining_width, base_font, 10)
+                    c.setFont(bold_font, 9)
+                    c.setFillColor(light_gray)
+                    tech_label = "Technologies: "
+                    c.drawString(left_margin, y, tech_label)
+                    
+                    c.setFont(base_font, 9)
+                    c.setFillColor(text_color)
+                    label_width = c.stringWidth(tech_label, bold_font, 9)
+                    remaining_width = content_width - label_width
+                    tech_lines = wrap_text(technologies, remaining_width, base_font, 9)
+                    
                     if tech_lines:
-                        c.drawString(left_margin + prefix_width, y, tech_lines[0])
-                        y -= 15
+                        c.drawString(left_margin + label_width, y, tech_lines[0])
+                        y -= 12
                         for line in tech_lines[1:]:
-                            c.drawString(left_margin + prefix_width, y, line)
-                            y -= 15
-                    else:
-                        y -= 15
+                            c.drawString(left_margin + label_width, y, line)
+                            y -= 12
+                
+                # Links
                 links = []
-                if project.get("githubLink"): 
+                if project.get("githubLink"):
                     links.append(f"GitHub: {project.get('githubLink')}")
                 if project.get("liveLink"):
-                    links.append(f"Demo: {project.get('liveLink')}")
+                    links.append(f"Live: {project.get('liveLink')}")
+                
                 if links:
-                    c.setFont(base_font, 10)
-                    c.setFillColor(text_color)
-                    if len(links) == 2:
-                        github_link = links[0]
-                        demo_link = links[1]
-                        github_width = c.stringWidth(github_link, base_font, 10)
-                        demo_width = c.stringWidth(demo_link, base_font, 10)
-                        if github_width + demo_width + 20 <= content_width:
-                            c.drawString(left_margin, y, github_link)
-                            demo_x = left_margin + github_width + 20
-                            c.drawString(demo_x, y, demo_link)
-                            y -= 15
-                        else:
-                            c.drawString(left_margin, y, github_link)
-                            y -= 15
-                            c.drawString(left_margin, y, demo_link)
-                            y -= 15
-                    else:
-                        c.drawString(left_margin, y, links[0])
-                        y -= 15
-                c.setStrokeColor(main_color)
-                c.setLineWidth(0.5)
-                c.line(left_margin, y, right_margin, y)
-                y -= 12
+                    c.setFont(base_font, 8)
+                    c.setFillColor(accent_color)
+                    links_text = " | ".join(links)
+                    c.drawString(left_margin, y, links_text)
+                    y -= 15
+                
+                # Project highlights
                 points = project.get("points", [])
-                if len(points) > 3:
-                    points = points[:3] 
-                bullet_indent = 15
-                for point in points:
-                    if not point or point.strip() == "":
-                        continue
-                    if not check_page_space(15):
-                        return False
-                    c.setFont(base_font, 10)
-                    c.setFillColor(text_color)
-                    c.drawString(left_margin, y, "•")   
-                    new_y = draw_paragraph(point, left_margin + bullet_indent, y, content_width - bullet_indent, base_font, 10)
-                    if new_y == -1:   
-                        return False  
-                    y = new_y - 5
+                if points:
+                    for point in points[:3]:  # Limit to 3 points
+                        if not point or point.strip() == "":
+                            continue
+                        if not check_page_space(15):
+                            return False
+                        
+                        c.setFont(base_font, 9)
+                        c.setFillColor(text_color)
+                        c.drawString(left_margin, y, "•")
+                        new_y = draw_paragraph(point, left_margin + 15, y, content_width - 15, base_font, 9)
+                        if new_y == -1:
+                            return False
+                        y = new_y - 2
+                
                 y -= 15
-                c.setStrokeColor(colors.lightgrey)
-                c.setLineWidth(0.5)
-                c.line(left_margin + 40, y, right_margin - 40, y)
-                y -= 10
+            
             return True
-        def calculate_mini_project_height(project, width):
-            height = 0
-            height += 15
-            if project.get("technologies"):
-                tech_lines = wrap_text(f"Tech: {project.get('technologies')}", width, base_font, 9)
-                height += len(tech_lines) * 12
-            if project.get("description"):
-                desc_lines = wrap_text(project.get("description"), width, base_font, 9)
-                height += len(desc_lines) * 12
-            links = []
-            if project.get("githubLink"):
-                links.append(f"GitHub: {project.get('githubLink')}")
-            if project.get("liveLink"):
-                links.append(f"Demo: {project.get('liveLink')}")
-            if links:
-                links_text = " | ".join(links)
-                links_lines = wrap_text(links_text, width, base_font, 8)
-                height += len(links_lines) * 10
-            return height
-        def draw_mini_project(project, x, y, width):
-            original_y = y
-            c.setFont(bold_font, 10)
-            c.setFillColor(section_color)
-            name = project.get("name", "")
-            c.drawString(x, y, name)
-            y -= 15
-            technologies = project.get("technologies", "")
-            if technologies:
-                c.setFont(base_font, 9)
-                c.setFillColor(main_color)
-                tech_lines = wrap_text(f"Tech: {technologies}", width, base_font, 9)
-                for line in tech_lines:
-                    c.drawString(x, y, line)
-                    y -= 12
-            description = project.get("description", "")
-            if description:
-                c.setFont(base_font, 9)
-                c.setFillColor(text_color)
-                desc_lines = wrap_text(description, width, base_font, 9)
-                for line in desc_lines:
-                    c.drawString(x, y, line)
-                    y -= 12
-            links = []
-            if project.get("githubLink"):
-                links.append(f"GitHub: {project.get('githubLink')}")
-            if project.get("liveLink"):
-                links.append(f"Demo: {project.get('liveLink')}")
-            if links:
-                c.setFont(base_font, 8)
-                links_text = " | ".join(links)
-                links_lines = wrap_text(links_text, width, base_font, 8)
-                for line in links_lines:
-                    c.drawString(x, y, line)
-                    y -= 10
-            return original_y - y
-        def draw_mini_projects():
-            nonlocal y
-            if not data.get("miniProjects"):
-                return True 
-            y = draw_section_header("MINI PROJECTS")
-            mini_projects = data.get("miniProjects", [])
-            project_heights = []
-            for project in mini_projects:
-                height = calculate_mini_project_height(project, content_width / 2 - 10)  
-                project_heights.append(height)        
-            if len(mini_projects) >= 2:
-                col_width = (content_width - 20) / 2    
-                i = 0
-                while i < len(mini_projects):
-                    height1 = project_heights[i] if i < len(project_heights) else 0
-                    height2 = project_heights[i+1] if i+1 < len(project_heights) else 0
-                    row_height = max(height1, height2)
-                    if not check_page_space(row_height):
-                        return False
-                    row_start_y = y
-                    if i < len(mini_projects):
-                        draw_mini_project(mini_projects[i], left_margin, row_start_y, col_width)
-                    if i+1 < len(mini_projects):
-                        draw_mini_project(mini_projects[i+1], left_margin + col_width + 20, row_start_y, col_width)
-                    y = row_start_y - row_height - 15
-                    i += 2
-            else:
-                for i, project in enumerate(mini_projects):
-                    if not check_page_space(project_heights[i]):
-                        return False
-                    draw_mini_project(project, left_margin, y, content_width)
-                    y -= project_heights[i] + 15
-            return True
+
         def draw_education():
+            """Professional education section"""
             nonlocal y
             if not data.get("education"):
                 return True
+            
             y = draw_section_header("EDUCATION")
+            
             for edu in data.get('education', []):
                 if not check_page_space(45):
                     return False
+                
+                # Degree
                 c.setFont(bold_font, 11)
                 c.setFillColor(text_color)
                 degree = edu.get('degree', '')
                 c.drawString(left_margin, y, degree)
+                
+                # Duration on the right
                 if edu.get('duration', ''):
                     c.setFont(base_font, 10)
+                    c.setFillColor(light_gray)
                     duration = edu.get('duration', '')
                     duration_width = c.stringWidth(duration, base_font, 10)
                     c.drawString(right_margin - duration_width, y, duration)
-                y -= 15
+                
+                y -= 14
+                
+                # Institution and location
                 institution = edu.get('institution', '')
+                location = edu.get('location', '')
                 c.setFont(base_font, 10)
-                c.drawString(left_margin, y, institution)
-                y -= 15
-                if edu.get('location', ''):
-                    c.setFont(base_font, 10)
-                    c.drawString(left_margin, y, edu.get('location', ''))
-                    y -= 15
-                y -= 5
+                c.setFillColor(primary_color)
+                if location:
+                    institution_line = f"{institution} | {location}"
+                else:
+                    institution_line = institution
+                c.drawString(left_margin, y, institution_line)
+                y -= 20
+            
             return True
+
         def draw_skills():
+            """ATS-optimized skills section"""
             nonlocal y
             if not data.get('skills'):
                 return True
-            y = draw_section_header('SKILLS')
+            
+            y = draw_section_header('TECHNICAL SKILLS')
+            
             skills = data.get('skills', {})
             skill_categories = {
                 "Languages": skills.get("languages", ""),
-                "Libraries & Frameworks": skills.get("librariesFrameworks", ""),
+                "Frameworks & Libraries": skills.get("librariesFrameworks", ""),
                 "Microservices": skills.get("microservices", ""),
                 "Tools & Platforms": skills.get("toolsPlatforms", ""),
-                "Design & Prototyping": skills.get("designPrototyping", ""),
-                "Concepts": skills.get("concepts", "")
+                "Design Tools": skills.get("designPrototyping", ""),
+                "Core Concepts": skills.get("concepts", "")
             }
-            c.setFont(base_font, 10)
-            c.setFillColor(text_color)
+            
             for category, skills_text in skill_categories.items():
                 if not skills_text:
                     continue
-                if not check_page_space(25):
+                if not check_page_space(20):
                     return False
+                
+                # Category label
                 c.setFont(bold_font, 10)
-                c.drawString(left_margin, y, f"{category}: ")
-                category_width = c.stringWidth(f"{category}: ", bold_font, 10)
-                skill_start_x = left_margin + category_width
-                remaining_width = content_width - category_width
+                c.setFillColor(text_color)
+                category_label = f"{category}: "
+                c.drawString(left_margin, y, category_label)
+                
+                # Skills list
+                category_width = c.stringWidth(category_label, bold_font, 10)
                 c.setFont(base_font, 10)
+                c.setFillColor(text_color)
+                
+                remaining_width = content_width - category_width
                 skills_lines = wrap_text(skills_text, remaining_width, base_font, 10)
+                
                 if skills_lines:
-                    c.drawString(skill_start_x, y, skills_lines[0])
+                    c.drawString(left_margin + category_width, y, skills_lines[0])
+                    y -= 14
                     for line in skills_lines[1:]:
-                        y -= 15
-                        c.drawString(left_margin, y, line) 
-                y -= 20
+                        c.drawString(left_margin + category_width, y, line)
+                        y -= 14
+            
             y -= 5
             return True
+
         def draw_languages():
-            nonlocal y 
+            """Languages proficiency section"""
+            nonlocal y
             if not data.get('languages'):
                 return True
+            
             y = draw_section_header('LANGUAGES')
+            
             languages = data.get("languages", {})
             lang_parts = []
             for language, proficiency in languages.items():
                 lang_parts.append(f"{language} ({proficiency})")
-            lang_text = ", ".join(lang_parts)
+            
+            lang_text = " • ".join(lang_parts)
             c.setFont(base_font, 10)
             c.setFillColor(text_color)
+            
             lines = wrap_text(lang_text, content_width, base_font, 10)
             if not check_page_space(15 * len(lines)):
                 return False
+            
             for line in lines:
                 c.drawString(left_margin, y, line)
                 y -= 15
+            
             return True
+
+        # Build the resume
         draw_header()
+        
         sections_ok = True
         sections_ok = draw_summary() and sections_ok
         sections_ok = draw_skills() and sections_ok
         sections_ok = draw_experience() and sections_ok
         sections_ok = draw_projects() and sections_ok
-        sections_ok = draw_mini_projects() and sections_ok
         sections_ok = draw_education() and sections_ok
         sections_ok = draw_languages() and sections_ok
+        
         c.showPage()
         c.save()
+        
         return response
-    
